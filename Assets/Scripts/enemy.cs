@@ -9,13 +9,11 @@ public class enemy : MonoBehaviour
     public int displayhealth;
     public GameObject deathanimation;
     public int Damage = 5;
-    public HealthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
         currenthealth = health;
         displayhealth = health;
-        healthBar.SetMaxHealth(health);
     }
 
     // Update is called once per frame
@@ -23,7 +21,8 @@ public class enemy : MonoBehaviour
     {
         if (currenthealth <= 0)
         {
-            // death animation
+            GameObject deathEffect = Instantiate(deathanimation, transform.position, Quaternion.identity);
+            Destroy(deathEffect, 0.25f);
             Destroy(gameObject);
         }
     }
@@ -31,6 +30,5 @@ public class enemy : MonoBehaviour
     {
         currenthealth -= damage;
         displayhealth = currenthealth;
-        healthBar.SetHealth(currenthealth);
     }
 }

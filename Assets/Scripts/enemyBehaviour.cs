@@ -37,12 +37,15 @@ public class enemyBehaviour : MonoBehaviour
         //If something was hit.
         if (hit.collider != null)
         {
+            //Debug.Log(hit.collider);
             if (hit.collider.CompareTag("Player"))
             {
                 SeenPlayer = true;
             }
             if (!hit.collider.CompareTag("Player") && SeenPlayer == true)
             {
+                //Debug.Log(transform.position);
+                Debug.Log(playerlocation);
                 playerLastLocation = playerlocation;
                 SeenPlayer = false;
                 moveTolastKnowPos = true;

@@ -36,7 +36,7 @@ public class EnemyMelee : MonoBehaviour
                 if (Time.time - lastAction > 1 / attackSpeed)
                 {
                     Debug.Log("attack!!");
-                    //TODO: attack animation
+                    GameObject attackAnimation = Instantiate(attackAnim, transform.position, Quaternion.identity);
                     player.GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
                     lastAction = Time.time;
 

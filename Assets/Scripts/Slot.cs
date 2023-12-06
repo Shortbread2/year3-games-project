@@ -26,7 +26,6 @@ public class Slot : MonoBehaviour
         {
             Debug.Log(child.name);
             child.GetComponent<SpawnWeapon>().SpawnDroppedItem();
-            // if item is equipped get rid of that as well
             GameObject.Destroy(child.gameObject);
         }
     }
