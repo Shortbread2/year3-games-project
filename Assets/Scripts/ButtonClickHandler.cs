@@ -21,5 +21,10 @@ public class ButtonClickHandler : MonoBehaviour
         SceneManager.LoadScene("Pause Menu");
     }
 
+    public void OpenPuzzle1()
+    {
+        SceneManager.LoadScene("Mining Level");
+    }
+
     // Add more functions for other button actions as needed
 }
