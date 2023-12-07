@@ -5,25 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class ButtonClickHandler : MonoBehaviour
 {
-    public void OpenInventoryScene()
-    {
-        Debug.Log("Opening Inventory Scene...");
-        SceneManager.LoadScene("Inventory"); 
-    }
-
-    public void ContinueGame()
+    public void OpenNewGame()
     {
         SceneManager.LoadScene("SampleScene");
-    }
-
-    public void OpenPauseMenu()
-    {
-        SceneManager.LoadScene("Pause Menu");
     }
 
     public void OpenPuzzle1()
     {
         SceneManager.LoadScene("Mining Level");
+    }
+
+    public void OpenInventoryScene()
+    {
+        Debug.Log("Opening Inventory Scene...");
+        SceneManager.LoadScene("Inventory");
     }
 
     // Add more functions for other button actions as needed
