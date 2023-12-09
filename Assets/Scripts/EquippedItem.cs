@@ -26,7 +26,7 @@ public class EquippedItem : MonoBehaviour
 
     public void EquipWeapon()
     {
-        if (player != null && weaponPrefab != null)
+        if (player != null && weaponPrefab != null && playerItemLoc.childCount <= 0)
         {
             // Instantiate the weapon and attach it to the player
             currentWeapon = Instantiate(weaponPrefab, playerItemLoc);

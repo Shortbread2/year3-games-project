@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8884e6ea681cf794598218e979cc28c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSlot: 3
+  currentSlot: 2
 --- !u!1 &1220441937098768650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,7 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8884e6ea681cf794598218e979cc28c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSlot: 4
+  currentSlot: 3
 --- !u!1 &8305080158280054492
 GameObject:
   m_ObjectHideFlags: 0

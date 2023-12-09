@@ -9,8 +9,8 @@ using UnityEngine;
 public class EnemyMelee : MonoBehaviour
 {
     GameObject player;
+    private Animator animator;
     private Transform target;
-    public GameObject attackAnim;
     public float attackdistance = 0.3f;
     public int Damage = 1;
     public float attackSpeed = 10;
@@ -20,6 +20,7 @@ public class EnemyMelee : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.GetComponent<Transform>();
+        animator = this.GetComponent<Animator>();
     }
 
     private void OnDrawGizmos(){
@@ -35,13 +36,13 @@ public class EnemyMelee : MonoBehaviour
             {
                 if (Time.time - lastAction > 1 / attackSpeed)
                 {
-                    Debug.Log("attack!!");
-                    //TODO: attack animation
+                    //Debug.Log("attack!!");
+                    animator.SetBool("isAttacking",true);
                     player.GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
                     lastAction = Time.time;
 
 
                 }
-            }
+            } else {animator.SetBool("isAttacking",false);}
     }
 }
