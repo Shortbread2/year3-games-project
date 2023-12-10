@@ -7,7 +7,6 @@ public class enemy : MonoBehaviour
     public int health = 100;
     private int currenthealth;
     public int displayhealth;
-    public int Damage = 5;
     public HealthBar healthBar;
     private Animator animator;
     public Behaviour aiPathfinder;
@@ -18,7 +17,7 @@ public class enemy : MonoBehaviour
         displayhealth = health;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
-        animator.SetInteger("Health", health);
+        animator.SetInteger("Health",health);
     }
 
     // Update is called once per frame

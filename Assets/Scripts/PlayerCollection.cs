@@ -8,6 +8,11 @@ public class PlayerCollection : MonoBehaviour
     public int gemCount = 0;
     public int paperclipCount = 0;
 
+    void Start(){
+        collectiblesDictionary.Add("Gem",gemCount);
+        collectiblesDictionary.Add("Paperclip",paperclipCount);
+    }
+
     public void CollectItem(string itemType)
     {
         if (collectiblesDictionary.ContainsKey(itemType))

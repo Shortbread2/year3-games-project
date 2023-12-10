@@ -431,7 +431,7 @@ Transform:
   - {fileID: 7504067363899087258}
   - {fileID: 7325240249901453230}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5052852782627840104
 SpriteRenderer:
@@ -478,8 +478,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.31, y: 0.35}
+  m_DrawMode: 2
+  m_Size: {x: 0.5, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -544,7 +544,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: -0.06}
   serializedVersion: 2
   m_Radius: 0.11
 --- !u!114 &95397258194791053
@@ -561,7 +561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   displayhealth: 0
-  Damage: 5
   healthBar: {fileID: 8534291503911828808}
   aiPathfinder: {fileID: 3722196510821047009}
 --- !u!114 &6074733565482621719
@@ -576,16 +575,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4290af7c77dce8245b87b7f33576cf28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerlocation: {x: 0, y: 0, z: 0}
-  playerLastLocation: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
   aiPathfinder: {fileID: 3722196510821047009}
   lastSeenNode: {fileID: 7504067363899087258}
-  speed: 0.2
+  speed: 0.3
   stopdistance: 0.1
   SeenPlayer: 0
   moveTolastKnowPos: 0
   IsNotMobile: 0
+  lvl1Int: 0
+  lvl2Int: 0
+  wanderRange: 1.14
+  rangeForRandPoint: 0.2
+  time: 0
+  lastAction: 0
+  searchSpeed: 0.05
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 763
@@ -602,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackdistance: 0.38
-  Damage: 1
+  Damage: 5
   attackSpeed: 1
   lastAction: 0
 --- !u!114 &3008353250503055796
@@ -668,10 +671,10 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 0.23
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
+  slowdownDistance: 0.21
+  pickNextWaypointDist: 0.26
+  endReachedDistance: 0.11
+  alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0

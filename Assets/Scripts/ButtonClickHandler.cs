@@ -12,7 +12,7 @@ public class ButtonClickHandler : MonoBehaviour
 
     public void OpenPuzzle1()
     {
-        SceneManager.LoadScene("Lockpicking puzzle scene");
+        SceneManager.LoadScene("Mining Level");
     }
 
     public void OpenInventoryScene()

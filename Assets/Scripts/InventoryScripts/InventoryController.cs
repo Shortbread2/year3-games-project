@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
-    InventoryHighlight inventoryHighlight;
+    InventoryHighlight inventoryHighlight; 
 
     InventoryItem itemToHighlight;
 
@@ -36,10 +35,7 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (selectedItem == null)
-            {
-                CreateRandomItem();
-            }
+            CreateRandomItem();
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -83,16 +79,16 @@ public class InventoryController : MonoBehaviour
 
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
-        if (posOnGrid != null)
+        if (posOnGrid != null) 
         {
             selectedItemGrid.PlaceItemOnGrid(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         }
         else
         {
             Debug.Log("No space available on the grid");
-            Destroy(itemToInsert.gameObject);
+            Destroy(itemToInsert.gameObject); 
         }
-    }
+    } 
 
     private void HandleHighlight()
     {
@@ -134,7 +130,6 @@ public class InventoryController : MonoBehaviour
 
         rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
-        rectTransform.SetAsLastSibling();
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
         inventoryItem.Set(items[selectedItemID]);
@@ -179,7 +174,6 @@ public class InventoryController : MonoBehaviour
                 selectedItem = overlapItem;
                 overlapItem = null;
                 rectTransform = selectedItem.GetComponent<RectTransform>();
-                rectTransform.SetAsLastSibling();
             }
         }
     }

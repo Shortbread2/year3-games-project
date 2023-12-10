@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Gem : MonoBehaviour
+public class PaperclipPickup : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,9 +12,9 @@ public class Gem : MonoBehaviour
 
             if (collectiblesManager != null)
             {
-                collectiblesManager.CollectItem("Gem");
+                collectiblesManager.CollectItem("Paperclip");
                 Destroy(gameObject);
             }
         }
     }
-}
+} 

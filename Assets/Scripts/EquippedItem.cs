@@ -7,10 +7,21 @@ public class EquippedItem : MonoBehaviour
     public GameObject weaponPrefab; // Reference to the weapon prefab to be instantiated
     private GameObject currentWeapon; // Reference to the currently equipped weapon
     private Transform player;
+    // where the item needs to be spawned
+    private Transform playerItemLoc;
 
     void Start()
     {
+        //this.gameObject.GetComponent<EquippedItem>().enabled = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        for (int i = 0; i < player.childCount; i++)
+        {
+            GameObject child = player.GetChild(i).gameObject;
+            //Do something with child
+            if (child.name == "item location"){
+                playerItemLoc = child.transform;
+            }
+        }
     }
 
     public void EquipWeapon()
@@ -18,7 +29,10 @@ public class EquippedItem : MonoBehaviour
         if (player != null && weaponPrefab != null && playerItemLoc.childCount <= 0)
         {
             // Instantiate the weapon and attach it to the player
-            currentWeapon = Instantiate(weaponPrefab, player);
+            currentWeapon = Instantiate(weaponPrefab, playerItemLoc);
+            currentWeapon.gameObject.GetComponent<Collider2D>().enabled = false;
+            //currentWeapon.gameObject.GetComponent<lookatmouse>().enabled = true;
+            currentWeapon.gameObject.GetComponent<shooting>().enabled = true;
             currentWeapon.transform.localPosition = Vector3.zero; // Set the position relative to the player
 
             // Adjust the sorting layer or order in layer for the weapon sprite renderer
@@ -37,7 +51,8 @@ public class EquippedItem : MonoBehaviour
         // Continuously update the weapon position to stay attached to the player
         if (player != null && currentWeapon != null)
         {
-            currentWeapon.transform.position = player.position;
+            currentWeapon.transform.position = playerItemLoc.position;
+            currentWeapon.transform.rotation = playerItemLoc.rotation;
         }
     }
 }
