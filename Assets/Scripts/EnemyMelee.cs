@@ -9,8 +9,8 @@ using UnityEngine;
 public class EnemyMelee : MonoBehaviour
 {
     GameObject player;
+    private Animator animator;
     private Transform target;
-    public GameObject attackAnim;
     public float attackdistance = 0.3f;
     public int Damage = 1;
     public float attackSpeed = 10;
@@ -20,9 +20,11 @@ public class EnemyMelee : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.GetComponent<Transform>();
+        animator = this.GetComponent<Animator>();
     }
 
-    private void OnDrawGizmos(){
+    private void OnDrawGizmos()
+    {
         Handles.color = Color.red;
         //Handles.Disc(Quaternion.identity,transform.position, Vector3.zero, 0.3f, false, 0.3f);
         Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), attackdistance);
@@ -32,16 +34,17 @@ public class EnemyMelee : MonoBehaviour
     void Update()
     {
         if (Vector2.Distance(transform.position, target.position) <= attackdistance)
+        {
+            if (Time.time - lastAction > 1 / attackSpeed)
             {
-                if (Time.time - lastAction > 1 / attackSpeed)
-                {
-                    Debug.Log("attack!!");
-                    GameObject attackAnimation = Instantiate(attackAnim, transform.position, Quaternion.identity);
-                    player.GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
-                    lastAction = Time.time;
+                //Debug.Log("attack!!");
+                animator.SetBool("isAttacking", true);
+                player.GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
+                lastAction = Time.time;
 
 
-                }
             }
+        }
+        else { animator.SetBool("isAttacking", false); }
     }
 }

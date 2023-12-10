@@ -7,6 +7,7 @@ public class enemyBehaviour : MonoBehaviour
     public Vector3 direction;
     public Behaviour aiPathfinder;
     public Transform lastSeenNode;
+    private Animator animator;
     Collider2D col;
     int Distance = 100;
     GameObject player;
@@ -15,25 +16,28 @@ public class enemyBehaviour : MonoBehaviour
     private Transform target;
     public bool SeenPlayer = false;
     public bool moveTolastKnowPos = false;
-    public bool IsNotMobile = true;
+    public bool IsNotMobile = false;
+    private bool moving = false;
     [SerializeField] private LayerMask EnemyLayer;
     void Start()
     {
         aiPathfinder.enabled = false;
         player = GameObject.FindGameObjectWithTag("Player");
         col = this.GetComponent<Collider2D>();
+        animator = this.GetComponent<Animator>();
         target = player.GetComponent<Transform>();
     }
     void Update()
     {
+        animator.SetBool("isMoving", moving);
+        //Debug.Log(transform.position.x - lastSeenNode.transform.position.x);
+        animator.SetFloat("LookDir", transform.position.x - lastSeenNode.transform.position.x);
         playerlocation = new Vector2(player.transform.position.x, player.transform.position.y);
         direction = playerlocation - this.transform.position;
 
-        //Cast a ray in the direction specified in the inspector.
         RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, direction, Vector3.Distance(this.gameObject.transform.position, player.transform.position), EnemyLayer);
 
-        Debug.DrawRay(this.gameObject.transform.position, direction, Color.green);
-        Debug.DrawLine(this.transform.position, player.transform.position, Color.red);
+        Debug.DrawLine(transform.position, player.transform.position, Color.red);
         //If something was hit.
         if (hit.collider != null)
         {
@@ -56,13 +60,15 @@ public class enemyBehaviour : MonoBehaviour
 
             if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f){
                 if (Vector2.Distance(transform.position, target.position) > 0.3f){
-                    // initiate search or go back to idle
+                    // TODO - initiate search or go back to idle
                     aiPathfinder.enabled = false;
+                    moving = false;
                 }
             }
         }
         if (SeenPlayer == true)
         {
+            lastSeenNode.position = target.position;
             moveTolastKnowPos = false;
             if (IsNotMobile == false)
             {
@@ -76,13 +82,13 @@ public class enemyBehaviour : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, target.position) > stopdistance)
             {
-                lastSeenNode.position = target.position;
                 aiPathfinder.enabled = true;
-                //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+                moving = true;
             }
             if (Vector2.Distance(transform.position, target.position) < stopdistance)
             {
                 aiPathfinder.enabled = false;
+                moving = true;
                 transform.position = Vector2.MoveTowards(transform.position, -target.position, speed * Time.deltaTime);
             }
         }
