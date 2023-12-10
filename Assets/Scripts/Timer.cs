@@ -4,7 +4,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    private float timer = 60f;
+    private float timer = 75f;
     public GameObject GAMEOVER;
 
     void Update()

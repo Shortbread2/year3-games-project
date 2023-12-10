@@ -8,7 +8,7 @@ public class ButtonClickHandler : MonoBehaviour
     public void OpenInventoryScene()
     {
         Debug.Log("Opening Inventory Scene...");
-        SceneManager.LoadScene("Inventory"); 
+        SceneManager.LoadScene("Inventory");
     }
 
     public void ContinueGame()
@@ -21,9 +21,9 @@ public class ButtonClickHandler : MonoBehaviour
         SceneManager.LoadScene("Pause Menu");
     }
 
-    public void OpenPuzzle1()
+    public void OpenLockpickingPuzzle()
     {
-        SceneManager.LoadScene("Mining Level");
+        SceneManager.LoadScene("Lockpicking puzzle scene");
     }
 
     // Add more functions for other button actions as needed
