@@ -7,7 +7,6 @@ public class enemy : MonoBehaviour
     public int health = 100;
     private int currenthealth;
     public int displayhealth;
-    public int Damage = 5;
     public HealthBar healthBar;
     private Animator animator;
     public Behaviour aiPathfinder;
