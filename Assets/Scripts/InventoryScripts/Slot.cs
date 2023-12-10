@@ -18,7 +18,8 @@ public class Slot : MonoBehaviour
         {
             GameObject child = player.GetChild(i).gameObject;
             //Do something with child
-            if (child.name == "item location"){
+            if (child.name == "item location")
+            {
                 playerItemLoc = child.transform;
             }
         }
@@ -39,9 +40,11 @@ public class Slot : MonoBehaviour
             child.GetComponent<SpawnWeapon>().SpawnDroppedItem();
             // if item is equipped get rid of that as well
             Debug.Log(child.name.Split(" ")[1]);
-            if (playerItemLoc.childCount > 0){
+            if (playerItemLoc.childCount > 0)
+            {
                 Debug.Log(playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0]);
-                if (child.name.Split(" ")[1] == playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0]){
+                if (child.name.Split(" ")[1] == playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0])
+                {
                     Destroy(playerItemLoc.GetChild(0).gameObject);
                 }
             }

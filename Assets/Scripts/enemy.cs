@@ -18,7 +18,7 @@ public class enemy : MonoBehaviour
         displayhealth = health;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
-        animator.SetInteger("Health",health);
+        animator.SetInteger("Health", health);
     }
 
     // Update is called once per frame
