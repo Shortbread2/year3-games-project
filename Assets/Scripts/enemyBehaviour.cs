@@ -30,7 +30,7 @@ public class enemyBehaviour : MonoBehaviour
     public float wanderRange = 0.2f;
     public float rangeForRandPoint = 0.2f;
     private bool moving = false;
-    private Vector3 randomPoint = new Vector3(0,0,0);
+    private Vector3 randomPoint = new Vector3(0, 0, 0);
     public float time;
     public float lastAction;
     public float searchSpeed = 10;
@@ -69,11 +69,14 @@ public class enemyBehaviour : MonoBehaviour
                 moveTolastKnowPos = true;
             }
         }
-        if (moveTolastKnowPos == true){
+        if (moveTolastKnowPos == true)
+        {
             lastSeenNode.position = playerLastLocation;
 
-            if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f){
-                if (Vector2.Distance(transform.position, target.position) > 0.3f){
+            if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f)
+            {
+                if (Vector2.Distance(transform.position, target.position) > 0.3f)
+                {
                     aiPathfinder.enabled = false;
                     moving = false;
                     WanderAround();
@@ -87,7 +90,9 @@ public class enemyBehaviour : MonoBehaviour
             if (IsNotMobile == false)
             {
                 MoveToPlayer();
-            } else {
+            }
+            else
+            {
                 aiPathfinder.enabled = false;
                 moving = false;
             }
@@ -110,33 +115,39 @@ public class enemyBehaviour : MonoBehaviour
             }
         }
     }
-    public void SetAttackPause(bool value){
-        if (!lvl2Int){
+    public void SetAttackPause(bool value)
+    {
+        if (!lvl2Int)
+        {
             aiPathfinder.canMove = !value;
         }
     }
 
-    private void OnDrawGizmos(){
+    private void OnDrawGizmos()
+    {
         Handles.color = Color.blue;
         Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), wanderRange); // draw wanderRange
     }
 
-    void WanderAround(){
-        Debug.Log(1 / searchSpeed);
+    void WanderAround()
+    {
         if (Time.time - lastAction > 1 / searchSpeed)
         {
             randomPoint = this.gameObject.transform.position + new Vector3(Random.insideUnitCircle.x * wanderRange, Random.insideUnitCircle.x * wanderRange, 0); //random point in a circle 
-            RaycastHit2D hit2 = Physics2D.Raycast(this.gameObject.transform.position, (randomPoint-this.transform.position), Vector3.Distance(this.gameObject.transform.position, randomPoint), EnemyLayer);
-            while (transform.position != randomPoint){
-                if (hit2.collider == null && (Time.time - lastAction > 1 / searchSpeed) == false){
-                    Debug.Log("move!");
-                    transform.position = Vector2.MoveTowards(transform.position, randomPoint, speed * Time.deltaTime);
-                } else {
-                    transform.position = Vector2.MoveTowards(transform.position, hit2.collider.transform.position, speed * Time.deltaTime);
-                }
+            RaycastHit2D hit2 = Physics2D.Raycast(this.gameObject.transform.position, (randomPoint - this.transform.position), Vector3.Distance(this.gameObject.transform.position, randomPoint), EnemyLayer);
+            Debug.Log(randomPoint);
+            Debug.Log(transform.position);
+            if (hit2.collider == null && (Time.time - lastAction > 1 / searchSpeed) == false)
+            {
+                Debug.Log("move!");
+                lastSeenNode.position = randomPoint;
+            }
+            else
+            {
+                lastSeenNode.position = hit2.collider.transform.position;
             }
             lastAction = Time.time;
         }
-        Debug.DrawRay(this.gameObject.transform.position, (randomPoint-this.transform.position), Color.blue);
+        Debug.DrawRay(this.gameObject.transform.position, (randomPoint - this.transform.position), Color.blue);
     }
 }

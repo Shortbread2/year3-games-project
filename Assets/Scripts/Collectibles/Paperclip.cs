@@ -17,4 +17,12 @@ public class Paperclip : MonoBehaviour
             }
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> 034c6289673ab57ce8cce2a35f6c628439b4e428
+>>>>>>> Stashed changes
