@@ -15,11 +15,5 @@ public class ButtonClickHandler : MonoBehaviour
         SceneManager.LoadScene("Mining Level");
     }
 
-    public void OpenInventoryScene()
-    {
-        Debug.Log("Opening Inventory Scene...");
-        SceneManager.LoadScene("Inventory");
-    }
-
     // Add more functions for other button actions as needed
 }
