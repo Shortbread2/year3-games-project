@@ -431,7 +431,7 @@ Transform:
   - {fileID: 7504067363899087258}
   - {fileID: 7325240249901453230}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5052852782627840104
 SpriteRenderer:
@@ -582,13 +582,14 @@ MonoBehaviour:
   SeenPlayer: 0
   moveTolastKnowPos: 0
   IsNotMobile: 0
-  lvl1Int: 0
+  lvl1Int: 1
   lvl2Int: 0
+  searching: 0
+  viewRange: 0.8
   wanderRange: 1.14
-  rangeForRandPoint: 0.2
   time: 0
-  lastAction: 0
-  searchSpeed: 0.05
+  enableRngSearchSpeed: 1
+  searchSpeed: 0.1
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 763
@@ -671,9 +672,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.21
-  pickNextWaypointDist: 0.26
-  endReachedDistance: 0.11
+  slowdownDistance: 0.3
+  pickNextWaypointDist: 0.2
+  endReachedDistance: 0.22
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0

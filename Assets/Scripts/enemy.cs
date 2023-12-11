@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
@@ -9,7 +10,7 @@ public class enemy : MonoBehaviour
     public int displayhealth;
     public HealthBar healthBar;
     private Animator animator;
-    public Behaviour aiPathfinder;
+    public AIBase aiPathfinder;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,6 @@ public class enemy : MonoBehaviour
         displayhealth = health;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
-        animator.SetInteger("Health",health);
     }
 
     // Update is called once per frame
@@ -29,6 +29,7 @@ public class enemy : MonoBehaviour
             animator.SetTrigger("isDead");
             aiPathfinder.enabled = false;
             this.GetComponent<enemyBehaviour>().enabled = false;
+            this.GetComponent<EnemyMelee>().enabled = false;
             //this.GetComponent<Collider2D>().enabled = false;
             this.GetComponent<Rigidbody2D>().mass = 70f;
 

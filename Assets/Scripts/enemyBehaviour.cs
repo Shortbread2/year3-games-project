@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class enemyBehaviour : MonoBehaviour
 {
     private Vector3 playerlocation;
-    private Vector3 playerLastLocation;
+    private Vector3 playerLastLocation = new Vector3(0,0,0);
     private Vector3 direction;
     public AIBase aiPathfinder;
     public Transform lastSeenNode;
@@ -27,25 +27,40 @@ public class enemyBehaviour : MonoBehaviour
     public bool IsNotMobile;
     public bool lvl1Int = false;
     public bool lvl2Int = false;
+    public bool searching = false;
+    public float viewRange = 0.2f;
+    private float OriginalViewRange = 0.2f;
     public float wanderRange = 0.2f;
-    public float rangeForRandPoint = 0.2f;
     private bool moving = false;
     private Vector3 randomPoint = new Vector3(0,0,0);
+    private Vector3 searchBase = new Vector3(0,0,0);
     public float time;
-    public float lastAction;
+    private float lastAction = -999999f;
+    private float lastStuckCheck;
+    private float prevDistance = 0f;
+    public bool enableRngSearchSpeed = false;
     public float searchSpeed = 10;
     [SerializeField] private LayerMask EnemyLayer;
     void Start()
     {
-        aiPathfinder.enabled = false;
+        //aiPathfinder.enabled = false;
         player = GameObject.FindGameObjectWithTag("Player");
         col = this.GetComponent<Collider2D>();
         animator = this.GetComponent<Animator>();
         target = player.GetComponent<Transform>();
         aiPathfinder.maxSpeed = speed;
+        searchBase = transform.position;
+        OriginalViewRange = viewRange;
     }
     void Update()
     {
+
+        if (transform.position.x - lastSeenNode.transform.position.x > 0){
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         time = Time.time;
         animator.SetBool("isMoving", moving);
         animator.SetFloat("LookDir", transform.position.x - lastSeenNode.transform.position.x);
@@ -60,30 +75,31 @@ public class enemyBehaviour : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
-                SeenPlayer = true;
+                if (Vector2.Distance(transform.position, target.position) <= viewRange){
+                    SeenPlayer = true;
+                    if (lvl2Int){
+                        viewRange = OriginalViewRange + 0.6f;
+                    }
+                }
             }
             if (!hit.collider.CompareTag("Player") && SeenPlayer == true)
             {
                 playerLastLocation = playerlocation;
                 SeenPlayer = false;
                 moveTolastKnowPos = true;
+            } else if(!hit.collider.CompareTag("Player") && moveTolastKnowPos == false)
+            {
+                viewRange = OriginalViewRange;
+                WanderAround();
             }
-        }
-        if (moveTolastKnowPos == true){
-            lastSeenNode.position = playerLastLocation;
-
-            if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f){
-                if (Vector2.Distance(transform.position, target.position) > 0.3f){
-                    aiPathfinder.enabled = false;
-                    moving = false;
-                    WanderAround();
-                }
-            }
+        } else {
+            viewRange = OriginalViewRange;
+            WanderAround();
         }
         if (SeenPlayer == true)
         {
+            searching = false;
             lastSeenNode.position = target.position;
-            moveTolastKnowPos = false;
             if (IsNotMobile == false)
             {
                 MoveToPlayer();
@@ -91,7 +107,23 @@ public class enemyBehaviour : MonoBehaviour
                 aiPathfinder.enabled = false;
                 moving = false;
             }
+        } else{
+            if (searching == false){
+                lastSeenNode.position = playerLastLocation;
+                searchBase = lastSeenNode.position;
+            }
+
+            // if the enemy loses the player and reaches the last known position it will begin to search in that area
+            if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f || searching == true){
+                if (Vector2.Distance(transform.position, target.position) > 0.3f){
+                    WanderAround();
+                }
+            }
         }
+        if (aiPathfinder.canMove == false){
+            moving = false;
+        }
+        checkIfStuck();
     }
     void MoveToPlayer()
     {
@@ -102,6 +134,7 @@ public class enemyBehaviour : MonoBehaviour
                 aiPathfinder.enabled = true;
                 moving = true;
             }
+            // if entity is too close to target
             if (Vector2.Distance(transform.position, target.position) < stopdistance)
             {
                 aiPathfinder.enabled = false;
@@ -110,6 +143,8 @@ public class enemyBehaviour : MonoBehaviour
             }
         }
     }
+
+    // for anim to stop entities movement when attacking
     public void SetAttackPause(bool value){
         if (!lvl2Int){
             aiPathfinder.canMove = !value;
@@ -118,25 +153,47 @@ public class enemyBehaviour : MonoBehaviour
 
     private void OnDrawGizmos(){
         Handles.color = Color.blue;
-        Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), wanderRange); // draw wanderRange
+        Handles.DrawWireDisc(searchBase, new Vector3(0, 0, 1), wanderRange); // draw wanderRange
+
+        Handles.color = Color.black;
+        Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), viewRange); // draw viewRange
     }
 
     void WanderAround(){
-        Debug.Log(1 / searchSpeed);
+        moving = true;
+        searching = true;
+
+        if (enableRngSearchSpeed == true){
+            searchSpeed = Random.Range(0.03f, 0.3f);
+        }
+
         if (Time.time - lastAction > 1 / searchSpeed)
         {
-            randomPoint = this.gameObject.transform.position + new Vector3(Random.insideUnitCircle.x * wanderRange, Random.insideUnitCircle.x * wanderRange, 0); //random point in a circle 
-            RaycastHit2D hit2 = Physics2D.Raycast(this.gameObject.transform.position, (randomPoint-this.transform.position), Vector3.Distance(this.gameObject.transform.position, randomPoint), EnemyLayer);
-            while (transform.position != randomPoint){
-                if (hit2.collider == null && (Time.time - lastAction > 1 / searchSpeed) == false){
-                    Debug.Log("move!");
-                    transform.position = Vector2.MoveTowards(transform.position, randomPoint, speed * Time.deltaTime);
-                } else {
-                    transform.position = Vector2.MoveTowards(transform.position, hit2.collider.transform.position, speed * Time.deltaTime);
-                }
-            }
+            randomPoint = searchBase + new Vector3(Random.insideUnitCircle.x * wanderRange, Random.insideUnitCircle.y * wanderRange, 0); //random point in a circle
             lastAction = Time.time;
         }
-        Debug.DrawRay(this.gameObject.transform.position, (randomPoint-this.transform.position), Color.blue);
+        lastSeenNode.position = randomPoint;
+        if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f)
+        {
+            moving = false;
+        } else{
+            lastAction = Time.time;
+        }
+    }
+
+    // not the best fix but eh
+    void checkIfStuck(){
+        float theDistance = Vector2.Distance(transform.position, lastSeenNode.position);
+        if (Time.time - lastStuckCheck > 0.8f)
+        {
+            if (prevDistance == theDistance && moving == true){
+                Debug.Log("STUCK!");
+                randomPoint = transform.position;
+                lastSeenNode.position = transform.position;
+            }
+            lastStuckCheck = Time.time;
+            prevDistance = theDistance;
+        }
+        //lastSeenNode.position = randomPoint;
     }
 }
