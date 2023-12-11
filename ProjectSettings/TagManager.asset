@@ -9,6 +9,9 @@ TagManager:
   - miniBoss
   - rooms
   - companion
+  - weapon
+  - projectile
+  - slots
   layers:
   - Default
   - TransparentFX
