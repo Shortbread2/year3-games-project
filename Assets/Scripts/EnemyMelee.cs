@@ -11,6 +11,7 @@ public class EnemyMelee : MonoBehaviour
     GameObject player;
     private Animator animator;
     private Transform target;
+    private enemyBehaviour enemyBehaviour;
     public float attackdistance = 0.3f;
     public int Damage = 1;
     public float attackSpeed = 10;
@@ -21,6 +22,7 @@ public class EnemyMelee : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.GetComponent<Transform>();
         animator = GetComponent<Animator>();
+        enemyBehaviour = GetComponent<enemyBehaviour>();
     }
 
     private void OnDrawGizmos(){
@@ -34,6 +36,9 @@ public class EnemyMelee : MonoBehaviour
         //animator.GetComponent<DestroyOnExitAnim>();
         if (Vector2.Distance(transform.position, target.position) <= attackdistance)
             {
+            if (enemyBehaviour.lvl1Int == true){
+                enemyBehaviour.aiPathfinder.canMove = false;
+            }
                 if (Time.time - lastAction > 1 / attackSpeed)
                 {
                     //Debug.Log("attack!!");
@@ -43,6 +48,9 @@ public class EnemyMelee : MonoBehaviour
 
 
                 }
-            } else {animator.SetBool("isAttacking",false);}
+            } else {
+                animator.SetBool("isAttacking",false);
+                enemyBehaviour.aiPathfinder.canMove = true;
+            }
     }
 }
