@@ -427,6 +427,7 @@ MonoBehaviour:
   health: 100
   displayhealth: 0
   healthBar: {fileID: 7380220601191894951}
+  damage: 5
   aiPathfinder: {fileID: 5213511825176723415}
 --- !u!114 &3470567000989405844
 MonoBehaviour:
@@ -471,7 +472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackdistance: 0.38
-  Damage: 5
   attackSpeed: 1
   lastAction: 0
 --- !u!114 &6880479521747814263
@@ -537,9 +537,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.3
+  slowdownDistance: 0.39
   pickNextWaypointDist: 0.2
-  endReachedDistance: 0.22
+  endReachedDistance: 0.28
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0

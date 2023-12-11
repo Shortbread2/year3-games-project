@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2384689178176779725}
   - component: {fileID: 6479207813482045878}
   - component: {fileID: 8018876020438694737}
+  - component: {fileID: 6976927229068228439}
+  - component: {fileID: 4514993710057397535}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -32,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2384689178176779725
 Camera:
@@ -107,3 +109,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   smoothSpeed: 2
+--- !u!114 &6976927229068228439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994785504911446575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe385567dc3624749b08aa8c8b54b91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: fa1ba523e1c3e43488faff1f15ad12b1, type: 2}
+  gemItem: {fileID: 11400000, guid: 0fbe5fa84f2c18e4c8b7ed9fa30456f9, type: 2}
+  paperclipItem: {fileID: 11400000, guid: 91368cfa613808a459eaa5aaa63f98a1, type: 2}
+  IDCardItem: {fileID: 11400000, guid: 86478c75dce18964694293729681c61a, type: 2}
+  itemPrefab: {fileID: 952444320405419592, guid: 99146c031af142443a944e2a3f397860, type: 3}
+  canvasTransform: {fileID: 0}
+--- !u!114 &4514993710057397535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994785504911446575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaf1d622af04144ea0388779870fe4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighter: {fileID: 0}

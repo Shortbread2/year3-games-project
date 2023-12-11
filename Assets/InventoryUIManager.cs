@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class InventoryUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private List<Image> inventoryItems;
+    private Transform player;
+    // where the item needs to be spawned
+    private Transform playerItemLoc;
 
     private void Start()
     {
@@ -22,17 +25,34 @@ public class InventoryUIManager : MonoBehaviour, IPointerEnterHandler, IPointerE
             }
         }
 
+        // for shooting
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        for (int i = 0; i < player.childCount; i++)
+        {
+            GameObject child = player.GetChild(i).gameObject;
+            //Do something with child
+            if (child.name == "item location"){
+                playerItemLoc = child.transform;
+            }
+        }
+
         SetOpacityForInventoryItems(0.8f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         SetOpacityForInventoryItems(1.0f);
+        if (player != null && playerItemLoc.childCount == 1){
+            playerItemLoc.GetChild(0).gameObject.GetComponent<shooting>().enabled = false;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         SetOpacityForInventoryItems(0.8f);
+        if (player != null && playerItemLoc.childCount == 1){
+            playerItemLoc.GetChild(0).gameObject.GetComponent<shooting>().enabled = true;
+        }
     }
 
     private void SetOpacityForInventoryItems(float opacity)

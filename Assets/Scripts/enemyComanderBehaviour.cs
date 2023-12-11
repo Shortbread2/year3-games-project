@@ -16,6 +16,8 @@ public class enemyComanderBehaviour : MonoBehaviour
     public bool buffDurationOver = false;
     public bool speedIncreaseBuff = false;
     public float speedIncreaseValue = 1.2f;
+    public bool attackBuff = false;
+    public float damageIncreaseValue = 1.2f;
     // TODO - alert nearby enemies , provide buff
 
     private enemyBehaviour enemyBehaviour;
@@ -53,7 +55,6 @@ public class enemyComanderBehaviour : MonoBehaviour
     }
 
     private void Ability(){
-        Debug.Log("buffs!");
         enemyBehaviour.SeenPlayer = true;
         foreach(GameObject enemy in enemies){
             enemy.GetComponent<enemyBehaviour>().SeenPlayer = true;
@@ -70,6 +71,21 @@ public class enemyComanderBehaviour : MonoBehaviour
             if (Time.time - lastAction > buffDuration && buffDurationOver){
                 foreach(GameObject enemy in enemies){
                     enemy.GetComponent<enemyBehaviour>().speed /= speedIncreaseValue;
+                }
+                buffDurationOver = false;
+            }
+        }
+        if (attackBuff){
+            if (Time.time - lastAction > buffCooldown){
+                foreach(GameObject enemy in enemies){
+                    enemy.GetComponent<enemy>().damage *= damageIncreaseValue;
+                }
+                lastAction = Time.time;
+                buffDurationOver = true;
+            }
+            if (Time.time - lastAction > buffDuration && buffDurationOver){
+                foreach(GameObject enemy in enemies){
+                    enemy.GetComponent<enemy>().damage /= damageIncreaseValue;
                 }
                 buffDurationOver = false;
             }

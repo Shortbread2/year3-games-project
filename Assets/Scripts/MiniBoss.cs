@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MiniBoss : MonoBehaviour
 {
-    public int health = 100;
-    private int currenthealth;
-    public int displayhealth;
+    public float health = 100f;
+    private float currenthealth;
+    public float displayhealth;
     public GameObject key;
     public Transform NameOFMiniBoss;
-    public int Damage = 5;
+    public float Damage = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class MiniBoss : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currenthealth -= damage;
         displayhealth = currenthealth;

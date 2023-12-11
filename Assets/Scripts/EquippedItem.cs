@@ -43,6 +43,8 @@ public class EquippedItem : MonoBehaviour
                 // You might need to experiment with the sorting order to get the desired effect
                 weaponRenderer.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder + 1;
             }
+        } else if (player != null && weaponPrefab != null && playerItemLoc.childCount >= 1){
+            Destroy(playerItemLoc.GetChild(0).gameObject);
         }
     }
 

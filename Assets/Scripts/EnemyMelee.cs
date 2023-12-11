@@ -12,9 +12,10 @@ public class EnemyMelee : MonoBehaviour
     private Animator animator;
     private Transform target;
     private enemyBehaviour enemyBehaviour;
+    private enemy enemy;
     public float attackdistance = 0.3f;
-    public int Damage = 1;
-    public float attackSpeed = 10;
+    private float Damage = 5f;
+    public float attackSpeed = 10f;
     public float lastAction;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class EnemyMelee : MonoBehaviour
         target = player.GetComponent<Transform>();
         animator = GetComponent<Animator>();
         enemyBehaviour = GetComponent<enemyBehaviour>();
+        enemy = GetComponent<enemy>();
     }
 
     private void OnDrawGizmos(){
@@ -33,6 +35,7 @@ public class EnemyMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Damage = enemy.damage;
         //animator.GetComponent<DestroyOnExitAnim>();
         if (Vector2.Distance(transform.position, target.position) <= attackdistance)
             {
