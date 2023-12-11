@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ItemGrid))]
-public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class GridInteract : MonoBehaviour, IPointerEnterHandler
 {
     InventoryController inventoryController;
     ItemGrid itemGrid;
@@ -21,11 +21,4 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (inventoryController != null)
-        {
-            inventoryController.SelectedItemGrid = null;
-        }
-    }
 }

@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GemPickUp : MonoBehaviour
+public class IDCardPickUp : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,8 +12,7 @@ public class GemPickUp : MonoBehaviour
 
             if (collectiblesManager != null)
             {
-
-                collectiblesManager.CollectItem("Gem");
+                collectiblesManager.CollectItem("IDCard");
                 Destroy(gameObject);
             }
         }

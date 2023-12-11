@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
@@ -18,6 +20,11 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapItem;
     RectTransform rectTransform;
     [SerializeField] List<ItemData> items;
+
+    [SerializeField] ItemData gemItem;
+    [SerializeField] ItemData paperclipItem;
+    [SerializeField] ItemData IDCardItem;
+
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
     InventoryHighlight inventoryHighlight; 
@@ -33,16 +40,6 @@ public class InventoryController : MonoBehaviour
     {
         ItemIconDrag();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CreateRandomItem();
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InsertRandomItem();
-        }
-
         if (Input.GetMouseButtonDown(1))
         {
             RotateItem();
@@ -54,7 +51,13 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        HandleHighlight();
+        try
+        {
+            HandleHighlight();
+        }
+        catch (IndexOutOfRangeException)
+        {
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,26 +72,47 @@ public class InventoryController : MonoBehaviour
         selectedItem.Rotate();
     }
 
-    private void InsertRandomItem()
+    public void InsertGemItem()
     {
         if (selectedItemGrid == null) { return; }
 
-        CreateRandomItem();
+        CreateGemItem();
+        InsertItemIntoInventory();
+    }
+
+    public void InsertPaperclipItem()
+    {
+        if (selectedItemGrid == null) { return; }
+
+        CreatePaperclipItem();
+        InsertItemIntoInventory();
+    }
+
+    public void InsertIDCardItem()
+    {
+        if (selectedItemGrid == null) { return; }
+
+        CreateIDCardItem();
+        InsertItemIntoInventory();
+    }
+
+    private void InsertItemIntoInventory()
+    {
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
 
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
-        if (posOnGrid != null) 
+        if (posOnGrid != null)
         {
             selectedItemGrid.PlaceItemOnGrid(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         }
         else
         {
             Debug.Log("No space available on the grid");
-            Destroy(itemToInsert.gameObject); 
+            Destroy(itemToInsert.gameObject);
         }
-    } 
+    }
 
     private void HandleHighlight()
     {
@@ -123,16 +147,38 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private void CreateRandomItem()
+
+    private void CreateGemItem()
+    {
+        InventoryItem inventoryItem = CreateItemForInventory();
+
+        inventoryItem.Set(gemItem);
+    }
+
+    private void CreatePaperclipItem()
+    {
+        InventoryItem inventoryItem = CreateItemForInventory();
+
+        inventoryItem.Set(paperclipItem);
+    }
+
+    private void CreateIDCardItem()
+    {
+        InventoryItem inventoryItem = CreateItemForInventory();
+
+        inventoryItem.Set(IDCardItem);
+    }
+
+    private InventoryItem CreateItemForInventory()
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
         selectedItem = inventoryItem;
 
         rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
+        rectTransform.SetAsLastSibling();
 
-        int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID]);
+        return inventoryItem;
     }
 
     private void LeftMouseButtonPress()
@@ -141,7 +187,14 @@ public class InventoryController : MonoBehaviour
 
         if (selectedItem == null)
         {
-            PickUpItem(tileGridPosition);
+            try
+            {
+                PickUpItem(tileGridPosition);
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+            }
         }
         else
         {
@@ -174,6 +227,7 @@ public class InventoryController : MonoBehaviour
                 selectedItem = overlapItem;
                 overlapItem = null;
                 rectTransform = selectedItem.GetComponent<RectTransform>();
+                rectTransform.SetAsLastSibling();
             }
         }
     }
@@ -185,6 +239,7 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
+            rectTransform.SetAsLastSibling();
         }
     }
 

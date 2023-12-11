@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class PlayerCollection : MonoBehaviour
 {
-    public Dictionary<string, int> collectiblesDictionary = new();
+    public Dictionary<string, int> collectiblesDictionary = new Dictionary<string, int>();
 
-    public int gemCount = 0;
-    public int paperclipCount = 0;
+    private InventoryController inventoryController;
 
-    void Start(){
-        collectiblesDictionary.Add("Gem",gemCount);
-        collectiblesDictionary.Add("Paperclip",paperclipCount);
+    void Start()
+    {
+        InitializeDictionary();
+    }
+
+    private void InitializeDictionary()
+    {
+        collectiblesDictionary.Add("Gem", 0);
+        collectiblesDictionary.Add("Paperclip", 0);
+        collectiblesDictionary.Add("IDCard", 0);
     }
 
     public void CollectItem(string itemType)
@@ -19,18 +25,45 @@ public class PlayerCollection : MonoBehaviour
         {
             collectiblesDictionary[itemType]++;
 
-            if (itemType == "Gem")
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            if (mainCamera != null)
             {
-                gemCount++;
+                InventoryController inventoryController = mainCamera.GetComponent<InventoryController>();
+                if (inventoryController != null)
+                {
+                    InsertItemIntoInventory(itemType, inventoryController);
+                }
+                else
+                {
+                    Debug.LogWarning("InventoryController script not found on the mainCamera object.");
+                }
             }
-            else if (itemType == "Paperclip")
+            else
             {
-                paperclipCount++;
+                Debug.LogWarning("MainCamera object not found.");
             }
         }
         else
         {
             collectiblesDictionary.Add(itemType, 1);
+        }
+    }
+
+    private void InsertItemIntoInventory(string itemType, InventoryController controller)
+    {
+        switch (itemType)
+        {
+            case "Gem":
+                controller.InsertGemItem();
+                break;
+            case "Paperclip":
+                controller.InsertPaperclipItem();
+                break;
+            case "IDCard":
+                controller.InsertIDCardItem();
+                break;
+            default:
+                break;
         }
     }
 
