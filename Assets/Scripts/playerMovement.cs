@@ -17,10 +17,12 @@ public class playerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal"); //get input for horizontal movement axis
         movement.y = Input.GetAxisRaw("Vertical"); //get input for vertial movement axis
 
+        movement.Normalize();
+
         //Set animator parameters based on input
         animator.SetFloat("horizontal", movement.x);
         animator.SetFloat("vertical", movement.y);
-        animator.SetFloat("speed", movement.sqrMagnitude);
+        animator.SetFloat("speed", movement.magnitude);
     }
 
     private void FixedUpdate()
