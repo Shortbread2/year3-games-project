@@ -3,36 +3,34 @@ using UnityEngine;
 
 public class RandomMovement : MonoBehaviour
 {
-    public float minX = 74.8f;
+    public GameObject followHoops;
+    public float minX = 74.74f;
     public float maxX = 75.8f;
-    public float moveDistance = 10f;
-    public float minDelay = 2f;
-    public float maxDelay = 5f;
-    public float smoothSpeed = 2f;
+    private float startTime;
+    private float journeyLength;
 
     void Start()
     {
-        StartCoroutine(RandomMove());
+        // Set initial values
+        startTime = Time.time;
+        SetRandomJourneyLength();
     }
 
-    IEnumerator RandomMove()
+    void Update()
     {
-        while (true)
+        transform.position = new Vector3(transform.position.x, followHoops.transform.position.y, -2);
+
+        if (Time.time - startTime > journeyLength)
         {
-            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
-
-            float targetX = Random.Range(minX, maxX);
-            float direction = (targetX - transform.position.x) / Mathf.Abs(targetX - transform.position.x);
-            float distance = Random.Range(0f, moveDistance);
-
-            Vector3 targetPosition = new Vector3(targetX, transform.position.y, transform.position.z);
-            Vector3 newPosition = transform.position + Vector3.right * direction * distance;
-
-            while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
-            {
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smoothSpeed);
-                yield return null;
-            }
+            transform.position = new Vector3(Random.Range(minX, maxX), followHoops.transform.position.y, -2);
+            startTime = Time.time;
+            SetRandomJourneyLength();
         }
+    }
+
+    void SetRandomJourneyLength()
+    {
+        // Set journeyLength to a random value between 0.5 and 1 second
+        journeyLength = Random.Range(0.5f, 1f);
     }
 }

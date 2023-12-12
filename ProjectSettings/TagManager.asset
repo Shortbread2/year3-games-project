@@ -12,6 +12,10 @@ TagManager:
   - weapon
   - projectile
   - slots
+  - Van
+  - Spawner
+  - landCollider
+  - tilemap
   layers:
   - Default
   - TransparentFX
