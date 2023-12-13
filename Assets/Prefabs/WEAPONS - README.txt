@@ -1,1 +1,0 @@
-Some of the functions in the scripts to do with weapons use the specific naming convention to work properly without errors
