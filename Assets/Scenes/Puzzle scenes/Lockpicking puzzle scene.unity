@@ -223,6 +223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1328538257254497093, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1934603338632667347, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_Name
       value: LockpickingPuzzle

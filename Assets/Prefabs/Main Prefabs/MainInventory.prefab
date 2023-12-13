@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 195028382927018232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.96157813, y: 0.94630015, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2181553526367150111}
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: d032da1563e01c34f948e6a3cc40a5cd, type: 3}
-  m_Type: 0
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -94,7 +94,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2181553526367150111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -218,8 +218,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 890, y: 465}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 883, y: 470}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &257943245212990194
 CanvasRenderer:
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8864344710658099591}
-        m_TargetAssemblyTypeName: MainInventoryDisplay, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InterfaceDisplayManager, Assembly-CSharp
         m_MethodName: closeInventory
         m_Mode: 1
         m_Arguments:
@@ -400,7 +400,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6549614453772395926}
-  - component: {fileID: 8864344710658099591}
   m_Layer: 0
   m_Name: MainInventory
   m_TagString: Untagged
@@ -422,21 +421,8 @@ Transform:
   m_Children:
   - {fileID: 2181553526367150111}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8864344710658099591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949143195407407247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 140ddd4bb41cc754fbcf46e61bd8da4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainInventory: {fileID: 2186597608859987307}
 --- !u!1 &7469931007102702503
 GameObject:
   m_ObjectHideFlags: 0

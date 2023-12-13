@@ -32,4 +32,19 @@ public class InterfaceDisplayManager : MonoBehaviour
         PasswordPuzzle.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void openLockpickingPuzzle()
+    {
+        LockpickingPuzzle.SetActive(true);
+        
+        //Time.timeScale = 0;
+
+        Player.SetActive(false);
+    }
+
+    public void closeLockpickingPuzzle()
+    {
+        LockpickingPuzzle.SetActive(false);
+        Time.timeScale = 1;
+    }
 }

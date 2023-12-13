@@ -20,5 +20,4 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler
             inventoryController.SelectedItemGrid = itemGrid;
         }
     }
-
 }
