@@ -35,6 +35,6 @@ public class EnemyAttackBehaviourOnAnim : StateMachineBehaviour
     //}
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){
         
-        animator.gameObject.GetComponent<EnemyMelee>().attack();
+        animator.gameObject.GetComponent<MeleeAttack>().attack();
     }
 }

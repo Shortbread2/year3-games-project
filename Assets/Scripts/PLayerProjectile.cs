@@ -19,6 +19,10 @@ public class PLayerProjectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<enemy>().TakeDamage(damage);
         }
+        if (collision.gameObject.tag == "NPC")
+        {
+            collision.gameObject.GetComponent<NPC>().TakeDamage(damage, GameObject.FindGameObjectWithTag("Player"));
+        }
 
     }
 }

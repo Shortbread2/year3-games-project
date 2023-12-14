@@ -8,21 +8,23 @@ using System.Collections.Generic;
     using UnityEditor; // cos handles gives erros since can only use handlies with this import
 #endif
 
-public class enemyBehaviour : MonoBehaviour
+public class AIBehaviour : MonoBehaviour
 {
-    private Vector3 playerlocation;
-    private Vector3 playerLastLocation = new Vector3(0,0,0);
+    private Vector3 targetlocation;
+    private Vector3 targetLastLocation = new Vector3(0,0,0);
     private Vector3 direction;
     public AIBase aiPathfinder;
     public Transform lastSeenNode;
     private Animator animator;
     private Collider2D col;
     int Distance = 100;
-    private GameObject player;
+    private GameObject target;
+    [SerializeField]
+    private string targetTag = "Player";
     public float speed = 0.2f;
     public float stopdistance = 3;
-    private Transform target;
-    public bool SeenPlayer = false;
+    private Transform targetTransform;
+    public bool SeenTarget = false;
     private bool moveTolastKnowPos = false;
     public bool IsNotMobile;
     public bool lvl1Int = false;
@@ -41,10 +43,10 @@ public class enemyBehaviour : MonoBehaviour
     void Start()
     {
         //aiPathfinder.enabled = false;
-        player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag(targetTag);
         col = this.GetComponent<Collider2D>();
         animator = this.GetComponent<Animator>();
-        target = player.GetComponent<Transform>();
+        targetTransform = target.GetComponent<Transform>();
         aiPathfinder.maxSpeed = speed;
         searchBase = transform.position;
         OriginalViewRange = viewRange;
@@ -60,30 +62,30 @@ public class enemyBehaviour : MonoBehaviour
 
         animator.SetBool("isMoving", moving);
         animator.SetFloat("LookDir", transform.position.x - lastSeenNode.transform.position.x);
-        playerlocation = new Vector2(player.transform.position.x, player.transform.position.y);
-        direction = playerlocation - this.transform.position;
+        targetlocation = new Vector2(target.transform.position.x, target.transform.position.y);
+        direction = targetlocation - this.transform.position;
 
-        RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, direction, Vector3.Distance(this.gameObject.transform.position, player.transform.position), EnemyLayer);
+        RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, direction, Vector3.Distance(this.gameObject.transform.position, target.transform.position), EnemyLayer);
 
-        Debug.DrawLine(transform.position, player.transform.position, Color.red);
+        Debug.DrawLine(transform.position, target.transform.position, Color.red);
         //If something was hit.
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag(targetTag))
             {
-                if (Vector2.Distance(transform.position, target.position) <= viewRange){
-                    SeenPlayer = true;
+                if (Vector2.Distance(transform.position, targetTransform.position) <= viewRange){
+                    SeenTarget = true;
                     if (lvl2Int){
                         viewRange = OriginalViewRange + 0.6f;
                     }
                 }
             }
-            if (!hit.collider.CompareTag("Player") && SeenPlayer == true)
+            if (!hit.collider.CompareTag(targetTag) && SeenTarget == true)
             {
-                playerLastLocation = playerlocation;
-                SeenPlayer = false;
+                targetLastLocation = targetlocation;
+                SeenTarget = false;
                 moveTolastKnowPos = true;
-            } else if(!hit.collider.CompareTag("Player") && moveTolastKnowPos == false)
+            } else if(!hit.collider.CompareTag(targetTag) && moveTolastKnowPos == false)
             {
                 viewRange = OriginalViewRange;
                 WanderAround();
@@ -92,26 +94,26 @@ public class enemyBehaviour : MonoBehaviour
             viewRange = OriginalViewRange;
             WanderAround();
         }
-        if (SeenPlayer == true)
+        if (SeenTarget == true)
         {
             searching = false;
-            lastSeenNode.position = target.position;
+            lastSeenNode.position = targetTransform.position;
             if (IsNotMobile == false)
             {
-                MoveToPlayer();
+                MoveToTarget();
             } else {
                 aiPathfinder.enabled = false;
                 moving = false;
             }
         } else{
             if (searching == false){
-                lastSeenNode.position = playerLastLocation;
+                lastSeenNode.position = targetLastLocation;
                 searchBase = lastSeenNode.position;
             }
 
-            // if the enemy loses the player and reaches the last known position it will begin to search in that area
+            // if the enemy loses the target and reaches the last known position it will begin to search in that area
             if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f || searching == true){
-                if (Vector2.Distance(transform.position, target.position) > 0.3f){
+                if (Vector2.Distance(transform.position, targetTransform.position) > 0.3f){
                     WanderAround();
                 }
             }
@@ -121,21 +123,21 @@ public class enemyBehaviour : MonoBehaviour
         }
         checkIfStuck();
     }
-    void MoveToPlayer()
+    void MoveToTarget()
     {
-        if (Vector2.Distance(transform.position, target.position) < Distance)
+        if (Vector2.Distance(transform.position, targetTransform.position) < Distance)
         {
-            if (Vector2.Distance(transform.position, target.position) > stopdistance)
+            if (Vector2.Distance(transform.position, targetTransform.position) > stopdistance)
             {
                 aiPathfinder.enabled = true;
                 moving = true;
             }
-            // if entity is too close to target
-            if (Vector2.Distance(transform.position, target.position) < stopdistance)
+            // if entity is too close to targetTransform
+            if (Vector2.Distance(transform.position, targetTransform.position) < stopdistance)
             {
                 aiPathfinder.enabled = false;
                 moving = true;
-                transform.position = Vector2.MoveTowards(transform.position, -target.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime);
             }
         }
     }
@@ -188,5 +190,13 @@ public class enemyBehaviour : MonoBehaviour
             lastStuckCheck = Time.time;
             prevDistance = theDistance;
         }
+    }
+    public void ChangeTarget(GameObject newObj){
+        target = newObj;
+        targetTag = newObj.tag;
+        targetTransform = target.GetComponent<Transform>();
+    }
+    public GameObject GetTarget(){
+        return target;
     }
 }

@@ -326,8 +326,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6234362374261715180}
-  - {fileID: 5908338260748614788}
   - {fileID: 7361132269665824255}
+  - {fileID: 5908338260748614788}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackdistance: 0.38
   attackSpeed: 1.25
-  knockbackForce: 3
+  knockbackForce: 0.5
 --- !u!114 &3017725924634258677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,8 +776,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7361132269665824255}
   - component: {fileID: 7983228743083917753}
-  - component: {fileID: 1819011948452852648}
   - component: {fileID: 5749067540122809979}
+  - component: {fileID: 7290503668865650870}
   m_Layer: 8
   m_Name: SurroundingDetection
   m_TagString: Untagged
@@ -835,18 +835,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!114 &1819011948452852648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997246466835556703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6a7cc4d24bb9f4f99c6f15ae73f5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5749067540122809979
 Rigidbody2D:
   serializedVersion: 4
@@ -861,7 +849,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -874,3 +862,16 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &7290503668865650870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997246466835556703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6a7cc4d24bb9f4f99c6f15ae73f5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearbyEnemies: []

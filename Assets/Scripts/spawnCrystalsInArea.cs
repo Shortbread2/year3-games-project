@@ -26,7 +26,7 @@ public class spawnCrystalsInArea : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.transform.position) <= radius && isSpawned == false && Input.GetKeyDown("f")){
             isSpawned = true;
-            Instantiate(entityToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(entityToSpawn, transform.position, Quaternion.identity);
         }
     }
 }

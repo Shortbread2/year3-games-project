@@ -19,6 +19,7 @@ TagManager:
   - Bent paperclip 1
   - Catching Hand
   - Unbent Paperclip
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - enemy
   - Obstacle
   - projectile
-  - 
+  - NPC
   - 
   - 
   - 

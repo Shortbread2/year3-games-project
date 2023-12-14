@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6381154447641565120}
   - component: {fileID: 8059701379854248009}
   - component: {fileID: 7047065799724243750}
-  - component: {fileID: 4015206384619103891}
   - component: {fileID: 4794256867708506795}
   - component: {fileID: 119555668398406373}
   - component: {fileID: 6863206657422034041}
@@ -39,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 3385323543367051579}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6381154447641565120
 SpriteRenderer:
@@ -135,51 +134,6 @@ MonoBehaviour:
   moveSpeed: 1
   rb: {fileID: 8059701379854248009}
   animator: {fileID: 4794256867708506795}
---- !u!61 &4015206384619103891
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973407544981784331}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0006376505, y: -0.029970154}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.11, y: 0.19}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.12742579, y: 0.22945186}
-  m_EdgeRadius: 0
 --- !u!95 &4794256867708506795
 Animator:
   serializedVersion: 5

@@ -424,13 +424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc24d5d50e4d614db675a3b22cf387b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyInPos: {x: 0, y: 0}
-  startPos: {x: 0, y: 0}
-  isFlyingIn: 0
-  flyInDuration: 5000
-  flyInTime: 0
   health: 100
   displayhealth: 0
+  speed: 0
   healthBar: {fileID: 7380220601191894951}
   damage: 5
   aiPathfinder: {fileID: 5213511825176723415}
@@ -448,19 +444,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPathfinder: {fileID: 5213511825176723415}
   lastSeenNode: {fileID: 739352132691900726}
+  targetTag: Player
   speed: 0.3
   stopdistance: 0.1
-  SeenPlayer: 0
-  moveTolastKnowPos: 0
+  SeenTarget: 0
   IsNotMobile: 0
   lvl1Int: 1
   lvl2Int: 1
-  searching: 0
   viewRange: 0.8
   wanderRange: 1.14
-  time: 0
-  enableRngSearchSpeed: 1
-  searchSpeed: 0.1
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 763
@@ -478,7 +470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackdistance: 0.38
   attackSpeed: 1
-  lastAction: 0
+  knockbackForce: 0.5
+  Damage: 5
 --- !u!114 &6880479521747814263
 MonoBehaviour:
   m_ObjectHideFlags: 0

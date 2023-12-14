@@ -20,33 +20,33 @@ public class enemyComanderBehaviour : MonoBehaviour
     public float damageIncreaseValue = 1.2f;
     // TODO - alert nearby enemies , provide buff
 
-    private enemyBehaviour enemyBehaviour;
+    private AIBehaviour AIBehaviour;
     void Start()
     {
         enemyList = transform.parent.gameObject.GetComponent<enemyList>();
-        enemyBehaviour = GetComponent<enemyBehaviour>();
+        AIBehaviour = GetComponent<AIBehaviour>();
     }
 
 
     void Update()
     {
             for (int i = 0; i < enemyList.numOfEnemies; i++){
-                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) < enemyBehaviour.viewRange && !enemies.Contains(enemyList.enemies[i]) && enemyList.enemies[i] != this.gameObject){
+                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) < AIBehaviour.viewRange && !enemies.Contains(enemyList.enemies[i]) && enemyList.enemies[i] != this.gameObject){
                     enemies.Add(enemyList.enemies[i]);
                 }
-                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) > enemyBehaviour.viewRange && enemies.Contains(enemyList.enemies[i])){
+                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) > AIBehaviour.viewRange && enemies.Contains(enemyList.enemies[i])){
                     enemies.Remove(enemyList.enemies[i]);
                 }
         }
 
-        if (enemyBehaviour.SeenPlayer == true && (comanderLvl1 || comanderLvl2 || comanderLvl3)){
+        if (AIBehaviour.SeenTarget == true && (comanderLvl1 || comanderLvl2 || comanderLvl3)){
             // special ability/buffs
             Ability();
         }
 
         if (comanderLvl2 || comanderLvl3){
             foreach(GameObject enemy in enemies){
-                if (enemy.GetComponent<enemyBehaviour>().SeenPlayer == true){
+                if (enemy.GetComponent<AIBehaviour>().SeenTarget == true){
                     // special ability/buffs
                     Ability();
                 }
@@ -55,22 +55,22 @@ public class enemyComanderBehaviour : MonoBehaviour
     }
 
     private void Ability(){
-        enemyBehaviour.SeenPlayer = true;
+        AIBehaviour.SeenTarget = true;
         foreach(GameObject enemy in enemies){
-            enemy.GetComponent<enemyBehaviour>().SeenPlayer = true;
+            enemy.GetComponent<AIBehaviour>().SeenTarget = true;
         }
 
         if (speedIncreaseBuff){
             if (Time.time - lastAction > buffCooldown){
                 foreach(GameObject enemy in enemies){
-                    enemy.GetComponent<enemyBehaviour>().speed *= speedIncreaseValue;
+                    enemy.GetComponent<AIBehaviour>().speed *= speedIncreaseValue;
                 }
                 lastAction = Time.time;
                 buffDurationOver = true;
             }
             if (Time.time - lastAction > buffDuration && buffDurationOver){
                 foreach(GameObject enemy in enemies){
-                    enemy.GetComponent<enemyBehaviour>().speed /= speedIncreaseValue;
+                    enemy.GetComponent<AIBehaviour>().speed /= speedIncreaseValue;
                 }
                 buffDurationOver = false;
             }
