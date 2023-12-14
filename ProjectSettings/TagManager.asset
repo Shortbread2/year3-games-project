@@ -16,6 +16,9 @@ TagManager:
   - Spawner
   - landCollider
   - tilemap
+  - Bent paperclip 1
+  - Catching Hand
+  - Unbent Paperclip
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - player
   - enemy
   - Obstacle
-  - 
+  - projectile
   - 
   - 
   - 

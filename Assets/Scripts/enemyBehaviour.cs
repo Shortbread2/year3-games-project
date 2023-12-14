@@ -16,30 +16,27 @@ public class enemyBehaviour : MonoBehaviour
     public AIBase aiPathfinder;
     public Transform lastSeenNode;
     private Animator animator;
-    Collider2D col;
+    private Collider2D col;
     int Distance = 100;
-    GameObject player;
+    private GameObject player;
     public float speed = 0.2f;
     public float stopdistance = 3;
     private Transform target;
     public bool SeenPlayer = false;
-    public bool moveTolastKnowPos = false;
+    private bool moveTolastKnowPos = false;
     public bool IsNotMobile;
     public bool lvl1Int = false;
     public bool lvl2Int = false;
-    public bool searching = false;
+    private bool searching = false;
     public float viewRange = 0.2f;
     private float OriginalViewRange = 0.2f;
     public float wanderRange = 0.2f;
     private bool moving = false;
     private Vector3 randomPoint = new Vector3(0,0,0);
     private Vector3 searchBase = new Vector3(0,0,0);
-    public float time;
     private float lastAction = -999999f;
     private float lastStuckCheck;
     private float prevDistance = 0f;
-    public bool enableRngSearchSpeed = false;
-    public float searchSpeed = 10;
     [SerializeField] private LayerMask EnemyLayer;
     void Start()
     {
@@ -54,14 +51,13 @@ public class enemyBehaviour : MonoBehaviour
     }
     void Update()
     {
-
+        // for the animation
         if (transform.position.x - lastSeenNode.transform.position.x > 0){
             GetComponent<SpriteRenderer>().flipX = true;
         } else {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        time = Time.time;
         animator.SetBool("isMoving", moving);
         animator.SetFloat("LookDir", transform.position.x - lastSeenNode.transform.position.x);
         playerlocation = new Vector2(player.transform.position.x, player.transform.position.y);
@@ -163,11 +159,9 @@ public class enemyBehaviour : MonoBehaviour
         moving = true;
         searching = true;
 
-        if (enableRngSearchSpeed == true){
-            searchSpeed = Random.Range(0.03f, 0.3f);
-        }
+            float searchSpeed = Random.Range(3f, 30f);
 
-        if (Time.time - lastAction > 1 / searchSpeed)
+        if (Time.time - lastAction > searchSpeed)
         {
             randomPoint = searchBase + new Vector3(Random.insideUnitCircle.x * wanderRange, Random.insideUnitCircle.y * wanderRange, 0); //random point in a circle
             lastAction = Time.time;
@@ -184,7 +178,7 @@ public class enemyBehaviour : MonoBehaviour
     // not the best fix but eh
     void checkIfStuck(){
         float theDistance = Vector2.Distance(transform.position, lastSeenNode.position);
-        if (Time.time - lastStuckCheck > 0.8f)
+        if (Time.time - lastStuckCheck > 0.1f)
         {
             if (prevDistance == theDistance && moving == true){
                 Debug.Log("STUCK!");
@@ -194,6 +188,5 @@ public class enemyBehaviour : MonoBehaviour
             lastStuckCheck = Time.time;
             prevDistance = theDistance;
         }
-        //lastSeenNode.position = randomPoint;
     }
 }

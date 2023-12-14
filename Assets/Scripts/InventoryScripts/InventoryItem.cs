@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class InventoryItem : MonoBehaviour
 {
@@ -20,12 +21,20 @@ public class InventoryItem : MonoBehaviour
 
     public bool rotated = false;
 
+    // used coroutine with waitForSecondsRealtine cos the game time scale with inventory open is set to 0 so had to use realtime to rotate object when time was stopped
     internal void Rotate()
     {
-        rotated = !rotated;
-
         RectTransform rectTransform = GetComponent<RectTransform>();
-        rectTransform.Rotate(new Vector3(0, 0, -90f));
+        rotated = !rotated;
+        StartCoroutine(WaitWithRealtime(rectTransform));
+    }
+
+    IEnumerator WaitWithRealtime(RectTransform rectTransform)
+    {
+        for (int i = 0; i < 90; i++){
+            yield return new WaitForSecondsRealtime(0.001f);
+            rectTransform.Rotate(new Vector3(0, 0, -1f));
+        }
     }
 
     internal void Set(ItemData itemData)

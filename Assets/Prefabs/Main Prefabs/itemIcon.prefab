@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
+  invRotationSpeed: 0.001
   onGridPositionX: 0
   onGridPositionY: 0
   rotated: 0

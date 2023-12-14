@@ -362,9 +362,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 200
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1
+  m_LinearDrag: 15
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -424,6 +424,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc24d5d50e4d614db675a3b22cf387b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flyInPos: {x: 0, y: 0}
+  startPos: {x: 0, y: 0}
+  isFlyingIn: 0
+  flyInDuration: 5000
+  flyInTime: 0
   health: 100
   displayhealth: 0
   healthBar: {fileID: 7380220601191894951}
@@ -538,7 +543,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.39
-  pickNextWaypointDist: 0.2
+  pickNextWaypointDist: 0.05
   endReachedDistance: 0.28
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1

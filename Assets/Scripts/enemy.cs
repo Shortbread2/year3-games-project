@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class enemy : EnemySuperScript
 {
-    public float health = 100;
     private float currenthealth;
-    public float displayhealth;
     public HealthBar healthBar;
     private Animator animator;
     public float damage;
@@ -31,7 +29,6 @@ public class enemy : MonoBehaviour
             aiPathfinder.enabled = false;
             this.GetComponent<enemyBehaviour>().enabled = false;
             this.GetComponent<EnemyMelee>().enabled = false;
-            //this.GetComponent<Collider2D>().enabled = false;
             this.GetComponent<Rigidbody2D>().mass = 70f;
 
             //Destroy(gameObject);

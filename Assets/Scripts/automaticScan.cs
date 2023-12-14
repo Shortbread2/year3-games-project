@@ -6,20 +6,15 @@ public class automaticAStarScan : MonoBehaviour
 {
     public AstarPath astarPath;
     public float lastAction;
-    public float timeInterval = 10f; // 1f is every second etc
-    // Start is called before the first frame update
-    void Start()
-    {
+    public float timeInterval = 10f;
 
-    }
-
-    // Update is called once per frame
+    // to update the a* grid automatically every n seconds. However causes some lag
     void Update()
     {
         if (Time.time - lastAction > timeInterval)
         {
-            astarPath.ScanAsync();
-            //astarPath.Scan();
+            //astarPath.ScanAsync();
+            astarPath.Scan();
             lastAction = Time.time;
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class PLayerProjectile : MonoBehaviour
 {
     public GameObject hitEffect;
 
@@ -11,15 +11,13 @@ public class bullet : MonoBehaviour
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, 0.25f);
+
+        // dont know why it works but yea (shouldnt this just destroy itself before reading the if statement?)
         Destroy(gameObject);
 
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<enemy>().TakeDamage(damage);
-        }
-        if (collision.gameObject.tag == "miniBoss")
-        {
-            collision.gameObject.GetComponent<MiniBoss>().TakeDamage(damage);
         }
 
     }
