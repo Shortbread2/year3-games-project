@@ -38,9 +38,10 @@ public class Slot : MonoBehaviour
             Debug.Log(child.name);
             child.GetComponent<SpawnWeapon>().SpawnDroppedItem();
             // if item is equipped get rid of that as well
-            Debug.Log(child.name.Split(" ")[1]);
+
+            //Debug.Log(child.name.Split(" ")[1]);
             if (playerItemLoc.childCount > 0){
-                Debug.Log(playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0]);
+                //Debug.Log(playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0]);
                 if (child.name.Split(" ")[1] == playerItemLoc.GetChild(0).gameObject.name.Split("(")[1].Split(")")[0]){
                     Destroy(playerItemLoc.GetChild(0).gameObject);
                 }

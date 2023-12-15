@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inventory.unity
     guid: 00e7a7152b9c39342a909529acc2aa50
   - enabled: 1
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzle scenes/Lockpicking puzzle scene.unity
     guid: 6afb6995a675fda4d8d92d6e3d0b2673
+  - enabled: 1
+    path: Assets/Scenes/SampleScene-LayansChangesWithInv.unity
+    guid: 723f2d25c77b0dc43aa0756e82bf430f
   m_configObjects: {}

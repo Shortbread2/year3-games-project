@@ -7,7 +7,7 @@ public class SceneDisplayManager : MonoBehaviour
 {
     public void OpenNewGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleScene-LayansChangesWithInv");
     }
 
     public void OpenPuzzle1()

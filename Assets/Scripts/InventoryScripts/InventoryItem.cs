@@ -31,9 +31,9 @@ public class InventoryItem : MonoBehaviour
 
     IEnumerator WaitWithRealtime(RectTransform rectTransform)
     {
-        for (int i = 0; i < 90; i++){
-            yield return new WaitForSecondsRealtime(0.001f);
-            rectTransform.Rotate(new Vector3(0, 0, -1f));
+        for (int i = 0; i < 30; i++){
+            yield return new WaitForSecondsRealtime(0.0001f);
+            rectTransform.Rotate(new Vector3(0, 0, -3f));
         }
     }
 
