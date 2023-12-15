@@ -10,6 +10,10 @@ public class enemy : EntitySuperScript
     private Animator animator;
     public float damage;
     public AIBase aiPathfinder;
+    private EntityList entityList;
+    public List<GameObject> nonPlayerCharacters = new List<GameObject>();
+    private AIBehaviour AIBehaviour;
+    private GameObject shortestDistNPC;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +21,8 @@ public class enemy : EntitySuperScript
         displayhealth = health;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
+        entityList = transform.parent.gameObject.GetComponent<EntityList>();
+        AIBehaviour = GetComponent<AIBehaviour>();
     }
 
     // Update is called once per frame

@@ -60,6 +60,7 @@ public class AIBehaviour : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
+        // talk to animator
         animator.SetBool("isMoving", moving);
         animator.SetFloat("LookDir", transform.position.x - lastSeenNode.transform.position.x);
         targetlocation = new Vector2(target.transform.position.x, target.transform.position.y);
@@ -71,6 +72,7 @@ public class AIBehaviour : MonoBehaviour
         //If something was hit.
         if (hit.collider != null)
         {
+            // checks if raycast hit target and is in view range
             if (hit.collider.CompareTag(targetTag))
             {
                 if (Vector2.Distance(transform.position, targetTransform.position) <= viewRange){
@@ -80,6 +82,7 @@ public class AIBehaviour : MonoBehaviour
                     }
                 }
             }
+            // if the target was found at one point but is now lost
             if (!hit.collider.CompareTag(targetTag) && SeenTarget == true)
             {
                 targetLastLocation = targetlocation;
@@ -132,12 +135,12 @@ public class AIBehaviour : MonoBehaviour
                 aiPathfinder.enabled = true;
                 moving = true;
             }
-            // if entity is too close to targetTransform
+            // TODO - if entity is too close to targetTransform
             if (Vector2.Distance(transform.position, targetTransform.position) < stopdistance)
             {
                 aiPathfinder.enabled = false;
                 moving = true;
-                transform.position = Vector2.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime);
             }
         }
     }
@@ -157,7 +160,7 @@ public class AIBehaviour : MonoBehaviour
         Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), viewRange); // draw viewRange
     }
 
-    void WanderAround(){
+    public void WanderAround(){
         moving = true;
         searching = true;
 
@@ -178,9 +181,9 @@ public class AIBehaviour : MonoBehaviour
     }
 
     // not the best fix but eh
-    void checkIfStuck(){
+    public void checkIfStuck(){
         float theDistance = Vector2.Distance(transform.position, lastSeenNode.position);
-        if (Time.time - lastStuckCheck > 0.1f)
+        if (Time.time - lastStuckCheck > 0.3f)
         {
             if (prevDistance == theDistance && moving == true){
                 Debug.Log("STUCK!");

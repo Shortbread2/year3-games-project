@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class enemyComanderBehaviour : MonoBehaviour
 {
-    private enemyList enemyList;
-    private int prevNumOfEnemies = 0;
+    private EntityList entityList;
     public List<GameObject> enemies = new List<GameObject>();
     private float lastAction = -999999f;
     public bool comanderLvl1 = false;
@@ -23,19 +22,21 @@ public class enemyComanderBehaviour : MonoBehaviour
     private AIBehaviour AIBehaviour;
     void Start()
     {
-        enemyList = transform.parent.gameObject.GetComponent<enemyList>();
+        entityList = transform.parent.gameObject.GetComponent<EntityList>();
         AIBehaviour = GetComponent<AIBehaviour>();
     }
 
 
     void Update()
     {
-            for (int i = 0; i < enemyList.numOfEnemies; i++){
-                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) < AIBehaviour.viewRange && !enemies.Contains(enemyList.enemies[i]) && enemyList.enemies[i] != this.gameObject){
-                    enemies.Add(enemyList.enemies[i]);
-                }
-                if (Vector2.Distance(transform.position, enemyList.enemies[i].transform.position) > AIBehaviour.viewRange && enemies.Contains(enemyList.enemies[i])){
-                    enemies.Remove(enemyList.enemies[i]);
+            for (int i = 0; i < entityList.numOfEntities; i++){
+                if (entityList.entities[i].tag == "Enemy"){
+                    if (Vector2.Distance(transform.position, entityList.entities[i].transform.position) < AIBehaviour.viewRange && !enemies.Contains(entityList.entities[i]) && entityList.entities[i] != this.gameObject){
+                        enemies.Add(entityList.entities[i]);
+                    }
+                    if (Vector2.Distance(transform.position, entityList.entities[i].transform.position) > AIBehaviour.viewRange && enemies.Contains(entityList.entities[i])){
+                        enemies.Remove(entityList.entities[i]);
+                    }
                 }
         }
 
