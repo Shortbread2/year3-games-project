@@ -13,7 +13,8 @@ public class NPC : EntitySuperScript
     private AIBehaviour aiBehaviour;
     private MeleeAttacks meleeAttack;
     private float turnToEnemyThreshold;
-    private bool takenDamage = false;
+    private GameObject theAttacker;
+    private bool selfDefense = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +32,26 @@ public class NPC : EntitySuperScript
     // Update is called once per frame
     void Update()
     {
-        if (takenDamage == false){
+        if (selfDefense == false){
             aiBehaviour.WanderAround();
             aiBehaviour.checkIfStuck();
+        }
+        if(theAttacker != null){
+            if (!theAttacker.activeSelf){
+                selfDefense = false;
+                meleeAttack.enabled = false;
+                aiBehaviour.SeenTarget = false;
+
+                // seems to be an bug - when npc finished attacking the condittions to move again and stop attacking doesnt happen
+                animator.SetBool("isAttacking",false);
+                aiPathfinder.canMove = true;
+            }
         }
     }
     public void TakeDamage(float damage, GameObject attacker)
     {
-        takenDamage = true;
+        theAttacker = attacker;
+        selfDefense = true;
         aiBehaviour.enabled = true;
         currenthealth -= damage;
         displayhealth = currenthealth;
@@ -50,8 +63,8 @@ public class NPC : EntitySuperScript
             animator.SetTrigger("isDead");
             aiPathfinder.enabled = false;
             this.GetComponent<Rigidbody2D>().mass = 70f;
-            this.GetComponent<AIBehaviour>().enabled = false;
-            this.GetComponent<MeleeAttack>().enabled = false;
+            aiBehaviour.enabled = false;
+            meleeAttack.enabled = false;
         }
         
         if (attacker.tag == "Player" && currenthealth <= turnToEnemyThreshold){

@@ -8,4 +8,12 @@ public abstract class MeleeAttacks : MonoBehaviour
     public float attackSpeed = 10f;
     public float knockbackForce = 3f; 
     public float Damage = 5f;
+    private GameObject target;
+
+    public void setTarget(GameObject gameObject){
+        target = gameObject;
+    }
+    public GameObject getTarget(){
+        return target;
+    }
 }

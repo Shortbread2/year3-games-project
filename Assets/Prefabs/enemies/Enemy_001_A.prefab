@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 3722196510821047009}
   - component: {fileID: 3340537506243215905}
   - component: {fileID: 4073246243277631828}
+  - component: {fileID: 4051397834666534618}
   m_Layer: 8
   m_Name: Enemy_001_A
   m_TagString: Enemy
@@ -590,7 +591,8 @@ MonoBehaviour:
   wanderRange: 1.14
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 763
+    m_Bits: 2811
+  entitiesInRange: []
 --- !u!114 &6469576905896571735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +714,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &4051397834666534618
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584734057976633889}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!1 &8972922795022441616
 GameObject:
   m_ObjectHideFlags: 0

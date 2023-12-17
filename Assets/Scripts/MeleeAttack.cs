@@ -7,17 +7,15 @@ using UnityEngine;
 #endif
 
 public class MeleeAttack : MeleeAttacks
-{
-    private GameObject target;
-    private Animator animator;
+{   private Animator animator;
     private Transform targetTransform;
     private AIBehaviour AIBehaviour;
     private float lastAction;
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
-        targetTransform = target.GetComponent<Transform>();
+        setTarget(GameObject.FindGameObjectWithTag("Player"));
+        targetTransform = getTarget().GetComponent<Transform>();
         animator = GetComponent<Animator>();
         AIBehaviour = GetComponent<AIBehaviour>();
     }
@@ -32,8 +30,8 @@ public class MeleeAttack : MeleeAttacks
     void Update()
     {
         if (AIBehaviour.enabled == true){
-            target = AIBehaviour.GetTarget();
-            targetTransform = target.transform;
+            setTarget(AIBehaviour.GetTarget());
+            targetTransform = getTarget().transform;
         
             if (Vector2.Distance(transform.position, targetTransform.position) <= attackdistance)
                 {
@@ -56,11 +54,15 @@ public class MeleeAttack : MeleeAttacks
 
     // accessed by script on attack animation in animator - a bit convoluted but easiest way to synch attack anim with nockback and health reduction
     public void attack(){
-        if (target.tag == "Player"){
-            target.GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
+        if (getTarget().tag == "Player"){
+            getTarget().GetComponent<PlayerHealth>().PlayerTakeDamage(Damage);
+        } else if (getTarget().tag == "NPC"){
+            getTarget().GetComponent<NPC>().TakeDamage(Damage, this.gameObject);
+        } else if (getTarget().tag == "Enemy"){
+            getTarget().GetComponent<enemy>().TakeDamage(Damage);
         }
        
-        Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = getTarget().GetComponent<Rigidbody2D>();
         Vector2 knockback = (targetTransform.position - transform.position).normalized * knockbackForce;
         rb.AddForce(knockback, ForceMode2D.Impulse);
     }

@@ -85,6 +85,7 @@ public class AIBehaviour : MonoBehaviour
             // if the target was found at one point but is now lost
             if (!hit.collider.CompareTag(targetTag) && SeenTarget == true)
             {
+                Debug.Log("test");
                 targetLastLocation = targetlocation;
                 SeenTarget = false;
                 moveTolastKnowPos = true;
@@ -125,6 +126,7 @@ public class AIBehaviour : MonoBehaviour
             moving = false;
         }
         checkIfStuck();
+        CheckEntitiesInRange();
     }
     void MoveToTarget()
     {
@@ -164,7 +166,9 @@ public class AIBehaviour : MonoBehaviour
         moving = true;
         searching = true;
 
-            float searchSpeed = Random.Range(3f, 30f);
+        Debug.Log("testing1");
+
+        float searchSpeed = Random.Range(3f, 30f);
 
         if (Time.time - lastAction > searchSpeed)
         {
@@ -201,5 +205,46 @@ public class AIBehaviour : MonoBehaviour
     }
     public GameObject GetTarget(){
         return target;
+    }
+
+    public List<GameObject> entitiesInRange = new List<GameObject>();
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (this.tag != other.tag)
+        {
+            entitiesInRange.Add(other.gameObject);
+        }
+    }
+
+private float minDistance=99999999;
+    private void CheckEntitiesInRange(){
+        float distance = 0;
+        foreach(GameObject entity in entitiesInRange){
+            distance = Vector2.Distance(targetTransform.position, entity.transform.position);
+            if(distance < minDistance){
+                if (entity.CompareTag("NPC") && this.tag != entity.tag)
+                {
+                    ChangeTarget(entity.gameObject);
+                    minDistance = distance;
+                }
+                if (entity.CompareTag("Enemy") && this.tag != entity.tag)
+                {
+                    ChangeTarget(entity.gameObject);
+                    minDistance = distance;
+                }
+                if (entity.CompareTag("Player") && this.tag == "Enemy")
+                {
+                    ChangeTarget(entity.gameObject);
+                    minDistance = distance;
+                }
+            }
+        }
+        minDistance = 99999999;
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (entitiesInRange.Contains(other.gameObject)){
+            entitiesInRange.Remove(other.gameObject);
+        }
     }
 }
