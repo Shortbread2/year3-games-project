@@ -26,9 +26,9 @@ public class vehicleHealth : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("projectile"))
+        if (collision.collider is CircleCollider2D && collision.gameObject.CompareTag("projectile"))
         {
-            currenthealth -= 6;
+            currenthealth -= 4;
             displayhealth = currenthealth;
             healthBar.SetHealth(currenthealth);
         }

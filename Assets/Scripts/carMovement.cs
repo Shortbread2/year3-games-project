@@ -8,7 +8,7 @@ public class carMovement : MonoBehaviour
     private float minX = 75f;  // Set the minimum x-position
     private float maxX = 75.7f;  // Set the maximum x-position
     private float timer = 0f;
-    private float maxTime = 90f; // Set the maximum time in seconds
+    private float maxTime = 60f; // Set the maximum time in seconds
 
     public Rigidbody2D rb;
 
@@ -19,9 +19,6 @@ public class carMovement : MonoBehaviour
         {
             // Slow down the object to a halt
             speed = Mathf.Lerp(speed, 0f, Time.deltaTime * 0.5f); // Adjust the multiplier for the speed of slowdown
-
-            // Optionally handle other actions when reaching 90 seconds
-            Debug.Log("Reached 90 seconds!");
 
             return; // Optional: You can add code here to handle the event
         }

@@ -12,7 +12,6 @@ TagManager:
   - weapon
   - projectile
   - slots
-  - Van
   - Spawner
   - landCollider
   - tilemap

@@ -7,6 +7,7 @@ public class Paper_clip_puzzle : MonoBehaviour
     private Rigidbody2D rb2d;
     private RectTransform rectTransform;
     public GameObject paperclipHand;
+    public GameObject Pointer;
     private Vector3 lastHandPos;
     private Quaternion lastHandRotation;
 
@@ -16,10 +17,10 @@ public class Paper_clip_puzzle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             EnableRigidbody();
+            Pointer.SetActive(true);
+
         }
     }
-
-
 
     void Start()
     {
@@ -102,7 +103,7 @@ public class Paper_clip_puzzle : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the collision involves another GameObject with a tag "CatchingHand"
-        if (collision.gameObject.CompareTag("Catching Hand") || collision.gameObject.CompareTag("Bent Paperclip 1"))
+        if (collision.gameObject.CompareTag("Catching Hand"))
         {
             // Store the last position of the catching hand
             lastHandPos = collision.gameObject.transform.position;
