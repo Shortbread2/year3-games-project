@@ -484,6 +484,7 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 1019
+  entitiesInRange: []
 --- !u!114 &7033573034472957828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackdistance: 0.38
-  attackSpeed: 1
+  attackSpeed: 0.2
   knockbackForce: 0.5
   Damage: 5
 --- !u!114 &3117381595679247658

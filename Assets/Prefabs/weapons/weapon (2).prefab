@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7083729939330922324}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8466299483290834299}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &7377891393333836420
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3966158925785792704}
   - component: {fileID: 6141447662876304335}
   - component: {fileID: 3226550643295923581}
+  - component: {fileID: 62483499698917985}
   m_Layer: 2
   m_Name: weapon (2)
   m_TagString: weapon
@@ -222,3 +223,24 @@ MonoBehaviour:
   FireRate: 3
   BulletForce: 1
   lastfired: 0
+--- !u!95 &62483499698917985
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377891393333836420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ece2b1885227bd24791a0c97ee843dfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

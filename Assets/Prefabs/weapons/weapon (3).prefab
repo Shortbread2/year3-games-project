@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4534435999922206531}
   - component: {fileID: 8997722542179623873}
   - component: {fileID: 2483152484391843113}
+  - component: {fileID: 5429979549599188847}
   m_Layer: 2
   m_Name: weapon (3)
   m_TagString: weapon
@@ -191,6 +192,27 @@ MonoBehaviour:
   FireRate: 3
   BulletForce: 1
   lastfired: 0
+--- !u!95 &5429979549599188847
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3404285351155531899}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ece2b1885227bd24791a0c97ee843dfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3982638396529016854
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4409062927772350577}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,4 +243,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 689763747964778631}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}

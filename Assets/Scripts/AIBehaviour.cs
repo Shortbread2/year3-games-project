@@ -40,6 +40,8 @@ public class AIBehaviour : MonoBehaviour
     private float lastStuckCheck;
     private float prevDistance = 0f;
     [SerializeField] private LayerMask EnemyLayer;
+
+    // kinda a mess but it initialises everything, some of them is just in case to make sure no errors/bugs appear tbh
     void Start()
     {
         //aiPathfinder.enabled = false;
@@ -50,6 +52,7 @@ public class AIBehaviour : MonoBehaviour
         aiPathfinder.maxSpeed = speed;
         searchBase = transform.position;
         OriginalViewRange = viewRange;
+        searchBase = transform.position;
     }
     void Update()
     {
@@ -125,6 +128,8 @@ public class AIBehaviour : MonoBehaviour
         if (aiPathfinder.canMove == false){
             moving = false;
         }
+
+        //the checking area
         checkIfStuck();
         CheckEntitiesInRange();
     }
@@ -132,28 +137,29 @@ public class AIBehaviour : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, targetTransform.position) < Distance)
         {
+            // main peice of code that enables the ai/entity to move
             if (Vector2.Distance(transform.position, targetTransform.position) > stopdistance)
             {
                 aiPathfinder.enabled = true;
                 moving = true;
             }
-            // TODO - if entity is too close to targetTransform
             if (Vector2.Distance(transform.position, targetTransform.position) < stopdistance)
             {
                 aiPathfinder.enabled = false;
                 moving = true;
-                //transform.position = Vector2.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime); // need to be tested more
             }
         }
     }
 
-    // for anim to stop entities movement when attacking
+    // for anim to stop entities movement when attacking if level 2 intelligence is false, as i want the more intelligent entities 
     public void SetAttackPause(bool value){
         if (!lvl2Int){
             aiPathfinder.canMove = !value;
         }
     }
 
+    // makes it so u can see where what ranges are and what size and other stuff
     private void OnDrawGizmos(){
         Handles.color = Color.blue;
         Handles.DrawWireDisc(searchBase, new Vector3(0, 0, 1), wanderRange); // draw wanderRange
@@ -162,11 +168,10 @@ public class AIBehaviour : MonoBehaviour
         Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), viewRange); // draw viewRange
     }
 
+    // given the wanderRange find a random point in the wanderRange area and make that the location the entity should go to
     public void WanderAround(){
         moving = true;
         searching = true;
-
-        Debug.Log("testing1");
 
         float searchSpeed = Random.Range(3f, 30f);
 
@@ -184,7 +189,7 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
-    // not the best fix but eh
+    // not the best fix but eh, if the entitiy is moving on the spot or is absurdly slow then resets the point at which the entity was supposed to move to
     public void checkIfStuck(){
         float theDistance = Vector2.Distance(transform.position, lastSeenNode.position);
         if (Time.time - lastStuckCheck > 0.3f)
@@ -208,6 +213,7 @@ public class AIBehaviour : MonoBehaviour
     }
 
     public List<GameObject> entitiesInRange = new List<GameObject>();
+    // on enter add entitiy from list
     void OnTriggerEnter2D(Collider2D other)
     {
         if (this.tag != other.tag)
@@ -216,6 +222,9 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
+// checks which entity that can be attacked has the smallest distance
+// TODO - add bias towards low health and not just distance
+// TODO - need to set a priority list (so the enemy instantly targets the player when in range) probs another bool variable again
 private float minDistance=99999999;
     private void CheckEntitiesInRange(){
         float distance = 0;
@@ -240,7 +249,17 @@ private float minDistance=99999999;
             }
         }
         minDistance = 99999999;
+
+        if(target != null){
+            if (!target.activeSelf){
+                // after target is dead, a new target is needed or there will be an error, so change to default target which is player then quickly put them into search mode/ wander mode
+                ChangeTarget(GameObject.FindGameObjectWithTag("Player"));
+                SeenTarget = false;
+                searching = true;
+            }
+        }
     }
+    // on exit remove entitiy from list
     void OnTriggerExit2D(Collider2D other)
     {
         if (entitiesInRange.Contains(other.gameObject)){
