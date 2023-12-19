@@ -63,7 +63,7 @@ public class LeftFinger : MonoBehaviour
         if (collision.gameObject.CompareTag("exitedGame"))
         {
             Destroy(gameObject);
-            Debug.Log("OPEN PAUSE MENU"); //TODO
+            Debug.Log("OPEN PAUSE MENU"); //TODO open pause menu to say game over if this happens
         }
     }
 
