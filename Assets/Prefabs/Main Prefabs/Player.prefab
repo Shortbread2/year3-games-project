@@ -39,7 +39,7 @@ Transform:
   m_Children:
   - {fileID: 3385323543367051579}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6381154447641565120
 SpriteRenderer:
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
+  runSpeed: 1000
   rb: {fileID: 8059701379854248009}
   animator: {fileID: 4794256867708506795}
 --- !u!95 &4794256867708506795

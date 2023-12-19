@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
+            //TODO: Go to pause menu and restart level
         }
     }
     public void PlayerTakeDamage(float Damage)
