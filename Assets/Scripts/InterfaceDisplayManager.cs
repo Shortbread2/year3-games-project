@@ -7,7 +7,7 @@ public class InterfaceDisplayManager : MonoBehaviour
     [SerializeField] GameObject MainInventory;
     [SerializeField] GameObject PasswordPuzzle;
     [SerializeField] GameObject LockpickingPuzzle;
-    [SerializeField] GameObject Player;
+    [SerializeField] playerMovement PlayerMove;
 
     public void openInventory()
     {
@@ -36,10 +36,8 @@ public class InterfaceDisplayManager : MonoBehaviour
     public void openLockpickingPuzzle()
     {
         LockpickingPuzzle.SetActive(true);
-        
-        //Time.timeScale = 0;
-
-        Player.SetActive(false);
+        Time.timeScale = 1;
+        PlayerMove.isScriptActive = false;
     }
 
     public void closeLockpickingPuzzle()
@@ -47,4 +45,5 @@ public class InterfaceDisplayManager : MonoBehaviour
         LockpickingPuzzle.SetActive(false);
         Time.timeScale = 1;
     }
+
 }
