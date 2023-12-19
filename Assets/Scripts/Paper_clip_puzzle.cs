@@ -12,6 +12,7 @@ public class Paper_clip_puzzle : MonoBehaviour
     private Quaternion lastHandRotation;
 
 
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -119,6 +120,12 @@ public class Paper_clip_puzzle : MonoBehaviour
             paperclipHand.SetActive(true);
             paperclipHand.transform.position = lastHandPos;
             //paperclipHand.transform.rotation = lastHandRotation;
+        }
+
+        if (collision.gameObject.CompareTag("exitedGame"))
+        {
+            // Ignore the collision and let the object go through it even though it has a rigidbody
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
     }
 
