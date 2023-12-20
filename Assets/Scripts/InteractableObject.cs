@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     public GameObject puzzleButton;
+    public bool isScriptActive = true;
 
     private void Start()
     {
@@ -13,17 +14,31 @@ public class InteractableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D player)
     {
-        if (player.gameObject.CompareTag("Player"))
+        if (isScriptActive) {
+            if (player.gameObject.CompareTag("Player"))
+            {
+                puzzleButton.SetActive(true);
+            }
+        }
+        else
         {
-            puzzleButton.SetActive(true);
+            puzzleButton.SetActive(false);
         }
     }
 
     private void OnTriggerExit2D(Collider2D player)
     {
-        if (player.gameObject.CompareTag("Player"))
+        if (isScriptActive) { 
+            if (player.gameObject.CompareTag("Player"))
+            {
+                puzzleButton.SetActive(false);
+            }
+        } 
+        else
         {
             puzzleButton.SetActive(false);
         }
-    }
+    } 
 }
+
+
