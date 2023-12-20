@@ -21,10 +21,13 @@ public class playerMovement : MonoBehaviour
 
         movement.Normalize();
 
-        if (Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
             sprintModifier = sprintMultiplier;
-        } else{
-             sprintModifier = 1f;
+        }
+        else
+        {
+            sprintModifier = 1f;
         }
 
         //Set animator parameters based on input

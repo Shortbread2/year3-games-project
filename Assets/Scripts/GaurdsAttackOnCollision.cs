@@ -16,7 +16,7 @@ public class GaurdsAttackOnCollision : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject == Player)
+        if (other.gameObject != null && other.gameObject == Player)
         {
 
             collectiblesDictionary = Player.GetComponent<PlayerCollection>().collectiblesDictionary;

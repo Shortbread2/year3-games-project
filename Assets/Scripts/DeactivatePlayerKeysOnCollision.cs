@@ -6,10 +6,15 @@ public class DeactivatePlayerKeysOnCollision : MonoBehaviour
 {
 
     public GameObject shopKeeperCollider;
+    public GameObject levelEntry;
     public playerMovement PlayerMove; // Reference to the script you want to deactivate
     public PlayerCollection PlayerCollection;
 
-    public GameObject dialogue;
+    public GameObject shopDialogue;
+
+    public GameObject levelEntryDialogue;
+    public GameObject miningEntry;
+    public GameObject miningEntryDialogue;
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -23,15 +28,27 @@ public class DeactivatePlayerKeysOnCollision : MonoBehaviour
                 if (gemCount < 5)
                 {
                     Debug.Log("Not enough gems to trade");
-                    dialogue.SetActive(true);
+
+                    shopDialogue.SetActive(true);
                 }
                 else
                 {
                     // Player has enough gems
                     PlayerCollection.collectiblesDictionary["Gem"] -= 5;
                     PlayerMove.enabled = false;
+                    PlayerMove.GetComponent<Animator>().enabled = false;
                 }
             }
+        }
+
+        if (other.gameObject == levelEntry)
+        {
+            levelEntryDialogue.SetActive(true);
+        }
+
+        if (other.gameObject == miningEntry)
+        {
+            miningEntryDialogue.SetActive(true);
         }
     }
 
@@ -39,7 +56,17 @@ public class DeactivatePlayerKeysOnCollision : MonoBehaviour
     {
         if (other.gameObject == shopKeeperCollider)
         {
-            dialogue.SetActive(false);
+            shopDialogue.SetActive(false);
+        }
+
+        if (other.gameObject == levelEntry)
+        {
+            levelEntryDialogue.SetActive(false);
+        }
+
+        if (other.gameObject == miningEntry)
+        {
+            miningEntryDialogue.SetActive(false);
         }
     }
 }

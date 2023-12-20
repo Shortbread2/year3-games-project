@@ -820,8 +820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: be9b4e592baf09343a9d3737024a0acf, type: 2}
+  m_sharedMaterial: {fileID: 4461703979506930042, guid: be9b4e592baf09343a9d3737024a0acf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -881,7 +881,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 1.197998, y: 0, z: 1.1982422, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1281,7 +1281,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 400, y: 40}
+  m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2043203039
 GameObject:
@@ -1465,7 +1465,15 @@ PrefabInstance:
       propertyPath: Exit
       value: 
       objectReference: {fileID: 1851324115}
+    - target: {fileID: 4374358545069354930, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 4472371749817090863, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627853061852996175, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1548,6 +1556,14 @@ PrefabInstance:
     - target: {fileID: 7757231873777404537, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_text
       value: Remove blindfold
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757231873777404537, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: be9b4e592baf09343a9d3737024a0acf, type: 2}
+    - target: {fileID: 7757231873777404537, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8693814951875418926, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_Sprite
