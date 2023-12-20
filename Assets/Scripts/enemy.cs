@@ -20,6 +20,13 @@ public class enemy : EntitySuperScript
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
         AIBehaviour = GetComponent<AIBehaviour>();
+
+        //get waypoints
+        if (waypointGroup != null){
+            foreach (Transform waypoint in waypointGroup.transform){
+                waypointsList.Add(waypoint.gameObject);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -32,7 +39,6 @@ public class enemy : EntitySuperScript
             aiPathfinder.enabled = false;
             this.GetComponent<AIBehaviour>().enabled = false;
             this.GetComponent<MeleeAttack>().enabled = false;
-            this.GetComponent<Rigidbody2D>().mass = 70f;
 
             //Destroy(gameObject);
         }

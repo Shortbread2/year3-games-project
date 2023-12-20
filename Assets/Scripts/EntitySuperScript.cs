@@ -8,4 +8,9 @@ public abstract class EntitySuperScript : MonoBehaviour
     public float displayhealth;
     [HideInInspector]
     public float speed;
+    public bool useWaypoints = false;
+    public bool repeatWaypoints = false;
+    public GameObject waypointGroup;
+    public List<GameObject> waypointsList = new List<GameObject>();
+    public List<GameObject> doneWaypoints = new List<GameObject>();
 }

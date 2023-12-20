@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 public class AIBehaviour : MonoBehaviour
 {
+    // i defenetly need to clean this
     private Vector3 targetlocation;
     private Vector3 targetLastLocation = new Vector3(0,0,0);
     private Vector3 direction;
@@ -33,7 +34,7 @@ public class AIBehaviour : MonoBehaviour
     public float viewRange = 0.2f;
     private float OriginalViewRange = 0.2f;
     public float wanderRange = 0.2f;
-    private bool moving = false;
+    private bool moving = true;
     private Vector3 randomPoint = new Vector3(0,0,0);
     private Vector3 searchBase = new Vector3(0,0,0);
     private float lastAction = -999999f;
@@ -152,12 +153,7 @@ public class AIBehaviour : MonoBehaviour
         }
     }
 
-    // for anim to stop entities movement when attacking if level 2 intelligence is false, as i want the more intelligent entities 
-    public void SetAttackPause(bool value){
-        if (!lvl2Int){
-            aiPathfinder.canMove = !value;
-        }
-    }
+
 
     // makes it so u can see where what ranges are and what size and other stuff
     private void OnDrawGizmos(){
@@ -173,6 +169,7 @@ public class AIBehaviour : MonoBehaviour
         moving = true;
         searching = true;
 
+        // the searchSpeed basically tells them how long they have to wait until the next point is generated
         float searchSpeed = Random.Range(3f, 30f);
 
         if (Time.time - lastAction > searchSpeed)
@@ -186,6 +183,27 @@ public class AIBehaviour : MonoBehaviour
             moving = false;
         } else{
             lastAction = Time.time;
+        }
+    }
+
+    public void WaypointMovement(List<GameObject> waypointsList, List<GameObject> doneWaypoints){
+        moving = true;
+        searching = false;
+
+        // reversing the for loop makes it so the for loop always ends on the left most element
+        for(int i = waypointsList.Count-1;i>=0;i--){
+            if (waypointsList[i].activeSelf && !doneWaypoints.Contains(waypointsList[i])){
+                Debug.Log(waypointsList[i].name);
+                lastSeenNode.position = waypointsList[i].transform.position;
+
+                if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f)
+                {
+                    moving = false;
+                    doneWaypoints.Add(waypointsList[i]);
+                } else{
+                    lastAction = Time.time;
+                }
+            }
         }
     }
 

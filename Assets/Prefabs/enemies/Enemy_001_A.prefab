@@ -432,7 +432,7 @@ Transform:
   - {fileID: 7504067363899087258}
   - {fileID: 7325240249901453230}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5052852782627840104
 SpriteRenderer:
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b93c16a1ed98a4f8d357a3f4fc0001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackdistance: 0.38
+  attackdistance: 0.28
   attackSpeed: 1
   knockbackForce: 0.5
   Damage: 5
