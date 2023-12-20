@@ -9,8 +9,8 @@ public class OpenPuzzleScene : MonoBehaviour
 
     public void OpenSceneWithDelay()
     {
-        // Invoke the OpenScene method after a delay of 4 seconds
-        Invoke("OpenScene", 4f);
+        // Invoke the OpenScene method after a delay of 2 seconds
+        Invoke("OpenScene", 2f);
     }
 
     private void OpenScene()

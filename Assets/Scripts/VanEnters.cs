@@ -8,6 +8,8 @@ public class VanEnters : MonoBehaviour
     public float maxYPosition = -2.9f; // Adjust the maximum Y position
     public GameObject endgame;
 
+    public GameObject enterNextsceneArrow;
+
     private bool hasReachedMaxPosition = false;
 
     void Update()
@@ -33,6 +35,7 @@ public class VanEnters : MonoBehaviour
     void ActivateEndgame()
     {
         endgame.SetActive(true);
+        enterNextsceneArrow.SetActive(true);
     }
 }
 

@@ -14,6 +14,7 @@ public class vehicleHealth : MonoBehaviour
         currenthealth = health;
         displayhealth = health;
         healthBar.SetMaxHealth(health);
+        GetComponent<ParticleSystem>().Stop();
     }
 
     // Update is called once per frame
@@ -22,13 +23,18 @@ public class vehicleHealth : MonoBehaviour
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
+            //TODO END GAME
+        }
+        if (currenthealth == 36)
+        {
+            GetComponent<ParticleSystem>().Play();
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider is CircleCollider2D && collision.gameObject.CompareTag("projectile"))
         {
-            currenthealth -= 4;
+            currenthealth -= 6;
             displayhealth = currenthealth;
             healthBar.SetHealth(currenthealth);
         }
