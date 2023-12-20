@@ -670,18 +670,18 @@ PrefabInstance:
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1819715443}
+      objectReference: {fileID: 1711988882}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 756929324}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OpenSceneWithDelay
+      value: OpenLockpickingPuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: OpenPuzzleScene, Assembly-CSharp
+      value: SceneDisplayManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -690,6 +690,10 @@ PrefabInstance:
     - target: {fileID: 5329685833960012415, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_Name
       value: EnterPuzzleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329685833960012415, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6349604608811242664, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_Pivot.x
@@ -1256,11 +1260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686656202608412241, guid: cd03ea69dc54f0a46b03ba9d385939ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.59
+      value: 8.01
       objectReference: {fileID: 0}
     - target: {fileID: 5686656202608412241, guid: cd03ea69dc54f0a46b03ba9d385939ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 5686656202608412241, guid: cd03ea69dc54f0a46b03ba9d385939ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -36400,6 +36404,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706485543}
   m_CullTransparentMesh: 1
+--- !u!114 &1711988882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6395024106090905864, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+  m_PrefabInstance: {fileID: 994007921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f1846cf7dfa2048b45735d46260602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &1716485091
 Sprite:
   m_ObjectHideFlags: 0
@@ -36816,7 +36831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9011c1f3a6a7e7b41a434591c47cac07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Lockpicking puzzle scene
 --- !u!4 &1870814138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385437836016506626, guid: edd22a05b182b2543b0dbd91b8fb400c, type: 3}

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 
+#if UNITY_EDITOR
+    using UnityEditor; // cos handles gives erros since can only use handlies with this import
+#endif
+
 public class NPC : EntitySuperScript
 {
     private float currenthealth;
@@ -27,13 +31,29 @@ public class NPC : EntitySuperScript
         turnToEnemyThreshold = health * 0.6f;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
+
+        //get waypoints
+        if (waypointGroup != null){
+            foreach (Transform waypoint in waypointGroup.transform){
+                waypointsList.Add(waypoint.gameObject);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (selfDefense == false){
-            aiBehaviour.WanderAround();
+            if(useWaypoints == true){
+                aiBehaviour.WaypointMovement(waypointsList,doneWaypoints);
+                if(repeatWaypoints == true && waypointsList.Count == doneWaypoints.Count){
+                    doneWaypoints.Clear();
+                } else if(waypointsList.Count == doneWaypoints.Count){
+                    useWaypoints = false;
+                }
+            }else{
+                aiBehaviour.WanderAround();
+            }
             aiBehaviour.checkIfStuck();
         }
         if(theAttacker != null){
@@ -62,7 +82,6 @@ public class NPC : EntitySuperScript
             // death animation
             animator.SetTrigger("isDead");
             aiPathfinder.enabled = false;
-            this.GetComponent<Rigidbody2D>().mass = 70f;
             aiBehaviour.enabled = false;
             meleeAttack.enabled = false;
         }
@@ -74,5 +93,18 @@ public class NPC : EntitySuperScript
         }
 
         meleeAttack.enabled = true;
+    }
+
+    private void OnDrawGizmos(){
+        if (useWaypoints && waypointsList != null){
+            for (int i = 0; i < waypointsList.Count - 1; i++){
+
+                Handles.color = Color.blue;
+                //Handles.DrawWireDisc(waypointsList[i].transform.position, new Vector3(0, 0, 1), 0.2f);
+
+                Handles.color = Color.red;
+                Handles.DrawLine(waypointsList[i].transform.position, waypointsList[i+1].transform.position);
+            }
+        }
     }
 }

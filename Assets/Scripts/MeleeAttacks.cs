@@ -6,6 +6,7 @@ public abstract class MeleeAttacks : MonoBehaviour
 {
     public float attackdistance = 0.3f;
     public float attackSpeed = 10f;
+    public float attackDelay = 0.1f;
     public float knockbackForce = 3f; 
     public float Damage = 5f;
     private GameObject target;

@@ -15,7 +15,7 @@ public class VanEnters : MonoBehaviour
     void Update()
     {
         // Check if the script is not active and Y position is below the threshold
-        if (!PlayerMove.isScriptActive && transform.position.y < maxYPosition)
+        if (!PlayerMove.enabled && transform.position.y < maxYPosition)
         {
             // Move the object upward (along the Y-axis)
             transform.Translate(Vector3.up * 3f * Time.deltaTime);

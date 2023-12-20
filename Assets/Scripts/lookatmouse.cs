@@ -7,7 +7,6 @@ public class lookatmouse : MonoBehaviour
   
     private Camera cam;
     private Vector3 tF;
-    private float speed = 0.3f;
     
 
     Vector3 mouseposition;

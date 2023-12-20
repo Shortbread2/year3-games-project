@@ -5,8 +5,14 @@ public class PasswordGame : MonoBehaviour
 {
     public TextMeshProUGUI outputDisplay;
     private string enteredDigits = "";
-    public string correctPassword = "1234";
+    public string correctPassword = "5321";
     private bool displayTryAgain = false;
+
+    public GameObject secondPartEnv;
+    public GameObject passwordGate;
+    public GameObject mainCanvas;
+    public InteractableObject interactableObjectActive;
+    public GameObject puzzleButton;
 
     public void AddDigit(string digit)
     {
@@ -30,7 +36,18 @@ public class PasswordGame : MonoBehaviour
     {
         if (enteredDigits == correctPassword)
         {
-            outputDisplay.text = "CORRECT";
+            Time.timeScale = 1;
+            secondPartEnv.SetActive(true);
+            puzzleButton.SetActive(false);
+            OpenDoor();
+            mainCanvas.SetActive(false);
+            passwordGate.GetComponent<BoxCollider2D>().enabled = false;
+
+            if (interactableObjectActive != null)
+            {
+                Debug.Log("Interactive object set to false");
+                interactableObjectActive.isScriptActive = false;
+            }
         }
         else
         {
@@ -58,5 +75,28 @@ public class PasswordGame : MonoBehaviour
         outputDisplay.text = "TRY AGAIN";
         yield return new WaitForSeconds(3f); 
         outputDisplay.text = enteredDigits; 
+    }
+
+    void OpenDoor()
+    {
+        {
+            if (passwordGate != null)
+            {
+                Animator doorAnimator = passwordGate.GetComponent<Animator>();
+
+                if (doorAnimator != null)
+                {
+                    doorAnimator.SetBool("DoorOpen", true);
+                }
+                else
+                {
+                    Debug.LogError("Animator component not found on PasswordGate GameObject!");
+                }
+            }
+            else
+            {
+                Debug.LogError("PasswordGate GameObject reference not set!");
+            }
+        }
     }
 }

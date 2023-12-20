@@ -15,7 +15,7 @@ public class DeactivatePlayerKeysOnCollision : MonoBehaviour
         if (other.gameObject == shopKeeperCollider) //TODO && collectiblesDictionary["Gem"] >= 10
         {
             // Deactivate the script
-            PlayerMove.isScriptActive = false;
+            PlayerMove.enabled = false;
         }
     }
 }

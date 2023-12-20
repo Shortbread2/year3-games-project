@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     private float timer = 60f;
     public GameObject GAMEOVER;
+    public GameObject RESTART;
 
     void Update()
     {
@@ -27,6 +29,7 @@ public class Timer : MonoBehaviour
             else
             {
                 GAMEOVER.SetActive(true);
+                RESTART.SetActive(true);
                 string timerString = string.Format("{0:00}", "00");
                 timerText.text = timerString;
                 // Stop counting and decrease the transparency of GAMEOVER to 0

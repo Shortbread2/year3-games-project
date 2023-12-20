@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class OpenPuzzleScene : MonoBehaviour
 {
-    public string scene;
+    
 
     public void OpenSceneWithDelay()
     {
@@ -16,6 +16,6 @@ public class OpenPuzzleScene : MonoBehaviour
     private void OpenScene()
     {
         // Load the specified scene
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene("");
     }
 }
