@@ -38,7 +38,7 @@ public class InterfaceDisplayManager : MonoBehaviour
     {
         LockpickingPuzzle.SetActive(true);
         Time.timeScale = 1;
-        PlayerMove.isScriptActive = false;
+        PlayerMove.enabled = false;
     }
 
     public void closeLockpickingPuzzle()
@@ -50,7 +50,7 @@ public class InterfaceDisplayManager : MonoBehaviour
     public void openTetrisEnginePuzzle()
     {
         TetrisEnginePuzzle.SetActive(true);
-        PlayerMove.isScriptActive = false;
+        PlayerMove.enabled = false;
     }
 
 }

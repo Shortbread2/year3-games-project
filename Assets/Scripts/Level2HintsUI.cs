@@ -19,41 +19,41 @@ public class Level2HintsUI : MonoBehaviour
     {
         Hint1Button.SetActive(false);
         Hint1Interface.SetActive(true);
-        PlayerMove.isScriptActive = false;
+        PlayerMove.enabled = false;
     }
 
     public void closeHint1()
     {
         Hint1Button.SetActive(true);
         Hint1Interface.SetActive(false);
-        PlayerMove.isScriptActive = true;
+        PlayerMove.enabled = true;
     }
 
     public void displayHint2()
     {
         Hint2Button.SetActive(false);
         Hint2Interface.SetActive(true);
-        PlayerMove.isScriptActive = false;
+        PlayerMove.enabled = false;
     }
 
     public void closeHint2()
     {
         Hint2Button.SetActive(true);
         Hint2Interface.SetActive(false);
-        PlayerMove.isScriptActive= true;
+        PlayerMove.enabled= true;
     }
 
     public void displayHint3()
     {
         Hint3Button.SetActive(false);
         Hint3Interface.SetActive(true);
-        PlayerMove.isScriptActive = false;
+        PlayerMove.enabled = false;
     }
 
     public void closeHint3()
     {
         Hint3Button.SetActive(true);
         Hint3Interface.SetActive(false);
-        PlayerMove.isScriptActive = true;
+        PlayerMove.enabled = true;
     }
 }
