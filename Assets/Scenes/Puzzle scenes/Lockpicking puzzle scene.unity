@@ -213,7 +213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252881604 stripped
 GameObject:
@@ -895,6 +895,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310502182}
   m_CullTransparentMesh: 1
+--- !u!1001 &1362328455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1520.3458
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 235.73206
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.491805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506378974603943741, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487365362539260969, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+      propertyPath: m_Name
+      value: UIManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
 --- !u!1 &1373357689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1120,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1000, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1793603971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6395024106090905864, guid: 5d0a52e2104aa3c408f8250657183e85, type: 3}
+  m_PrefabInstance: {fileID: 1362328455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f1846cf7dfa2048b45735d46260602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1833785431 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1606203822133899860, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
@@ -1096,7 +1168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9011c1f3a6a7e7b41a434591c47cac07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Race Chase
 --- !u!114 &1851324117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,9 +1212,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1851324116}
-        m_TargetAssemblyTypeName: OpenPuzzleScene, Assembly-CSharp
-        m_MethodName: OpenSceneWithDelay
+      - m_Target: {fileID: 1793603971}
+        m_TargetAssemblyTypeName: SceneDisplayManager, Assembly-CSharp
+        m_MethodName: OpenRaceChase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1278,7 +1349,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114836978
 GameObject:
@@ -1488,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190541855876512500, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9190541855876512500, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_LocalPosition.x

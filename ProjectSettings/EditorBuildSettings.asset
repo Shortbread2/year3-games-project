@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzle scenes/Race Chase.unity
     guid: bc8d276ae60dc864d844e64ebb855d5a
   - enabled: 1
+    path: Assets/Scenes/Levels/Mining Level 1.unity
+    guid: 2d07b3cb79e24e44b96f26baf83fedfa
+  - enabled: 1
     path: Assets/Scenes/Levels/Lab Level 2.unity
     guid: e0149da47ec7c9e44a3f2178074bfb72
   m_configObjects: {}

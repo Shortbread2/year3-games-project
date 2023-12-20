@@ -34,6 +34,7 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
+        InsertGemItem();
     }
 
     private void Update()
