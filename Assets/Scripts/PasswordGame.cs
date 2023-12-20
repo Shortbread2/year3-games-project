@@ -12,6 +12,7 @@ public class PasswordGame : MonoBehaviour
     public GameObject passwordGate;
     public GameObject mainCanvas;
     public InteractableObject interactableObjectActive;
+    public GameObject puzzleButton;
 
     public void AddDigit(string digit)
     {
@@ -37,6 +38,7 @@ public class PasswordGame : MonoBehaviour
         {
             Time.timeScale = 1;
             secondPartEnv.SetActive(true);
+            puzzleButton.SetActive(false);
             OpenDoor();
             mainCanvas.SetActive(false);
             passwordGate.GetComponent<BoxCollider2D>().enabled = false;
