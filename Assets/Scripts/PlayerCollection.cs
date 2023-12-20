@@ -5,7 +5,7 @@ public class PlayerCollection : MonoBehaviour
 {
     public Dictionary<string, int> collectiblesDictionary = new Dictionary<string, int>();
 
-    private InventoryController inventoryController;
+  //private InventoryController inventoryController;
 
     void Start()
     {
@@ -17,6 +17,7 @@ public class PlayerCollection : MonoBehaviour
         collectiblesDictionary.Add("Gem", 0);
         collectiblesDictionary.Add("Paperclip", 0);
         collectiblesDictionary.Add("IDCard", 0);
+        collectiblesDictionary.Add("SonPhoto", 0);
     }
 
     public void CollectItem(string itemType)
@@ -61,6 +62,9 @@ public class PlayerCollection : MonoBehaviour
                 break;
             case "IDCard":
                 controller.InsertIDCardItem();
+                break;
+            case "SonPhoto":
+                controller.InsertSonPhotoItem();
                 break;
             default:
                 break;

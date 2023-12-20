@@ -24,6 +24,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] ItemData gemItem;
     [SerializeField] ItemData paperclipItem;
     [SerializeField] ItemData IDCardItem;
+    [SerializeField] ItemData SonPhotoItem;
 
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
@@ -34,7 +35,6 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
-        InsertGemItem();
     }
 
     private void Update()
@@ -94,6 +94,14 @@ public class InventoryController : MonoBehaviour
         if (selectedItemGrid == null) { return; }
 
         CreateIDCardItem();
+        InsertItemIntoInventory();
+    }
+
+    public void InsertSonPhotoItem()
+    {
+        if (selectedItemGrid == null) { return; }
+
+        CreateSonPhotoItem();
         InsertItemIntoInventory();
     }
 
@@ -168,6 +176,12 @@ public class InventoryController : MonoBehaviour
         InventoryItem inventoryItem = CreateItemForInventory();
 
         inventoryItem.Set(IDCardItem);
+    }
+
+    private void CreateSonPhotoItem()
+    {
+        InventoryItem inventoryItem = CreateItemForInventory();
+        inventoryItem.Set(SonPhotoItem);
     }
 
     private InventoryItem CreateItemForInventory()

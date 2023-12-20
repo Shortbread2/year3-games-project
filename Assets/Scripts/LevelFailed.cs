@@ -24,7 +24,8 @@ public class LevelFailed : MonoBehaviour
                 Debug.Log("TODO: go to pause scene");
             }
         }
-        else { Debug.Log("TODO: not working"); }
+        else { //Debug.Log("TODO: not working");
+               }
 
     }
 
