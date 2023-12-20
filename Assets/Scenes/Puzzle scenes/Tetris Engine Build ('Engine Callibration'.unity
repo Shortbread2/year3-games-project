@@ -5744,6 +5744,7 @@ GameObject:
   - component: {fileID: 2135995095}
   - component: {fileID: 2135995097}
   - component: {fileID: 2135995098}
+  - component: {fileID: 2135995099}
   m_Layer: 0
   m_Name: R1C1 Collider
   m_TagString: Untagged
@@ -5751,8 +5752,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2135995095
-Transform:
+--- !u!224 &2135995095
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5766,6 +5767,11 @@ Transform:
   m_Father: {fileID: 817303847}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.52, y: 0.64}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2135995097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5882,6 +5888,14 @@ PolygonCollider2D:
       - {x: 0.03, y: 0.32}
       - {x: 0.01, y: 0.29999998}
   m_UseDelaunayMesh: 0
+--- !u!222 &2135995099
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135995094}
+  m_CullTransparentMesh: 1
 --- !u!1 &2142128099
 GameObject:
   m_ObjectHideFlags: 0

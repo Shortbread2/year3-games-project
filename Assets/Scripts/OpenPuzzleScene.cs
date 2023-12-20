@@ -19,5 +19,3 @@ public class OpenPuzzleScene : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 }
-
-//Ismail Hendryx
