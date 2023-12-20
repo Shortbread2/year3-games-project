@@ -9,6 +9,8 @@ public class LevelFailed : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject GameOverPanel;
+
 
     void Update()
     {
@@ -22,6 +24,7 @@ public class LevelFailed : MonoBehaviour
                 // Timer For level 1 Ends and you dont have 10 crystals
                 //TODO: go to pause scene
                 Debug.Log("TODO: go to pause scene");
+                //GameOverPanel.SetActive(true);
             }
         }
         else { //Debug.Log("TODO: not working");

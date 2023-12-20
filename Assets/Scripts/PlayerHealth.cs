@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     private float currenthealth;
     public float displayhealth;
     public HealthBar healthBar;
+    public GameObject GameOverPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         if (currenthealth <= 0)
         {
             Destroy(gameObject);
-            //TODO: Go to pause menu and restart level
+            GameOverPanel.SetActive(true);
         }
     }
     public void PlayerTakeDamage(float Damage)
