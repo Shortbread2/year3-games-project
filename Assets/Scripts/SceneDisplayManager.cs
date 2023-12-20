@@ -26,5 +26,16 @@ public class SceneDisplayManager : MonoBehaviour
         SceneManager.LoadScene("Lab Level 2");
     }
 
+    public void RestartLevel()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     // Add more functions for other button actions as needed
 }
