@@ -6,6 +6,7 @@ public class InterfaceDisplayManager : MonoBehaviour
 {
     [SerializeField] GameObject MainInventory;
     [SerializeField] GameObject PasswordPuzzle;
+    [SerializeField] GameObject TetrisEnginePuzzle;
     [SerializeField] GameObject LockpickingPuzzle;
     [SerializeField] playerMovement PlayerMove;
 
@@ -44,6 +45,12 @@ public class InterfaceDisplayManager : MonoBehaviour
     {
         LockpickingPuzzle.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void openTetrisEnginePuzzle()
+    {
+        TetrisEnginePuzzle.SetActive(true);
+        PlayerMove.isScriptActive = false;
     }
 
 }
