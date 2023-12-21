@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 015d0a3bac4517b49a8df5fcd2ec5e95
   - enabled: 1
-    path: Assets/Scenes/SampleScene-LayansChangesWithInv.unity
-    guid: 723f2d25c77b0dc43aa0756e82bf430f
+    path: Assets/Scenes/Levels/MIning Level 1.unity
+    guid: 2d07b3cb79e24e44b96f26baf83fedfa
   - enabled: 1
     path: Assets/Scenes/Puzzle scenes/Lockpicking puzzle scene.unity
     guid: 6afb6995a675fda4d8d92d6e3d0b2673
@@ -24,9 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzle scenes/Race Chase.unity
     guid: bc8d276ae60dc864d844e64ebb855d5a
   - enabled: 1
-    path: Assets/Scenes/Levels/Mining Level 1.unity
-    guid: 2d07b3cb79e24e44b96f26baf83fedfa
-  - enabled: 1
     path: Assets/Scenes/Levels/Lab Level 2.unity
     guid: e0149da47ec7c9e44a3f2178074bfb72
+  - enabled: 1
+    path: Assets/Scenes/SampleScene-LayansChangesWithInv.unity
+    guid: 723f2d25c77b0dc43aa0756e82bf430f
   m_configObjects: {}

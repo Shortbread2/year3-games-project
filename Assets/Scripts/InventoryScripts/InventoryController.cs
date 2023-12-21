@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [HideInInspector] private ItemGrid selectedItemGrid;
+    public ItemGrid selectedItemGrid;
     public ItemGrid SelectedItemGrid
     {
         get => selectedItemGrid;
@@ -32,6 +33,12 @@ public class InventoryController : MonoBehaviour
 
     InventoryItem itemToHighlight;
 
+    private void Start()
+    {
+        InsertIDCardItem();
+        InsertPaperclipItem();
+        InsertSonPhotoItem();
+    }
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();

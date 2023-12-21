@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,35 +5,34 @@ public class SceneDisplayManager : MonoBehaviour
 {
     public void OpenNewGame()
     {
-        SceneManager.LoadScene("Mining Level 1");
+        LoadSceneByIndex(1);
     }
 
-    public void OpenLockpickingPuzzle()
+    public void OpenNextScene()
     {
-
-        SceneManager.LoadScene("Lockpicking puzzle scene");
-    }
-
-    public void OpenRaceChase()
-    {
-        SceneManager.LoadScene("Race Chase");
-    }
-
-    public void OpenLevel2()
-    {
-        SceneManager.LoadScene("Lab Level 2");
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        LoadSceneByIndex(currentIndex + 1);
     }
 
     public void RestartLevel()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void OpenMainMenu()
+    public void QuitGame()
     {
-        SceneManager.LoadScene("Main Menu");
+        Application.Quit();
     }
 
-    // Add more functions for other button actions as needed
+    private void LoadSceneByIndex(int index)
+    {
+        if (index >= 0 && index < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(index);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid scene index");
+        }
+    }
 }
