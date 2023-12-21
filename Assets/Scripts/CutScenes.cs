@@ -4,7 +4,7 @@ using UnityEngine;
 public class CutScenes : MonoBehaviour
 {
 
-    [SerializeField] GameObject? Inventory;
+    [SerializeField] GameObject Inventory;
     void Start()
     {
         // Freeze time
