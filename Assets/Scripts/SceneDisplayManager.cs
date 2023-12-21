@@ -8,6 +8,11 @@ public class SceneDisplayManager : MonoBehaviour
         LoadSceneByIndex(1);
     }
 
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void OpenNextScene()
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;

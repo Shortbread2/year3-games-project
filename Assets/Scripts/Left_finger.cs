@@ -7,6 +7,8 @@ public class LeftFinger : MonoBehaviour
     private float speed = 1000f; // Adjust the speed as needed
     private float rotationSpeed = 400f;
 
+    public GameObject GameOverPanel;
+
     void Update()
     {
         {
@@ -63,7 +65,10 @@ public class LeftFinger : MonoBehaviour
         if (collision.gameObject.CompareTag("exitedGame"))
         {
             Destroy(gameObject);
-            Debug.Log("OPEN PAUSE MENU"); //TODO open pause menu to say game over if this happens
+            Debug.Log("OPEN PAUSE MENU");
+            GameOverPanel.SetActive(true);
+
+            //TODO open pause menu to say game over if this happens
         }
     }
 

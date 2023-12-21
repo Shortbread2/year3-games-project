@@ -19,6 +19,9 @@ TagManager:
   - Catching Hand
   - Unbent Paperclip
   - NPC
+  - Engine Pieces
+  - exitedGame
+  - paperClipCollider
   layers:
   - Default
   - TransparentFX

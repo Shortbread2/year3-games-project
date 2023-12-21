@@ -11,6 +11,8 @@ public class Paper_clip_puzzle : MonoBehaviour
     private Vector3 lastHandPos;
     private Quaternion lastHandRotation;
 
+    public GameObject GameOverPanel;
+
 
 
     void Update()
@@ -126,6 +128,13 @@ public class Paper_clip_puzzle : MonoBehaviour
         {
             // Ignore the collision and let the object go through it even though it has a rigidbody
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            
+        }
+
+        if(collision.gameObject.CompareTag("paperClipCollider"))
+        {
+            Debug.Log("Lol u dead");
+            GameOverPanel.SetActive(true);
         }
     }
 
