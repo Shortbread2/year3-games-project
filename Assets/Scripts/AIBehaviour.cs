@@ -21,7 +21,7 @@ public class AIBehaviour : MonoBehaviour
     private Collider2D col;
     int Distance = 100;
     private GameObject target;
-    //[SerializeField]
+    [SerializeField]
     private string targetTag = "Player";
     public float speed = 0.2f;
     public float stopdistance = 3;
@@ -235,6 +235,7 @@ public class AIBehaviour : MonoBehaviour
         }
     }
     public void ChangeTarget(GameObject newObj){
+        isMobile = true;
         target = newObj;
         targetTag = newObj.tag;
         targetTransform = target.GetComponent<Transform>();
