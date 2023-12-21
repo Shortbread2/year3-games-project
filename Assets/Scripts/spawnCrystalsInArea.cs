@@ -30,22 +30,25 @@ public class spawnCrystalsInArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= radius && isSpawned == false)
+        if (player != null)
         {
-            PickupCollectible.SetActive(true);
-            playerInArea = true;
-            if (Input.GetKeyDown("f"))
+            if (Vector2.Distance(transform.position, player.transform.position) <= radius && isSpawned == false)
             {
-                isSpawned = true;
-                Instantiate(entityToSpawn, transform.position, Quaternion.identity);
+                PickupCollectible.SetActive(true);
+                playerInArea = true;
+                if (Input.GetKeyDown("f"))
+                {
+                    isSpawned = true;
+                    Instantiate(entityToSpawn, transform.position, Quaternion.identity);
+                    PickupCollectible.SetActive(false);
+                }
+            }
+            if (Vector2.Distance(transform.position, player.transform.position) > radius && playerInArea == true)
+            {
+                Debug.Log("player left");
+                playerInArea = false;
                 PickupCollectible.SetActive(false);
             }
-        }
-        if (Vector2.Distance(transform.position, player.transform.position) > radius && playerInArea == true)
-        {
-            Debug.Log("player left");
-            playerInArea = false;
-            PickupCollectible.SetActive(false);
         }
     }
 }

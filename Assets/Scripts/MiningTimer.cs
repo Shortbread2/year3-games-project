@@ -1,40 +1,50 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; // Add this for Image
 
 public class MiningTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    public float Timed = 10f;
+    public float Timed = 90f;
 
     public PlayerCollection PlayerCollection;
     public GameObject TimerParent;
     public GameObject GameOverPanel;
 
+    private bool isTimerRunning = true;
+
     void Update()
     {
-        if (Timed >= 1f)
+        if (GameOverPanel.activeSelf == true)
         {
-            Timed -= Time.deltaTime;
-            UpdateTimerText();
+            // Don't update the timer if the game is over
+            return;
         }
-        else
+        if (isTimerRunning)
         {
-            string timerString = string.Format("{0:00}", "00");
-            timerText.text = timerString;
-            Destroy(TimerParent);
-
-
-            int gemCount = 0;
-            if (PlayerCollection.collectiblesDictionary.TryGetValue("Gem", out gemCount))
+            if (Timed >= 1f)
             {
-                if (gemCount < 5)
-                {
-                    GameOverPanel.SetActive(true);
-                }
-
+                Timed -= Time.deltaTime;
+                UpdateTimerText();
             }
+            else
+            {
+                // Timer reached zero or was stopped
+                string timerString = string.Format("{0:00}", "00");
+                timerText.text = timerString;
+                Destroy(TimerParent);
 
+                if (isTimerRunning)
+                {
+                    int gemCount = 0;
+                    if (PlayerCollection.collectiblesDictionary.TryGetValue("Gem", out gemCount))
+                    {
+                        if (gemCount < 5)
+                        {
+                            GameOverPanel.SetActive(true);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -47,13 +57,12 @@ public class MiningTimer : MonoBehaviour
 
     public bool getTimeIsZero()
     {
-        if (Timed == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Timed == 0;
+    }
+
+    // Method to stop the timer
+    public void StopTimer()
+    {
+        isTimerRunning = false;
     }
 }

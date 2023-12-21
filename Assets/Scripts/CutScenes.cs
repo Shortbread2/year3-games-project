@@ -4,7 +4,7 @@ using UnityEngine;
 public class CutScenes : MonoBehaviour
 {
 
-    [SerializeField] GameObject Inventory;
+    [SerializeField] GameObject? Inventory;
     void Start()
     {
         // Freeze time
@@ -16,8 +16,12 @@ public class CutScenes : MonoBehaviour
     public void unfreezeTime()
     {
         Time.timeScale = 1;
-        Inventory.GetComponent<Canvas>().sortingOrder = 2;
-        Inventory.SetActive(false);
-        
+        if (Inventory != null)
+        {
+            Inventory.GetComponent<Canvas>().sortingOrder = 2;
+            Inventory.SetActive(false);
+        }
+        else { Inventory = null; }
+
     }
 }

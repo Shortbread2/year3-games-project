@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0639258f7f433be4eb370524a103452c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
 --- !u!114 &318299105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,7 +1472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4472371749817090863, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5627853061852996175, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_IsActive
@@ -1571,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a14d00fc0d4fe684291d7a1ba14cbc89, type: 3}
     - target: {fileID: 8833343244060602457, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9190541855876512500, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_RootOrder
