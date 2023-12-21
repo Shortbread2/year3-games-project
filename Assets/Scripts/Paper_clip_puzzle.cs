@@ -15,6 +15,8 @@ public class Paper_clip_puzzle : MonoBehaviour
 
 
 
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -128,10 +130,10 @@ public class Paper_clip_puzzle : MonoBehaviour
         {
             // Ignore the collision and let the object go through it even though it has a rigidbody
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-            
+
         }
 
-        if(collision.gameObject.CompareTag("paperClipCollider"))
+        if (collision.gameObject.CompareTag("paperClipCollider"))
         {
             Debug.Log("Lol u dead");
             GameOverPanel.SetActive(true);

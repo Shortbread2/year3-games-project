@@ -215,11 +215,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &106816135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2181315858345540144, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
-  m_PrefabInstance: {fileID: 1342747762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &252881604 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2615050832589029803, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
@@ -1256,7 +1251,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 4.1745605, y: -30.60514}
@@ -1453,7 +1448,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1793603971}
         m_TargetAssemblyTypeName: SceneDisplayManager, Assembly-CSharp
-        m_MethodName: OpenRaceChase
+        m_MethodName: OpenNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1695,7 +1690,7 @@ PrefabInstance:
     - target: {fileID: 134401759632703659, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: GameOverPanel
       value: 
-      objectReference: {fileID: 106816135}
+      objectReference: {fileID: 1767163876}
     - target: {fileID: 1328538257254497093, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1708,6 +1703,10 @@ PrefabInstance:
       propertyPath: Exit
       value: 
       objectReference: {fileID: 1851324115}
+    - target: {fileID: 2820285886998823280, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1767163876}
     - target: {fileID: 3748596989575160969, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: GameOverPanel
       value: 
@@ -1768,6 +1767,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6275031714951946020, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1767163876}
     - target: {fileID: 7557732161800361408, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 199
