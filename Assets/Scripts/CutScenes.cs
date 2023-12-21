@@ -5,6 +5,8 @@ public class CutScenes : MonoBehaviour
 {
 
     [SerializeField] GameObject Inventory;
+    [SerializeField] GameObject cutScenePanel;
+    [SerializeField] GameObject arrowToNextScene;
     void Start()
     {
         // Freeze time
@@ -22,6 +24,9 @@ public class CutScenes : MonoBehaviour
             Inventory.SetActive(false);
         }
         else { Inventory = null; }
+
+        cutScenePanel.SetActive(false);
+        arrowToNextScene.SetActive(false);
 
     }
 }

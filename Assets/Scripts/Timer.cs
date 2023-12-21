@@ -10,6 +10,13 @@ public class Timer : MonoBehaviour
     public GameObject ExitButton;
     public GameObject FixEngine;
 
+    public bool isEnginePuzzleComplete;
+
+    private void Start()
+    {
+        isEnginePuzzleComplete = false;
+    }
+
     void Update()
     {
         GameObject taggedObject = GameObject.FindGameObjectWithTag("Engine Pieces");
@@ -46,6 +53,8 @@ public class Timer : MonoBehaviour
             color.a = 255f;
             renderer.color = color;
             ExitButton.SetActive(true);
+
+            isEnginePuzzleComplete = true;
         }
     }
 
