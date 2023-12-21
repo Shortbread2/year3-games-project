@@ -501,6 +501,7 @@ MonoBehaviour:
   health: 100
   displayhealth: 0
   healthBar: {fileID: 359399940}
+  GameOverPanel: {fileID: 1590501009}
 --- !u!199 &492094929
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5348,7 +5349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.028301895, g: 0.02348222, b: 0.022605915, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5578,6 +5579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1701900618}
   panel: {fileID: 717266384}
+  GameOverPanel: {fileID: 0}
 --- !u!114 &1147262678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5592,8 +5594,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firepoint: {fileID: 371827464}
   projectile1prefab: {fileID: 2186939014420037287, guid: 1e62ccb9b4610da46b129c6fe5b2a719, type: 3}
-  FireRate: 2
-  BulletForce: 5
+  FireRate: 3
+  BulletForce: 7
 --- !u!114 &1147262679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5607,8 +5609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followHoops: {fileID: 1006899906}
-  minX: 74.74
-  maxX: 75.8
+  distance: 2
+  speed: 2
 --- !u!212 &1147262680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5699,7 +5701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2061048456636505176, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3082720701312314890, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5731,11 +5733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5255635654416417851, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5255635654416417851, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5339405549773038853, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_TagString
@@ -6202,6 +6204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f1846cf7dfa2048b45735d46260602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1590501009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2181315858345540144, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
+  m_PrefabInstance: {fileID: 1171823605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1591973411
 GameObject:
   m_ObjectHideFlags: 0

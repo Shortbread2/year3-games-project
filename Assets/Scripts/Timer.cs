@@ -6,8 +6,9 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     private float timer = 60f;
-    public GameObject GAMEOVER;
     public GameObject RESTART;
+    public GameObject ExitButton;
+    public GameObject FixEngine;
 
     void Update()
     {
@@ -28,7 +29,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                GAMEOVER.SetActive(true);
+
                 RESTART.SetActive(true);
                 string timerString = string.Format("{0:00}", "00");
                 timerText.text = timerString;
@@ -41,9 +42,10 @@ public class Timer : MonoBehaviour
         {
             SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
             Color color = renderer.color;
-            // Decrease alpha by 3
+
             color.a = 255f;
             renderer.color = color;
+            ExitButton.SetActive(true);
         }
     }
 
@@ -61,8 +63,8 @@ public class Timer : MonoBehaviour
         if (renderer != null)
         {
             Color color = renderer.color;
-            // Decrease alpha by 3
-            color.a = Mathf.Max(0, color.a - 3f / 255f);
+
+            color.a = Mathf.Max(0, color.a - 2.5f / 255f);
             renderer.color = color;
         }
     }

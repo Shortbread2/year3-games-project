@@ -10,6 +10,8 @@ public class InterfaceDisplayManager : MonoBehaviour
     [SerializeField] GameObject LockpickingPuzzle;
     [SerializeField] playerMovement PlayerMove;
 
+    public GameObject parentOfEverything;
+
     public void openInventory()
     {
         MainInventory.SetActive(true);
@@ -51,6 +53,14 @@ public class InterfaceDisplayManager : MonoBehaviour
     {
         TetrisEnginePuzzle.SetActive(true);
         PlayerMove.enabled = false;
+        parentOfEverything.SetActive(false);
+    }
+
+    public void closeTetrisEnginePuzzle()
+    {
+        TetrisEnginePuzzle.SetActive(false);
+        PlayerMove.enabled = true;
+        parentOfEverything.SetActive(true);
     }
 
 }

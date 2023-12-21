@@ -57,7 +57,6 @@ public class vanTimer : MonoBehaviour
         {
             string timerString = string.Format("{0:00}", "00");
             timerText.text = timerString;
-            Time.timeScale = 0;
         }
     }
 

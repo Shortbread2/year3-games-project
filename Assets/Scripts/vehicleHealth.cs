@@ -8,7 +8,8 @@ public class vehicleHealth : MonoBehaviour
     private int currenthealth;
     public int displayhealth;
     public HealthBar healthBar;
-    // Start is called before the first frame update
+
+    public GameObject GameOverPanel;
     void Start()
     {
         currenthealth = health;
@@ -20,10 +21,11 @@ public class vehicleHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currenthealth <= 0)
+        if (currenthealth <= 0 || gameObject == null)
         {
+            GameOverPanel.SetActive(true);
             Destroy(gameObject);
-            //TODO END GAME
+
         }
         if (currenthealth == 36)
         {

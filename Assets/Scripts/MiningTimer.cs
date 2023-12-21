@@ -9,6 +9,7 @@ public class MiningTimer : MonoBehaviour
 
     public PlayerCollection PlayerCollection;
     public GameObject TimerParent;
+    public GameObject GameOverPanel;
 
     void Update()
     {
@@ -29,7 +30,7 @@ public class MiningTimer : MonoBehaviour
             {
                 if (gemCount < 5)
                 {
-                    //GameOverPanel.SetActive(true);
+                    GameOverPanel.SetActive(true);
                 }
 
             }

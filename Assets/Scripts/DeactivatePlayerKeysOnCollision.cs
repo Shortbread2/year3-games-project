@@ -19,54 +19,60 @@ public class DeactivatePlayerKeysOnCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.gameObject == shopKeeperCollider)
+        if (other.gameObject != null)
         {
-            int gemCount = 0;
-            if (PlayerCollection.collectiblesDictionary.TryGetValue("Gem", out gemCount))
+            if (other.gameObject == shopKeeperCollider)
             {
-                if (gemCount < 5)
+                int gemCount = 0;
+                if (PlayerCollection.collectiblesDictionary.TryGetValue("Gem", out gemCount))
                 {
-                    Debug.Log("Not enough gems to trade");
+                    if (gemCount < 5)
+                    {
+                        Debug.Log("Not enough gems to trade");
 
-                    shopDialogue.SetActive(true);
-                }
-                else
-                {
-                    // Player has enough gems
-                    PlayerCollection.collectiblesDictionary["Gem"] -= 5;
-                    PlayerMove.enabled = false;
-                    PlayerMove.GetComponent<Animator>().enabled = false;
+                        shopDialogue.SetActive(true);
+                    }
+                    else
+                    {
+                        // Player has enough gems
+                        PlayerCollection.collectiblesDictionary["Gem"] -= 5;
+                        PlayerMove.enabled = false;
+                        PlayerMove.GetComponent<Animator>().enabled = false;
+                    }
                 }
             }
-        }
 
-        if (other.gameObject == levelEntry)
-        {
-            levelEntryDialogue.SetActive(true);
-        }
+            if (other.gameObject == levelEntry)
+            {
+                levelEntryDialogue.SetActive(true);
+            }
 
-        if (other.gameObject == miningEntry)
-        {
-            miningEntryDialogue.SetActive(true);
+            if (other.gameObject == miningEntry)
+            {
+                miningEntryDialogue.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject == shopKeeperCollider)
+        if (other.gameObject != null)
         {
-            shopDialogue.SetActive(false);
-        }
+            if (other.gameObject == shopKeeperCollider)
+            {
+                shopDialogue.SetActive(false);
+            }
 
-        if (other.gameObject == levelEntry)
-        {
-            levelEntryDialogue.SetActive(false);
-        }
+            if (other.gameObject == levelEntry)
+            {
+                levelEntryDialogue.SetActive(false);
+            }
 
-        if (other.gameObject == miningEntry)
-        {
-            miningEntryDialogue.SetActive(false);
+            if (other.gameObject == miningEntry)
+            {
+                miningEntryDialogue.SetActive(false);
+            }
         }
     }
+
 }

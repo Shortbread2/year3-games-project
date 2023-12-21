@@ -2394,7 +2394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1706485545}
   Timed: 90
+  PlayerCollection: {fileID: 1609581089}
   TimerParent: {fileID: 167691197}
+  GameOverPanel: {fileID: 1932399382}
 --- !u!4 &1269305262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385437836016506626, guid: edd22a05b182b2543b0dbd91b8fb400c, type: 3}
