@@ -10,6 +10,7 @@ public class LevelFailed : MonoBehaviour
     public GameObject Player;
 
     public GameObject GameOverPanel;
+    public GameObject KeypadScreen;
 
     void Update()
     {
@@ -21,6 +22,8 @@ public class LevelFailed : MonoBehaviour
             {
                 // Stop the timer
                 MiningTimer.GetComponent<MiningTimer>().StopTimer();
+                Destroy(MiningTimer);
+                Destroy(KeypadScreen);
             }
 
             if (MiningTimer.GetComponent<MiningTimer>().getTimeIsZero())

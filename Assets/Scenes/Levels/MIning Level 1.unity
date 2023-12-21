@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 756929324}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OpenLockpickingPuzzle
+      value: OpenNextScene
       objectReference: {fileID: 0}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -37626,7 +37626,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MiningTimer: {fileID: 1196202864}
   Player: {fileID: 1609581065}
-  GameOverPanel: {fileID: 0}
+  GameOverPanel: {fileID: 1932399382}
+  KeypadScreen: {fileID: 167691197}
 --- !u!1 &1993820369
 GameObject:
   m_ObjectHideFlags: 0
