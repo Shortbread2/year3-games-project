@@ -12,7 +12,7 @@ public class LeftToRight : MonoBehaviour
     private float startTime;
     private float nextPauseTime;
     private float nextSetMinMaxTime;
-    public GameObject panel;
+
 
     void Start()
     {
@@ -24,10 +24,6 @@ public class LeftToRight : MonoBehaviour
 
     void Update()
     {
-        if (followHoops.transform == null)
-        {
-            panel.SetActive(true);
-        }
 
         if (Time.time >= nextSetMinMaxTime)
         {
@@ -65,8 +61,8 @@ public class LeftToRight : MonoBehaviour
     void SetMinMaxPositions()
     {
         // Randomly set minX and maxX, ensuring minX is less than or equal to maxX
-        minX = Random.Range(74.74f, 75.8f);
-        maxX = Random.Range(minX, 75.8f);
+        minX = Random.Range(74.74f, 75.75f);
+        maxX = Random.Range(minX, 75.75f);
 
         Debug.Log("minX: " + minX + ", maxX: " + maxX);
     }

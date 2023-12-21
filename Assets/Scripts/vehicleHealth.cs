@@ -8,8 +8,17 @@ public class vehicleHealth : MonoBehaviour
     private int currenthealth;
     public int displayhealth;
     public HealthBar healthBar;
-
     public GameObject GameOverPanel;
+    public GameObject StopTimer;
+    public GameObject RemoveKeypadScreen;
+
+    public GameObject fadingPanel;
+
+    public GameObject Van;
+
+    public GameObject RemoveInstructions;
+
+    public GameObject CanvasUI;
     void Start()
     {
         currenthealth = health;
@@ -25,9 +34,15 @@ public class vehicleHealth : MonoBehaviour
         {
             GameOverPanel.SetActive(true);
             Destroy(gameObject);
+            StopTimer.SetActive(false);
+            RemoveKeypadScreen.SetActive(false);
+            RemoveInstructions.SetActive(false);
+            fadingPanel.SetActive(false);
+            Van.SetActive(false);
+
 
         }
-        if (currenthealth == 36)
+        if (currenthealth == 35)
         {
             GetComponent<ParticleSystem>().Play();
         }
@@ -36,7 +51,7 @@ public class vehicleHealth : MonoBehaviour
     {
         if (collision.collider is CircleCollider2D && collision.gameObject.CompareTag("projectile"))
         {
-            currenthealth -= 6;
+            currenthealth -= 5;
             displayhealth = currenthealth;
             healthBar.SetHealth(currenthealth);
         }

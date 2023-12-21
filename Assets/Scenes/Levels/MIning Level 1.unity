@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5805610120136063473, guid: ba7e6b294e3a05e46aed1e4d8f2deb02, type: 3}
       propertyPath: Damage
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5805610120136063473, guid: ba7e6b294e3a05e46aed1e4d8f2deb02, type: 3}
       propertyPath: m_Enabled
@@ -1636,7 +1636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &691684127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36607,7 +36607,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2805605, y: 0.105712295}
+  m_Offset: {x: 0.008467197, y: -0.15155447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -36618,7 +36618,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.438879, y: 0.46001983}
+  m_Size: {x: 1.0169344, y: 0.21228147}
   m_EdgeRadius: 0
 --- !u!4 &1705362908
 Transform:
@@ -36627,14 +36627,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705362906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.391, y: 2.328, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: 8.658, y: 2.536, z: 0}
+  m_LocalScale: {x: 1.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 180705952}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &1706485543
 GameObject:
   m_ObjectHideFlags: 0
@@ -37055,7 +37055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5805610120136063473, guid: ba7e6b294e3a05e46aed1e4d8f2deb02, type: 3}
       propertyPath: Damage
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5805610120136063473, guid: ba7e6b294e3a05e46aed1e4d8f2deb02, type: 3}
       propertyPath: m_Enabled
@@ -37204,12 +37204,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6939437287742738037, guid: fc7215666fbb3f142a75b24b22e8ff4c, type: 3}
       propertyPath: m_text
-      value: 'Collect 5 Crystals in 90 seconds
+      value: 'Collect 5 Crystals in 90 seconds and exchange them for some coins.
 
 
-        Make sure you have your
-        ID with you before entering the mining area. The guards will attack you if
-        you dont!'
+        Make
+        sure you have your ID with you before entering the mining area. The guards
+        will attack you if you dont!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939437287742738037, guid: fc7215666fbb3f142a75b24b22e8ff4c, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939437287742738037, guid: fc7215666fbb3f142a75b24b22e8ff4c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

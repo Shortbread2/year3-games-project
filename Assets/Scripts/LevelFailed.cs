@@ -16,9 +16,9 @@ public class LevelFailed : MonoBehaviour
     {
         collectiblesDictionary = Player.GetComponent<PlayerCollection>().collectiblesDictionary;
 
-        if (collectiblesDictionary["Gem"] >= 1)
+        if (collectiblesDictionary["Gem"] >= 5)
         {
-            Debug.Log("wazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
             if (MiningTimer.GetComponent<MiningTimer>().getTimeIsZero() == true)
             {
                 // Timer For level 1 Ends and you dont have 10 crystals
@@ -27,8 +27,9 @@ public class LevelFailed : MonoBehaviour
                 //GameOverPanel.SetActive(true);
             }
         }
-        else { //Debug.Log("TODO: not working");
-               }
+        else
+        { //Debug.Log("TODO: not working");
+        }
 
     }
 

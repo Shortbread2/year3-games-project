@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    private float timer = 60f;
+    private float timer = 90f;
     public GameObject RESTART;
     public GameObject ExitButton;
     public GameObject FixEngine;
