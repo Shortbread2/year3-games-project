@@ -5595,6 +5595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1701900618}
   panel: {fileID: 717266384}
+  removeInstructions: {fileID: 1983553736}
 --- !u!114 &1147262678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5750,6 +5751,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MainInventoryDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4976963647256251717, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1393488835}
+    - target: {fileID: 4976963647256251717, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5255635654416417851, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5890,6 +5899,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9055715195426618196, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1393488835}
+    - target: {fileID: 9055715195426618196, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenMainMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3481500902925262604, guid: 370b0e28cc810504c93abe561f99e4da, type: 3}
@@ -5951,7 +5968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OpenLevel2
+      value: OpenNextScene
       objectReference: {fileID: 0}
     - target: {fileID: 3437977964898265231, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -6670,6 +6687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0639258f7f433be4eb370524a103452c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
 --- !u!114 &1994601068
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,9 @@ public class vanTimer : MonoBehaviour
     private float timer = 60f;
     public GameObject panel;
 
+    public GameObject removeInstructions;
+
+
     void Update()
     {
         if (timer >= 1f)
@@ -57,6 +60,8 @@ public class vanTimer : MonoBehaviour
         {
             string timerString = string.Format("{0:00}", "00");
             timerText.text = timerString;
+            Destroy(removeInstructions);
+            Destroy(gameObject);
         }
     }
 
