@@ -43,13 +43,14 @@ public class NPC : EntitySuperScript
     // Update is called once per frame
     void Update()
     {
-        if (selfDefense == false){
+        if (selfDefense == false && aiBehaviour.isMobile){
             if(useWaypoints == true){
                 aiBehaviour.WaypointMovement(waypointsList,doneWaypoints);
                 if(repeatWaypoints == true && waypointsList.Count == doneWaypoints.Count){
                     doneWaypoints.Clear();
                 } else if(waypointsList.Count == doneWaypoints.Count){
                     useWaypoints = false;
+                    aiBehaviour.resetSearchBase();
                 }
             }else{
                 aiBehaviour.WanderAround();

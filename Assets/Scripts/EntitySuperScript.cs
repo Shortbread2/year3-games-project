@@ -12,5 +12,6 @@ public abstract class EntitySuperScript : MonoBehaviour
     public bool repeatWaypoints = false;
     public GameObject waypointGroup;
     public List<GameObject> waypointsList = new List<GameObject>();
+    [HideInInspector]
     public List<GameObject> doneWaypoints = new List<GameObject>();
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
     using UnityEditor; // cos handles gives erros since can only use handlies with this import
 #endif
 
+// MUST READ: This script and all the ai rely on the A* Pathfinding Project for the pathing: https://arongranberg.com/astar/
 public class AIBehaviour : MonoBehaviour
 {
     // i defenetly need to clean this
@@ -20,14 +21,14 @@ public class AIBehaviour : MonoBehaviour
     private Collider2D col;
     int Distance = 100;
     private GameObject target;
-    [SerializeField]
+    //[SerializeField]
     private string targetTag = "Player";
     public float speed = 0.2f;
     public float stopdistance = 3;
     private Transform targetTransform;
+    public bool isMobile = true;
     public bool SeenTarget = false;
     private bool moveTolastKnowPos = false;
-    public bool IsNotMobile;
     public bool lvl1Int = false;
     public bool lvl2Int = false;
     private bool searching = false;
@@ -36,7 +37,7 @@ public class AIBehaviour : MonoBehaviour
     public float wanderRange = 0.2f;
     private bool moving = true;
     private Vector3 randomPoint = new Vector3(0,0,0);
-    private Vector3 searchBase = new Vector3(0,0,0);
+    private Vector3 searchBase;
     private float lastAction = -999999f;
     private float lastStuckCheck;
     private float prevDistance = 0f;
@@ -53,7 +54,7 @@ public class AIBehaviour : MonoBehaviour
         aiPathfinder.maxSpeed = speed;
         searchBase = transform.position;
         OriginalViewRange = viewRange;
-        searchBase = transform.position;
+        targetLastLocation = transform.position;
     }
     void Update()
     {
@@ -89,7 +90,6 @@ public class AIBehaviour : MonoBehaviour
             // if the target was found at one point but is now lost
             if (!hit.collider.CompareTag(targetTag) && SeenTarget == true)
             {
-                Debug.Log("test");
                 targetLastLocation = targetlocation;
                 SeenTarget = false;
                 moveTolastKnowPos = true;
@@ -106,7 +106,7 @@ public class AIBehaviour : MonoBehaviour
         {
             searching = false;
             lastSeenNode.position = targetTransform.position;
-            if (IsNotMobile == false)
+            if (isMobile == true)
             {
                 MoveToTarget();
             } else {
@@ -114,19 +114,24 @@ public class AIBehaviour : MonoBehaviour
                 moving = false;
             }
         } else{
+            // 
             if (searching == false){
                 lastSeenNode.position = targetLastLocation;
                 searchBase = lastSeenNode.position;
             }
 
-            // if the enemy loses the target and reaches the last known position it will begin to search in that area
-            if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f || searching == true){
+            // if the enemy loses the target and reaches the last known position it will begin to search in that area,
+            // this is done by checking the distance between the entity and the player is in a certain distance and the same is done for the distance between the entity and the lastSeenNode
+            if ((Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f || searching == true) && isMobile){
                 if (Vector2.Distance(transform.position, targetTransform.position) > 0.3f){
                     WanderAround();
                 }
             }
         }
-        if (aiPathfinder.canMove == false){
+
+        //canMove amd isMobile do nearly the exact same thing since they both are used to stop the entity from moving but canMove is used in attacking scripts like meleeAttack,
+        // as i dont want the enemy to constantly move while attacking (well sometimes since some enemies are like berserkers) and since canMove gets re-enabled after each attack i needed a second boolean value to keep the entity from moving.
+        if (aiPathfinder.canMove == false || isMobile == false){
             moving = false;
         }
 
@@ -148,7 +153,7 @@ public class AIBehaviour : MonoBehaviour
             {
                 aiPathfinder.enabled = false;
                 moving = true;
-                transform.position = Vector3.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime); // need to be tested more
+                //transform.position = Vector3.MoveTowards(transform.position, -targetTransform.position, speed * Time.deltaTime); // need to be tested more
             }
         }
     }
@@ -160,7 +165,7 @@ public class AIBehaviour : MonoBehaviour
         Handles.color = Color.blue;
         Handles.DrawWireDisc(searchBase, new Vector3(0, 0, 1), wanderRange); // draw wanderRange
 
-        Handles.color = Color.black;
+        Handles.color = Color.red;
         Handles.DrawWireDisc(this.transform.position, new Vector3(0, 0, 1), viewRange); // draw viewRange
     }
 
@@ -190,21 +195,29 @@ public class AIBehaviour : MonoBehaviour
         moving = true;
         searching = false;
 
+        targetLastLocation = transform.position;
+
         // reversing the for loop makes it so the for loop always ends on the left most element
         for(int i = waypointsList.Count-1;i>=0;i--){
             if (waypointsList[i].activeSelf && !doneWaypoints.Contains(waypointsList[i])){
-                Debug.Log(waypointsList[i].name);
+                //Debug.Log(waypointsList[i].name);
                 lastSeenNode.position = waypointsList[i].transform.position;
 
                 if (Vector2.Distance(transform.position, lastSeenNode.position) <= 0.3f)
                 {
                     moving = false;
                     doneWaypoints.Add(waypointsList[i]);
-                } else{
-                    lastAction = Time.time;
                 }
             }
         }
+    }
+
+    //searchBase needs to be reset after certain actions
+    public void resetSearchBase(){
+        Debug.Log("testing");
+        targetLastLocation = transform.position;
+        lastSeenNode.position = targetLastLocation;
+        searchBase = lastSeenNode.position;
     }
 
     // not the best fix but eh, if the entitiy is moving on the spot or is absurdly slow then resets the point at which the entity was supposed to move to

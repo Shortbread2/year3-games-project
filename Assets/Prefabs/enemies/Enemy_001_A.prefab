@@ -563,6 +563,11 @@ MonoBehaviour:
   health: 100
   displayhealth: 0
   speed: 0
+  useWaypoints: 0
+  repeatWaypoints: 0
+  waypointGroup: {fileID: 0}
+  waypointsList: []
+  doneWaypoints: []
   healthBar: {fileID: 8534291503911828808}
   damage: 5
   aiPathfinder: {fileID: 3722196510821047009}
@@ -580,11 +585,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPathfinder: {fileID: 3722196510821047009}
   lastSeenNode: {fileID: 7504067363899087258}
-  targetTag: Player
   speed: 0.3
   stopdistance: 0.1
+  isMobile: 1
   SeenTarget: 0
-  IsNotMobile: 0
   lvl1Int: 1
   lvl2Int: 0
   viewRange: 0.8
@@ -607,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackdistance: 0.28
   attackSpeed: 1
+  attackDelay: 0.1
   knockbackForce: 0.5
   Damage: 5
 --- !u!114 &3008353250503055796
@@ -703,7 +708,7 @@ Animator:
   m_GameObject: {fileID: 8584734057976633889}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9431780e83488e24f90c36590d3fc96e, type: 2}
+  m_Controller: {fileID: 9100000, guid: a367d4600e6b12c4cb64fe67a6b1aa0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

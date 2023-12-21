@@ -35,9 +35,9 @@ public class MeleeAttack : MeleeAttacks
         
             if (Vector2.Distance(transform.position, targetTransform.position) <= attackdistance)
                 {
-                if (AIBehaviour.lvl1Int == true && AIBehaviour.lvl2Int == false){
-                    AIBehaviour.aiPathfinder.canMove = false;
-                }
+                    if (AIBehaviour.lvl1Int == true && AIBehaviour.lvl2Int == false){
+                        AIBehaviour.aiPathfinder.canMove = false;
+                    }
                     if (Time.time - lastAction > 1 / attackSpeed)
                     {
                         //Debug.Log("attack!!");
