@@ -12,7 +12,7 @@ public class shooting : MonoBehaviour
     public float BulletForce = 0.5f;
     private float lastfired;
     [SerializeField]
-    private float rotationOffset = 0.3f;
+    private float rotationOffset = 0.05f;
 
     // Update is called once per frame
     void Update()
@@ -21,10 +21,11 @@ public class shooting : MonoBehaviour
         {
             if (Time.time - lastfired > 1 / FireRate)
             {
-                Vector3 newRotationOffset = new Vector3(0,0,Random.Range(-rotationOffset,rotationOffset));
-                GameObject projectile = Instantiate(projectileprefabs[Random.Range(0,projectileprefabs.Count)], firepoint.position, firepoint.rotation * Quaternion.Euler(newRotationOffset));
+                Vector3 newRotationOffset = new Vector3(0,0,Random.Range(-rotationOffset, rotationOffset));
+                GameObject projectile = Instantiate(projectileprefabs[Random.Range(0,projectileprefabs.Count)], firepoint.position, firepoint.rotation * Quaternion.Euler(newRotationOffset * 100));
                 Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-                rb.AddForce(firepoint.up * BulletForce, ForceMode2D.Impulse);
+                Debug.Log((firepoint.up+newRotationOffset));
+                rb.AddForce((firepoint.up * BulletForce) + new Vector3(0,newRotationOffset.z,0), ForceMode2D.Impulse);
                 projectile.GetComponent<PlayerProjectile>().damage = damage;
                 lastfired = Time.time;
 
