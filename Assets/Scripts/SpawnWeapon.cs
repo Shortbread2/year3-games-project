@@ -19,7 +19,10 @@ public class SpawnWeapon : MonoBehaviour
             Vector3 spawnOffset = new Vector3(0f, 0.2f, 0f); // Adjust as needed
             Vector3 spawnPosition = playerPos + spawnOffset;
 
-            Instantiate(item, spawnPosition, Quaternion.identity);
+            Debug.Log(spawnPosition);
+            GameObject droppedItem = Instantiate(item, spawnPosition, Quaternion.identity);
+            droppedItem.GetComponent<weaponMoveUpAndDown>().enabled = false;
+
         }
         else
         {

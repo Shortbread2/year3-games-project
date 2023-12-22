@@ -50,7 +50,6 @@ public class spawnObjectsInARange : MonoBehaviour
     // i should have used this alot more
     private void OnValidate()
     {
-        Debug.Log("testing");
         GetComponent<CircleCollider2D>().radius = radius;
 
     }

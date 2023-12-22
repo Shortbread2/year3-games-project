@@ -31,6 +31,7 @@ public class EquippedItem : MonoBehaviour
             // Instantiate the weapon and attach it to the player
             currentWeapon = Instantiate(weaponPrefab, playerItemLoc);
             currentWeapon.gameObject.GetComponent<Collider2D>().enabled = false;
+            currentWeapon.gameObject.GetComponent<Animator>().enabled = false;
             //currentWeapon.gameObject.GetComponent<lookatmouse>().enabled = true;
             currentWeapon.gameObject.GetComponent<shooting>().enabled = true;
             currentWeapon.transform.localPosition = Vector3.zero; // Set the position relative to the player

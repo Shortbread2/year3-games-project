@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayerProjectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
-    public GameObject hitEffect;
-
+    public Animator animator;
     public float damage = 10f;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.25f);
-
-        // dont know why it works but yea (shouldnt this just destroy itself before reading the if statement?)
-        Destroy(gameObject);
+        if (animator != null){
+            // there is a script in the animator to destroy objects on a certain animation ending
+            animator.SetTrigger("hitCollider");
+        } else {
+            Destroy(gameObject, 0.25f);
+        }
+        // to get rid of physics on hit
+        GetComponent<Rigidbody2D>().isKinematic = true;
 
         if (collision.gameObject.tag == "Enemy")
         {

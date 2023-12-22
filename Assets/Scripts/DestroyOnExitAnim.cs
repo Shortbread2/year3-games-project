@@ -33,7 +33,13 @@ public class DestroyOnExitAnim : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
+    // some objects i want to delete (like bullets) but some i just want to make inactive
+    public bool DestroyInsteadOfInActive;
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        if (DestroyInsteadOfInActive){
+            Destroy(animator.gameObject);
+        }
         animator.gameObject.SetActive(false);
     }
 }
