@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2197414003615256149}
   - component: {fileID: 8081424425518730001}
   m_Layer: 2
-  m_Name: weapon (5)
+  m_Name: weapon (5) minigun
   m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
