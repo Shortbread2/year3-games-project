@@ -48,6 +48,7 @@ public class rangedAttack : RangedAttacks
             if (checkIfInAttackRange())
                 {
                     AIBehaviour.aiPathfinder.canMove = false;
+                    animator.SetBool("isMovingOveride",false);
                     if (Time.time - lastAction > 1 / attackSpeed && AIBehaviour.SeenTarget == true)
                     {
                         animator.SetBool("isAttacking",true);
@@ -55,8 +56,20 @@ public class rangedAttack : RangedAttacks
 
                         lastAction = Time.time;
                     }
-                } else {
+                } else if(Vector2.Distance(transform.position, targetTransform.position) <= attackOffsetRadius){
+                    AIBehaviour.aiPathfinder.canMove = false;
+
                     animator.SetBool("isAttacking",false);
+                    animator.SetBool("isMovingOveride",true);
+                    Vector3 directionToTarget = (targetTransform.position - transform.position).normalized;
+                    Vector3 newPosition = transform.position - directionToTarget * (AIBehaviour.speed * 0.6f) * Time.deltaTime;
+
+                    // Update the NPC's position
+                    transform.position = newPosition;
+                    Debug.Log("too close");
+                }else {
+                    animator.SetBool("isAttacking",false);
+                    animator.SetBool("isMovingOveride",false);
                     AIBehaviour.aiPathfinder.canMove = true;
                 }
         }
