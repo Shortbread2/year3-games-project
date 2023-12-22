@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    public ItemGrid selectedItemGrid;
+    //This script handes all inventory interactions - Main script
+
+    public ItemGrid selectedItemGrid; //currently selected inventory grid
     
-    public ItemGrid SelectedItemGrid
+    public ItemGrid SelectedItemGrid //Manage selected item grid and highlighter
     {
         get => selectedItemGrid;
         set
         {
             selectedItemGrid = value;
-            inventoryHighlight.SetHighlighterParent(value);
+            inventoryHighlight.SetHighlighterParent(value); //Set highlighter for selected grid
         }
     }
 
@@ -28,20 +30,21 @@ public class InventoryController : MonoBehaviour
 
     private void Awake()
     {
-        inventoryHighlight = GetComponent<InventoryHighlight>();
+        inventoryHighlight = GetComponent<InventoryHighlight>(); //Access InventoryHighlight 
     }
 
     private void Update()
     {
-        ItemIconDrag();
+        ItemIconDrag(); //Handle item dragging
+
         if (Input.GetMouseButtonDown(1))
         {
-            RotateItem();
+            RotateItem(); //Rotate on right-click
         }
 
         if (selectedItemGrid == null)
         {
-            inventoryHighlight.ToggleHighlight(false);
+            inventoryHighlight.ToggleHighlight(false); //disable highlight if no grid selected
             return;
         }
 
@@ -51,16 +54,17 @@ public class InventoryController : MonoBehaviour
         }
         catch (IndexOutOfRangeException)
         {
-            Debug.LogError("Index out of range exception occurred in HandleHighlight().");
+            //Debug.LogError("Index out of range exception occurred in HandleHighlight().");
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            LeftMouseButtonPress();
+            LeftMouseButtonPress(); //Left click for item actions
         }
     }
 
-    public enum ItemType
+    //Define Item types 
+    public enum ItemType 
     {
         Gem,
         Paperclip,
@@ -68,23 +72,26 @@ public class InventoryController : MonoBehaviour
         SonPhoto
     }
 
-    public void InsertItem(ItemType itemType)
+    //Insert item of specific type into inventory
+    public void InsertItem(ItemType itemType) 
     {
         if (selectedItemGrid == null) { return; }
 
-        InventoryItem createdItem = CreateItemForInventory(itemType);
-        InsertItemIntoInventory(createdItem);
+        InventoryItem createdItem = CreateItemForInventory(itemType); //Create item based on type
+        InsertItemIntoInventory(createdItem); //Insert created item
     }
 
+    //Create item for inventory based on item type
     private InventoryItem CreateItemForInventory(ItemType itemType)
     {
-        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //Create item from prefab
         selectedItem = inventoryItem;
 
         rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
         rectTransform.SetAsLastSibling();
 
+        // Set item data based on the provided type
         switch (itemType)
         {
             case ItemType.Gem:
@@ -106,11 +113,12 @@ public class InventoryController : MonoBehaviour
         return inventoryItem;
     }
 
+    // Insert item into the inventory grid
     private void InsertItemIntoInventory(InventoryItem itemToInsert)
     {
         selectedItem = null;
 
-        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert); // Find available space in grid
 
         if (posOnGrid != null)
         {
