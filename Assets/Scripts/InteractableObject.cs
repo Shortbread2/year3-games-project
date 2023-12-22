@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    public GameObject puzzleButton;
+    public GameObject interactButton;
     public bool isScriptActive = true;
 
     private void Start()
     {
-        puzzleButton.SetActive(false);
+        interactButton.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D player)
@@ -17,12 +17,13 @@ public class InteractableObject : MonoBehaviour
         if (isScriptActive) {
             if (player.gameObject.CompareTag("Player"))
             {
-                puzzleButton.SetActive(true);
+                Debug.Log("Trigger Detected with Player");
+                interactButton.SetActive(true);
             }
         }
         else
         {
-            puzzleButton.SetActive(false);
+            interactButton.SetActive(false);
         }
     }
 
@@ -31,12 +32,12 @@ public class InteractableObject : MonoBehaviour
         if (isScriptActive) { 
             if (player.gameObject.CompareTag("Player"))
             {
-                puzzleButton.SetActive(false);
+                interactButton.SetActive(false);
             }
         } 
         else
         {
-            puzzleButton.SetActive(false);
+            interactButton.SetActive(false);
         }
     } 
 }
