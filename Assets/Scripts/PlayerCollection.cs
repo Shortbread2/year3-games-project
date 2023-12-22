@@ -16,7 +16,7 @@ public class PlayerCollection : MonoBehaviour
         // Initialize collectiblesDictionary with default values
         collectiblesDictionary.Add("Gem", 0);
         collectiblesDictionary.Add("Paperclip", 1);
-        collectiblesDictionary.Add("IDCard", 1);
+        collectiblesDictionary.Add("IDCard", 0);
         collectiblesDictionary.Add("SonPhoto", 1);
     }
 
