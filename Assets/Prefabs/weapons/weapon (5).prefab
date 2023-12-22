@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 156987146468580469}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3299712151261659701
 SpriteRenderer:
@@ -191,7 +191,7 @@ MonoBehaviour:
   projectileprefabs:
   - {fileID: 2186939014420037287, guid: 079c30bd9ead87f45b6a4a3fb1631a58, type: 3}
   - {fileID: 2245930804089425654, guid: 154f8680c8881c44ab2f7577ea31d72f, type: 3}
-  damage: 4
+  damage: 6
   FireRate: 12
   BulletForce: 1.3
   rotationOffset: 0.05

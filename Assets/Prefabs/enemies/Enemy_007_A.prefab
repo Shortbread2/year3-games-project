@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc24d5d50e4d614db675a3b22cf387b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
+  health: 100
   displayhealth: 0
   speed: 0
   useWaypoints: 0
@@ -365,7 +365,7 @@ MonoBehaviour:
   aiPathfinder: {fileID: 5613610628080906921}
   lastSeenNode: {fileID: 1181975947372410756}
   targetTag: Player
-  speed: 0.4
+  speed: 0.6
   stopdistance: 0
   isMobile: 1
   SeenTarget: 0

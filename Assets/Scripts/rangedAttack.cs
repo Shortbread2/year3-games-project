@@ -66,7 +66,6 @@ public class rangedAttack : RangedAttacks
 
                     // Update the NPC's position
                     transform.position = newPosition;
-                    Debug.Log("too close");
                 }else {
                     animator.SetBool("isAttacking",false);
                     animator.SetBool("isMovingOveride",false);

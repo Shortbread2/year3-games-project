@@ -457,9 +457,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc24d5d50e4d614db675a3b22cf387b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 110
   displayhealth: 0
   speed: 0
+  useWaypoints: 0
+  repeatWaypoints: 0
+  waypointGroup: {fileID: 0}
+  waypointsList: []
+  doneWaypoints: []
   healthBar: {fileID: 3111105267208362770}
   damage: 5
   aiPathfinder: {fileID: 1997202856339151081}
@@ -480,8 +485,8 @@ MonoBehaviour:
   targetTag: Player
   speed: 0.52
   stopdistance: 0.1
+  isMobile: 1
   SeenTarget: 0
-  IsNotMobile: 0
   lvl1Int: 1
   lvl2Int: 1
   viewRange: 1.07
