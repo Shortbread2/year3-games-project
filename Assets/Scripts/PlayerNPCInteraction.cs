@@ -11,31 +11,48 @@ public class PlayerNPCInteraction : MonoBehaviour
     public float radius = 0.3f;
     public GameObject theUiElement;
     // kinda vague, ill change it later
-    public GameObject theObject;
+    public List<GameObject> objectsToToggle = new List<GameObject>();
     public GameObject player;
     [SerializeField]
     private float timeUntilEvent = 5f;
+
+    // if key is set to null then it avoids the key press entirely
     [SerializeField]
     private string key = "f";
     private bool playerInArea = false;
+    public DialogueManager dialogueManager;
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= radius){
-            playerInArea = true;
-            if(theUiElement != null){theUiElement.SetActive(true);}
-            if (key != "null"){
-                if (Input.GetKeyDown(key)){
-                    // for now its just used to de-activate and re-active stuff
+        if (player != null){
+            if (Vector2.Distance(transform.position, player.transform.position) <= radius){
+                playerInArea = true;
+                if(theUiElement != null){theUiElement.SetActive(true);}
+                Debug.Log("1");
+                if (key != "null"){
+                    if (Input.GetKeyDown(key)){
+                        // for now its just used to de-activate and re-active stuff
+                        StartCoroutine(timer(timeUntilEvent));
+                    }
+                } else {
+                    Debug.Log("2");
                     StartCoroutine(timer(timeUntilEvent));
+                    
+                }
             }
+            if (Vector2.Distance(transform.position, player.transform.position) > radius && playerInArea == true)
+            {
+                playerInArea = false;
+                if(theUiElement != null){theUiElement.SetActive(false);}
             }
         }
-        if (Vector2.Distance(transform.position, player.transform.position) > radius && playerInArea == true)
+
+        // for interacting with the dialogueManager
+        if (dialogueManager != null && dialogueManager.isDialogueEnded)
         {
-            playerInArea = false;
-            if(theUiElement != null){theUiElement.SetActive(false);}
+            startTimer();
+            dialogueManager.isDialogueEnded = false;
         }
     }
 
@@ -45,7 +62,13 @@ public class PlayerNPCInteraction : MonoBehaviour
 
     IEnumerator timer(float time){
         yield return new WaitForSeconds(time);
-        theObject.SetActive(!theObject.activeSelf);
+        foreach (GameObject theObject in objectsToToggle){
+            theObject.SetActive(!theObject.activeSelf);
+        }
+        if (key == "null"){
+            gameObject.SetActive(false);
+        }
+
     }
 
     private void OnDrawGizmos()

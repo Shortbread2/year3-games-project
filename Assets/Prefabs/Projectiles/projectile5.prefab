@@ -203,12 +203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0598666ce3bb7478efe6070e1aaa6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  steer: 30
+  speed: 4.5
+  steer: 20
   target: {fileID: 0}
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 2993
+  gameObjctToAvoid: {fileID: 0}
   tagToAvoid: 
   animator: {fileID: 4368944417961534043}
   damage: 20

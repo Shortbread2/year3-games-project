@@ -534,8 +534,8 @@ MonoBehaviour:
   Damage: 5
   BulletForce: 1
   rotationOffset: 0
-  attackRadius: 2.27
-  attackOffsetRadius: 0
+  attackRadius: 2.42
+  attackOffsetRadius: 0.84
   firepoints: []
   projectileprefab: {fileID: 2245930804089425654, guid: 4d0f3261f7cd9e24183a86f720f3625d, type: 3}
 --- !u!1 &5900876720162872122

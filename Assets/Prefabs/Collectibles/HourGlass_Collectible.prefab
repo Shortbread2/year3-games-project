@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4299726422253406849}
   - component: {fileID: 6418277667284184127}
   - component: {fileID: 1679713490908182239}
-  - component: {fileID: 8683841991652679588}
   - component: {fileID: 3647976558724813462}
+  - component: {fileID: 6974845698081942203}
   m_Layer: 0
   m_Name: GemItem
   m_TagString: Untagged
@@ -132,18 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.77, y: 4.54}
   m_EdgeRadius: 0
---- !u!114 &8683841991652679588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698929511133756440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38000ee17dc2eff408f7b42484617c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &3647976558724813462
 Animator:
   serializedVersion: 5
@@ -165,6 +153,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6974845698081942203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698929511133756440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d331e90d91891c14f86ada6d485b7d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5749682982770011932
 GameObject:
   m_ObjectHideFlags: 0
