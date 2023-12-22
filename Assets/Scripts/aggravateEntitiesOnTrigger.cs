@@ -41,14 +41,12 @@ public class aggravateEntitiesOnTrigger : MonoBehaviour
                         // TODO - agro enemy
                     }
                 }
-                if (activateTimer != null){
+            }
+            if (activateTimer != null){
                     activateTimer.SetActive(true);
                     countDownTimer.SetActive(true);
                     activateTimerView.SetActive(true);
                 }
-            }
-
-
         }
     }
 }
