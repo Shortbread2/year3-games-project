@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SonPhotoPickUp : MonoBehaviour
@@ -8,11 +6,13 @@ public class SonPhotoPickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            InventoryController.ItemType itemType = InventoryController.ItemType.SonPhoto;
+
             PlayerCollection collectiblesManager = collision.gameObject.GetComponent<PlayerCollection>();
 
             if (collectiblesManager != null)
             {
-                collectiblesManager.CollectItem("SonPhoto");
+                collectiblesManager.CollectItem(itemType);
                 Destroy(gameObject);
             }
         }
