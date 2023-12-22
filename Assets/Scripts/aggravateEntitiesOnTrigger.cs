@@ -33,7 +33,7 @@ public class aggravateEntitiesOnTrigger : MonoBehaviour
             {
                 Dictionary<string, int> collectiblesDictionary = playerCollection.collectiblesDictionary;
 
-                if (collectiblesDictionary.ContainsKey("IDCard") && collectiblesDictionary["IDCard"] < 1 )
+                if (collectiblesDictionary.ContainsKey("IDCard") && collectiblesDictionary["IDCard"] < 1 || agroWithNoCondition)
                 {
                     Debug.Log("ID Card not found");
 
