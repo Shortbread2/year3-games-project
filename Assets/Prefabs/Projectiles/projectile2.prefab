@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1822609870199280046}
   - component: {fileID: 1467756214158874266}
   - component: {fileID: 8102903237318593521}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: projectile2
   m_TagString: projectile
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4208689404390376090
 SpriteRenderer:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a759d3eeaf363d342a5ad8bbb33c95ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 0}
+  animator: {fileID: 0}
   damage: 10
 --- !u!60 &8102903237318593521
 PolygonCollider2D:

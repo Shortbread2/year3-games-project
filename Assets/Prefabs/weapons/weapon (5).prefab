@@ -191,8 +191,8 @@ MonoBehaviour:
   projectileprefabs:
   - {fileID: 2186939014420037287, guid: 079c30bd9ead87f45b6a4a3fb1631a58, type: 3}
   - {fileID: 2245930804089425654, guid: 154f8680c8881c44ab2f7577ea31d72f, type: 3}
-  damage: 2
-  FireRate: 3.8
+  damage: 1
+  FireRate: 12
   BulletForce: 1
   rotationOffset: 0.3
 --- !u!114 &8081424425518730001

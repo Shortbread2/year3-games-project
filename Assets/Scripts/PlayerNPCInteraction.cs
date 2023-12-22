@@ -25,9 +25,11 @@ public class PlayerNPCInteraction : MonoBehaviour
         if (Vector2.Distance(transform.position, player.transform.position) <= radius){
             playerInArea = true;
             if(theUiElement != null){theUiElement.SetActive(true);}
-            if (Input.GetKeyDown(key)){
-                // for now its just used to de-activate and re-active stuff
-                StartCoroutine(timer(timeUntilEvent));
+            if (key != "null"){
+                if (Input.GetKeyDown(key)){
+                    // for now its just used to de-activate and re-active stuff
+                    StartCoroutine(timer(timeUntilEvent));
+            }
             }
         }
         if (Vector2.Distance(transform.position, player.transform.position) > radius && playerInArea == true)

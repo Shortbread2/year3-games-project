@@ -9,6 +9,9 @@ public class PlayerProjectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "adios"){
+
+        }
         if (animator != null){
             // there is a script in the animator to destroy objects on a certain animation ending
             animator.SetTrigger("hitCollider");
