@@ -11,6 +11,7 @@ public class LeftFinger : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(gameObject);
         {
             // Check if the 'A' key is pressed
             if (Input.GetKey(KeyCode.A))
@@ -68,8 +69,9 @@ public class LeftFinger : MonoBehaviour
             Debug.Log("OPEN PAUSE MENU");
             GameOverPanel.SetActive(true);
 
-            //TODO open pause menu to say game over if this happens
+            //TODO open pause menu to say game over if the other two hands fail
         }
+        else { Debug.Log("um"); }
     }
 
 }

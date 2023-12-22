@@ -1815,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7951798317660507356, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1767163876}
     - target: {fileID: 8693814951875418926, guid: 472c2e738247e59488a6b71257705e5c, type: 3}
       propertyPath: m_Sprite
       value: 
