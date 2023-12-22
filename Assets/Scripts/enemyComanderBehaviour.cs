@@ -17,7 +17,6 @@ public class enemyComanderBehaviour : MonoBehaviour
     public float speedIncreaseValue = 1.2f;
     public bool attackBuff = false;
     public float damageIncreaseValue = 1.2f;
-    // TODO - alert nearby enemies , provide buff
 
     private AIBehaviour AIBehaviour;
     void Start()
@@ -26,7 +25,7 @@ public class enemyComanderBehaviour : MonoBehaviour
         AIBehaviour = GetComponent<AIBehaviour>();
     }
 
-
+    // checks what nearby enemies are in range and adds them to an array
     void Update()
     {
             for (int i = 0; i < entityList.numOfEntities; i++){
@@ -39,7 +38,7 @@ public class enemyComanderBehaviour : MonoBehaviour
                     }
                 }
         }
-
+        
         if (AIBehaviour.SeenTarget == true && (comanderLvl1 || comanderLvl2 || comanderLvl3)){
             // special ability/buffs
             Ability();

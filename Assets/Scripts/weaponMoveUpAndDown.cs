@@ -9,6 +9,7 @@ public class weaponMoveUpAndDown : MonoBehaviour
     private Vector3 Direction = new Vector3(0.0f, -1.0f, 0.0f);
     private float targetTime = 1.0f;
 
+    // moves up and down kinda like an animation withiout using animation (had some problems with world space with weapons)
     void Update()
     {
         targetTime -= Time.deltaTime;

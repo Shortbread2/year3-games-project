@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EntityList : MonoBehaviour
 {
+    // logs all entities that are children
     public GameObject[] entities;
     public int numOfEntities = 0;
     void Update()
