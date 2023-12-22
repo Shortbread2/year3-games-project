@@ -12,7 +12,7 @@ public class enemy : EntitySuperScript
     public AIBase aiPathfinder;
     private AIBehaviour AIBehaviour;
     private GameObject shortestDistTarget;
-    // Start is called before the first frame update
+
     void Start()
     {
         currenthealth = health;
@@ -29,7 +29,6 @@ public class enemy : EntitySuperScript
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currenthealth <= 0)

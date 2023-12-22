@@ -25,6 +25,7 @@ public class homingMissile : MonoBehaviour
         }
     }
 
+    // math makes it curve and fly around towards a target
     private void FixedUpdate(){
         if (target != null && target.gameObject.activeSelf && target.tag != tagToAvoid){
             rb.velocity = transform.up * speed * Time.fixedDeltaTime * 10f;

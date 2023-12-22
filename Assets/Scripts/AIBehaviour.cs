@@ -93,12 +93,14 @@ public class AIBehaviour : MonoBehaviour
                 targetLastLocation = targetlocation;
                 SeenTarget = false;
                 moveTolastKnowPos = true;
+            // defualt movement when player has never been spotted
             } else if(!hit.collider.CompareTag(targetTag) && moveTolastKnowPos == false)
             {
                 viewRange = OriginalViewRange;
                 WanderAround();
             }
         } else {
+            // if the raycast gets back nothing
             viewRange = OriginalViewRange;
             WanderAround();
         }
@@ -214,7 +216,6 @@ public class AIBehaviour : MonoBehaviour
 
     //searchBase needs to be reset after certain actions
     public void resetSearchBase(){
-        Debug.Log("aabbcc");
         targetLastLocation = transform.position;
         lastSeenNode.position = targetLastLocation;
         searchBase = lastSeenNode.position;
