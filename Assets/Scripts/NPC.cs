@@ -31,7 +31,6 @@ public class NPC : EntitySuperScript
         turnToEnemyThreshold = health * 0.6f;
         healthBar.SetMaxHealth(health);
         animator = this.GetComponent<Animator>();
-        Debug.Log(animator.gameObject.name);
 
         //get waypoints
         if (waypointGroup != null){
@@ -81,8 +80,6 @@ public class NPC : EntitySuperScript
 
         if (currenthealth <= 0)
         {
-            Debug.Log(displayhealth);
-            Debug.Log(animator == null);
             // death animation
             animator.SetTrigger("isDead");
             aiPathfinder.enabled = false;

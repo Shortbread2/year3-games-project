@@ -22,6 +22,7 @@ TagManager:
   - Engine Pieces
   - exitedGame
   - paperClipCollider
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

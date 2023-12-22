@@ -34,7 +34,12 @@ public class EnemyAttackBehaviourOnAnim : StateMachineBehaviour
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){
+        if (animator.gameObject.GetComponent<MeleeAttack>() != null){
+            animator.gameObject.GetComponent<MeleeAttack>().attack();
+        }
+        if (animator.gameObject.GetComponent<rangedAttack>() != null){
+            animator.gameObject.GetComponent<rangedAttack>().attack();
+        }
         
-        animator.gameObject.GetComponent<MeleeAttack>().attack();
     }
 }

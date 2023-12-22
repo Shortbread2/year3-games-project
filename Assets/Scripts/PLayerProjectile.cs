@@ -10,15 +10,17 @@ public class PlayerProjectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         
+        // to make sure the animation playing is still
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         rb.velocity = new Vector3(0, 0, 0);
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-        if (collision.gameObject.tag == "projectile"){
+
+        if (collision.gameObject.tag  == this.gameObject.tag){
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
         if (animator != null){
-            // there is a script in the animator to destroy objects on a certain animation ending
+            // there is a script in the animator to destroy objects on a certain animation ending, setting this trigger will play that animation
             animator.SetTrigger("hitCollider");
         } else {
             Destroy(gameObject);

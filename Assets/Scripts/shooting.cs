@@ -24,9 +24,13 @@ public class shooting : MonoBehaviour
                 Vector3 newRotationOffset = new Vector3(0,0,Random.Range(-rotationOffset, rotationOffset));
                 GameObject projectile = Instantiate(projectileprefabs[Random.Range(0,projectileprefabs.Count)], firepoint.position, firepoint.rotation * Quaternion.Euler(newRotationOffset * 100));
                 Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-                Debug.Log((firepoint.up+newRotationOffset));
                 rb.AddForce((firepoint.up * BulletForce) + new Vector3(0,newRotationOffset.z,0), ForceMode2D.Impulse);
-                projectile.GetComponent<PlayerProjectile>().damage = damage;
+                if (projectile.GetComponent<PlayerProjectile>() != null){
+                    projectile.GetComponent<PlayerProjectile>().damage = damage;
+                } else if(projectile.GetComponent<homingMissile>() != null){
+                    projectile.GetComponent<homingMissile>().damage = damage*2;
+                    projectile.GetComponent<homingMissile>().gameObjctToAvoid = GameObject.FindGameObjectWithTag("Player");
+                }
                 lastfired = Time.time;
 
 

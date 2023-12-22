@@ -188,10 +188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firepoint: {fileID: 156987146468580469}
-  projectileprefab: {fileID: 2186939014420037287, guid: 3fd36a50a67002c47a7c26731d4851a3, type: 3}
+  projectileprefabs:
+  - {fileID: 2186939014420037287, guid: 3fd36a50a67002c47a7c26731d4851a3, type: 3}
   damage: 5
   FireRate: 3
   BulletForce: 1
+  rotationOffset: 0.3
 --- !u!114 &3470209830219040831
 MonoBehaviour:
   m_ObjectHideFlags: 0

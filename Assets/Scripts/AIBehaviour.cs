@@ -214,7 +214,7 @@ public class AIBehaviour : MonoBehaviour
 
     //searchBase needs to be reset after certain actions
     public void resetSearchBase(){
-        Debug.Log("testing");
+        Debug.Log("aabbcc");
         targetLastLocation = transform.position;
         lastSeenNode.position = targetLastLocation;
         searchBase = lastSeenNode.position;
@@ -226,7 +226,7 @@ public class AIBehaviour : MonoBehaviour
         if (Time.time - lastStuckCheck > 0.3f)
         {
             if (prevDistance == theDistance && moving == true){
-                Debug.Log("STUCK!");
+                //Debug.Log("STUCK!");
                 randomPoint = transform.position;
                 lastSeenNode.position = transform.position;
             }
@@ -245,7 +245,7 @@ public class AIBehaviour : MonoBehaviour
     }
 
     public List<GameObject> entitiesInRange = new List<GameObject>();
-    // on enter add entitiy from list
+    // on enter add entitiy to list
     void OnTriggerEnter2D(Collider2D other)
     {
         if (this.tag != other.tag)
