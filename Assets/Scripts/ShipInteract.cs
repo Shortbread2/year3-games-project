@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShipInteract : MonoBehaviour
@@ -6,7 +7,7 @@ public class ShipInteract : MonoBehaviour
     public GameObject cutscene;
     public GameObject arrowtoNextScene;
 
-    public Timer timerScript; // Assign in the Inspector
+    public Timer timerScript; 
 
     private bool cutsceneActivated = false;
     private float delayBeforeArrow = 3f;
@@ -25,7 +26,8 @@ public class ShipInteract : MonoBehaviour
                     {
                         cutscene.SetActive(true);
                         cutsceneActivated = true;
-                        Invoke("ActivateArrowToNextScene", delayBeforeArrow);
+
+                        StartCoroutine(ActivateArrowAfterDelay());
                     }
                 }
                 else
@@ -46,8 +48,10 @@ public class ShipInteract : MonoBehaviour
         }
     }
 
-    private void ActivateArrowToNextScene()
+    private IEnumerator ActivateArrowAfterDelay()
     {
+        yield return new WaitForSecondsRealtime(delayBeforeArrow);
+
         if (arrowtoNextScene != null && cutsceneActivated)
         {
             arrowtoNextScene.SetActive(true);

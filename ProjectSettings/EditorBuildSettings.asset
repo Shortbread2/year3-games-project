@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Lab Level 2.unity
     guid: e0149da47ec7c9e44a3f2178074bfb72
   - enabled: 1
+    path: Assets/Scenes/Levels/Forest Level 3.unity
+    guid: b24a5a03a345d1142b3384f0e0e0b17b
+  - enabled: 0
     path: Assets/Scenes/SampleScene-LayansChangesWithInv.unity
     guid: 723f2d25c77b0dc43aa0756e82bf430f
   m_configObjects: {}
