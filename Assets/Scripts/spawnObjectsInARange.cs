@@ -18,7 +18,6 @@ public class spawnObjectsInARange : MonoBehaviour
     public GameObject parentObjctOfNewEntity;
     public float minSpawnRate = 3f;
     public float maxSpawnRate = 30f;
-    [SerializeField]
     private float spawnRate;
     public float newEntityZValue = 0;
     private float lastAction;
