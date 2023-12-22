@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PaperclipPickup : MonoBehaviour
@@ -8,13 +6,15 @@ public class PaperclipPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            InventoryController.ItemType itemType = InventoryController.ItemType.Paperclip;
+
             PlayerCollection collectiblesManager = collision.gameObject.GetComponent<PlayerCollection>();
 
             if (collectiblesManager != null)
             {
-                collectiblesManager.CollectItem("Paperclip");
+                collectiblesManager.CollectItem(itemType);
                 Destroy(gameObject);
             }
         }
     }
-} 
+}

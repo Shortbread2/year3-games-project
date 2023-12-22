@@ -6,12 +6,13 @@ public class GemPickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            InventoryController.ItemType itemType = InventoryController.ItemType.Gem;
+
             PlayerCollection collectiblesManager = collision.gameObject.GetComponent<PlayerCollection>();
 
             if (collectiblesManager != null)
             {
-
-                collectiblesManager.CollectItem("Gem");
+                collectiblesManager.CollectItem(itemType);
                 Destroy(gameObject);
             }
         }
