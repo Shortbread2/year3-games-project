@@ -15,9 +15,9 @@ public class PlayerCollection : MonoBehaviour
     private void InitializeDictionary()
     {
         collectiblesDictionary.Add("Gem", 0);
-        collectiblesDictionary.Add("Paperclip", 0);
-        collectiblesDictionary.Add("IDCard", 0);
-        collectiblesDictionary.Add("SonPhoto", 0);
+        collectiblesDictionary.Add("Paperclip", 1);
+        collectiblesDictionary.Add("IDCard", 1);
+        collectiblesDictionary.Add("SonPhoto", 1);
     }
 
     public void CollectItem(string itemType)

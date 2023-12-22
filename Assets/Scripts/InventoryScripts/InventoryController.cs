@@ -33,12 +33,6 @@ public class InventoryController : MonoBehaviour
 
     InventoryItem itemToHighlight;
 
-    private void Start()
-    {
-        InsertIDCardItem();
-        InsertPaperclipItem();
-        InsertSonPhotoItem();
-    }
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
