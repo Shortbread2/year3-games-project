@@ -6,17 +6,14 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    //This script handes all inventory interactions - Main script
-
-    public ItemGrid selectedItemGrid; //currently selected inventory grid
-
-    public ItemGrid SelectedItemGrid //Manage selected item grid and highlighter
+    public ItemGrid selectedItemGrid;
+    public ItemGrid SelectedItemGrid
     {
         get => selectedItemGrid;
         set
         {
             selectedItemGrid = value;
-            inventoryHighlight.SetHighlighterParent(value); //Set highlighter for selected grid
+            inventoryHighlight.SetHighlighterParent(value);
         }
     }
 
@@ -32,27 +29,27 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] GameObject itemPrefab;
     [SerializeField] Transform canvasTransform;
-    InventoryHighlight inventoryHighlight;
+    InventoryHighlight inventoryHighlight; 
 
     InventoryItem itemToHighlight;
 
     private void Awake()
     {
-        inventoryHighlight = GetComponent<InventoryHighlight>(); //Access InventoryHighlight 
+        inventoryHighlight = GetComponent<InventoryHighlight>();
     }
 
     private void Update()
     {
-        ItemIconDrag(); //Handle item dragging
+        ItemIconDrag();
 
         if (Input.GetMouseButtonDown(1))
         {
-            RotateItem(); //Rotate on right-click
+            RotateItem();
         }
 
         if (selectedItemGrid == null)
         {
-            inventoryHighlight.ToggleHighlight(false); //disable highlight if no grid selected
+            inventoryHighlight.ToggleHighlight(false);
             return;
         }
 
@@ -62,239 +59,211 @@ public class InventoryController : MonoBehaviour
         }
         catch (IndexOutOfRangeException)
         {
-            //Debug.LogError("Index out of range exception occurred in HandleHighlight().");
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            LeftMouseButtonPress(); //Left click for item actions
+            LeftMouseButtonPress();
         }
     }
 
-    //Define Item types 
-    public enum ItemType
+    private void RotateItem()
     {
         if (selectedItem == null) { return; }
 
         selectedItem.Rotate();
     }
 
-//Insert item of specific type into inventory
-public void InsertItem(ItemType itemType)
-{
-    if (selectedItemGrid == null) { return; }
-
-    InventoryItem createdItem = CreateItemForInventory(itemType); //Create item based on type
-    InsertItemIntoInventory(createdItem); //Insert created item
-}
-
-//Create item for inventory based on item type
-private InventoryItem CreateItemForInventory(ItemType itemType)
-{
-    InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //Create item from prefab
-    selectedItem = inventoryItem;
-
-    rectTransform = inventoryItem.GetComponent<RectTransform>();
-    rectTransform.SetParent(canvasTransform);
-    rectTransform.SetAsLastSibling();
-
-    // Set item data based on the provided type
-    switch (itemType)
+    public void InsertGemItem()
     {
-        case ItemType.Gem:
-            inventoryItem.Set(gemItem);
-            break;
-        case ItemType.Paperclip:
-            inventoryItem.Set(paperclipItem);
-            break;
-        case ItemType.IDCard:
-            inventoryItem.Set(IDCardItem);
-            break;
-        case ItemType.SonPhoto:
-            inventoryItem.Set(SonPhotoItem);
-            break;
-        default:
-            break;
+        if (selectedItemGrid == null) { return; }
+
+        CreateGemItem();
+        InsertItemIntoInventory();
     }
 
-    return inventoryItem;
-}
-
-// Insert item into the inventory grid
-private void InsertItemIntoInventory(InventoryItem itemToInsert)
-{
-    if (selectedItemGrid == null) { return; }
-
-    CreateIDCardItem();
-    InsertItemIntoInventory();
-}
-
-public void InsertSonPhotoItem()
-{
-    if (selectedItemGrid == null) { return; }
-
-    CreateSonPhotoItem();
-    InsertItemIntoInventory();
-}
-
-private void InsertItemIntoInventory()
-{
-    InventoryItem itemToInsert = selectedItem;
-    selectedItem = null;
-
-    Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert); // Find available space in grid
-
-    if (posOnGrid != null)
+    public void InsertPaperclipItem()
     {
-        selectedItemGrid.PlaceItemOnGrid(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        if (selectedItemGrid == null) { return; }
+
+        CreatePaperclipItem();
+        InsertItemIntoInventory();
     }
-    else
+
+    public void InsertIDCardItem()
     {
-        Debug.Log("No space available on the grid");
-        Destroy(itemToInsert.gameObject);
+        if (selectedItemGrid == null) { return; }
+
+        CreateIDCardItem();
+        InsertItemIntoInventory();
     }
-}
 
-private void HandleHighlight()
-{
-    Vector2Int positionOnGrid = GetTileGridPosition();
-
-    if (selectedItem == null)
+    public void InsertSonPhotoItem()
     {
-        itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
+        if (selectedItemGrid == null) { return; }
 
-        if (itemToHighlight != null)
+        CreateSonPhotoItem();
+        InsertItemIntoInventory();
+    }
+
+    private void InsertItemIntoInventory()
+    {
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid != null)
         {
-            inventoryHighlight.ToggleHighlight(true);
-            inventoryHighlight.ResizeHighlighter(itemToHighlight);
-            inventoryHighlight.SetHighlighterPosition(selectedItemGrid, itemToHighlight);
+            selectedItemGrid.PlaceItemOnGrid(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         }
         else
         {
-            inventoryHighlight.ToggleHighlight(false);
+            Debug.Log("No space available on the grid");
+            Destroy(itemToInsert.gameObject);
         }
     }
-    else
+
+    private void HandleHighlight()
     {
-        inventoryHighlight.ToggleHighlight(selectedItemGrid.BoundaryCheck(
-            positionOnGrid.x,
-            positionOnGrid.y,
-            selectedItem.Width,
-            selectedItem.Height)
-        );
+        Vector2Int positionOnGrid = GetTileGridPosition();
 
-        inventoryHighlight.ResizeHighlighter(selectedItem);
-        inventoryHighlight.SetHighlighterPositionFromGridAndItem(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
-    }
-}
-
-
-private void CreateGemItem()
-{
-    InventoryItem inventoryItem = CreateItemForInventory();
-
-    inventoryItem.Set(gemItem);
-}
-
-private void CreatePaperclipItem()
-{
-    InventoryItem inventoryItem = CreateItemForInventory();
-
-    inventoryItem.Set(paperclipItem);
-}
-
-private void CreateIDCardItem()
-{
-    InventoryItem inventoryItem = CreateItemForInventory();
-
-    inventoryItem.Set(IDCardItem);
-}
-
-private void CreateSonPhotoItem()
-{
-    InventoryItem inventoryItem = CreateItemForInventory();
-    inventoryItem.Set(SonPhotoItem);
-}
-
-private InventoryItem CreateItemForInventory()
-{
-    InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
-    selectedItem = inventoryItem;
-
-    rectTransform = inventoryItem.GetComponent<RectTransform>();
-    rectTransform.SetParent(canvasTransform);
-    rectTransform.SetAsLastSibling();
-
-    return inventoryItem;
-}
-
-private void LeftMouseButtonPress()
-{
-    Vector2Int tileGridPosition = GetTileGridPosition();
-
-    if (selectedItem == null)
-    {
-        try
+        if (selectedItem == null)
         {
-            PickUpItem(tileGridPosition);
+            itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
+
+            if (itemToHighlight != null)
+            {
+                inventoryHighlight.ToggleHighlight(true);
+                inventoryHighlight.ResizeHighlighter(itemToHighlight);
+                inventoryHighlight.SetHighlighterPosition(selectedItemGrid, itemToHighlight);
+            }
+            else
+            {
+                inventoryHighlight.ToggleHighlight(false);
+            }
         }
-        catch (IndexOutOfRangeException)
+        else
         {
+            inventoryHighlight.ToggleHighlight(selectedItemGrid.BoundaryCheck(
+                positionOnGrid.x,
+                positionOnGrid.y,
+                selectedItem.Width,
+                selectedItem.Height)
+            );
 
+            inventoryHighlight.ResizeHighlighter(selectedItem);
+            inventoryHighlight.SetHighlighterPositionFromGridAndItem(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
-    else
+
+
+    private void CreateGemItem()
     {
-        PlaceItem(tileGridPosition);
+        InventoryItem inventoryItem = CreateItemForInventory();
+
+        inventoryItem.Set(gemItem);
     }
-}
 
-private Vector2Int GetTileGridPosition()
-{
-    Vector2 position = Input.mousePosition;
-
-    if (selectedItem != null)
+    private void CreatePaperclipItem()
     {
-        position.x -= (selectedItem.Width - 1) * ItemGrid.TileSizeWidth / 2;
-        position.y += (selectedItem.Height - 1) * ItemGrid.TileSizeHeight / 2;
+        InventoryItem inventoryItem = CreateItemForInventory();
 
+        inventoryItem.Set(paperclipItem);
     }
-    return selectedItemGrid.GetTileGridPosition(position);
-}
 
-private void PlaceItem(Vector2Int tileGridPosition)
-{
-    bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-
-    if (complete)
+    private void CreateIDCardItem()
     {
-        selectedItem = null;
-        if (overlapItem != null)
+        InventoryItem inventoryItem = CreateItemForInventory();
+
+        inventoryItem.Set(IDCardItem);
+    }
+
+    private void CreateSonPhotoItem()
+    {
+        InventoryItem inventoryItem = CreateItemForInventory();
+        inventoryItem.Set(SonPhotoItem);
+    }
+
+    private InventoryItem CreateItemForInventory()
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        selectedItem = inventoryItem;
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvasTransform);
+        rectTransform.SetAsLastSibling();
+
+        return inventoryItem;
+    }
+
+    private void LeftMouseButtonPress()
+    {
+        Vector2Int tileGridPosition = GetTileGridPosition();
+
+        if (selectedItem == null)
         {
-            selectedItem = overlapItem;
-            overlapItem = null;
+            try
+            {
+                PickUpItem(tileGridPosition);
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+            }
+        }
+        else
+        {
+            PlaceItem(tileGridPosition);
+        }
+    }
+
+    private Vector2Int GetTileGridPosition()
+    {
+        Vector2 position = Input.mousePosition;
+
+        if (selectedItem != null)
+        {
+            position.x -= (selectedItem.Width - 1) * ItemGrid.TileSizeWidth / 2;
+            position.y += (selectedItem.Height - 1) * ItemGrid.TileSizeHeight / 2;
+
+        }
+        return selectedItemGrid.GetTileGridPosition(position);
+    }
+
+    private void PlaceItem(Vector2Int tileGridPosition)
+    {
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
+
+        if (complete)
+        {
+            selectedItem = null;
+            if (overlapItem != null)
+            {
+                selectedItem = overlapItem;
+                overlapItem = null;
+                rectTransform = selectedItem.GetComponent<RectTransform>();
+                rectTransform.SetAsLastSibling();
+            }
+        }
+    }
+
+    private void PickUpItem(Vector2Int tileGridPosition)
+    {
+        selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
+
+        if (selectedItem != null)
+        {
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }
     }
-}
 
-private void PickUpItem(Vector2Int tileGridPosition)
-{
-    selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
-
-    if (selectedItem != null)
+    private void ItemIconDrag()
     {
-        rectTransform = selectedItem.GetComponent<RectTransform>();
-        rectTransform.SetAsLastSibling();
+        if (selectedItem != null)
+        {
+            rectTransform.position = Input.mousePosition;
+        }
     }
-}
-
-private void ItemIconDrag()
-{
-    if (selectedItem != null)
-    {
-        rectTransform.position = Input.mousePosition;
-    }
-}
 }
