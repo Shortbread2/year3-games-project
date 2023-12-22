@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class OldWomanInteraction : MonoBehaviour
 {
-    public void SpawnEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    private DialogueManager dialogueManager;
+    private PlayerNPCInteraction npcInteraction;
+    public GameObject collisionWithWoman;
 
-        if(enemies.Length < 0 )
+    private void Start()
+    {
+        npcInteraction = GetComponent<PlayerNPCInteraction>();
+        if (npcInteraction == null)
         {
-            Debug.Log("No enemy tags found");
+            Debug.LogError("PlayerNPCInteraction component null");
         }
 
-        foreach (GameObject enemy in enemies)
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        if (dialogueManager == null)
         {
-            enemy.SetActive(true);
+            Debug.LogError("DialogueManager null");
+        }
+    }
+
+    private void Update()
+    {
+        if (dialogueManager != null && dialogueManager.isDialogueEnded)
+        {
+            npcInteraction.startTimer();
+            dialogueManager.isDialogueEnded = false;
+            collisionWithWoman.SetActive(false);
         }
     }
 }
