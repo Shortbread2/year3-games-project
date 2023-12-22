@@ -11,6 +11,7 @@ public class aggravateEntitiesOnTrigger : MonoBehaviour
     public GameObject activateTimerView;
     public GameObject activateTimer;
     public GameObject countDownTimer;
+    private Dictionary<string, int> collectiblesDictionary = new Dictionary<string, int>();
 
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
@@ -22,46 +23,32 @@ public class aggravateEntitiesOnTrigger : MonoBehaviour
     {
         agroEntities(other);
     }
-    public void agroEntities(Collider2D other)
-    {
+    public void agroEntities(Collider2D other){
         if (other.gameObject != null && other.gameObject.tag == "Player")
         {
             Player = other.gameObject;
 
-            PlayerCollection playerCollection = Player.GetComponent<PlayerCollection>();
-            if (playerCollection != null)
+            collectiblesDictionary = Player.GetComponent<PlayerCollection>().collectiblesDictionary;
+
+            if (collectiblesDictionary["IDCard"] < 1 || agroWithNoCondition)
             {
-                Dictionary<string, int> collectiblesDictionary = playerCollection.collectiblesDictionary;
-
-                if (collectiblesDictionary.ContainsKey("IDCard") && collectiblesDictionary["IDCard"] < 1 || agroWithNoCondition)
-                {
-                    Debug.Log("ID Card not found");
-
-                    foreach (GameObject entity in entities)
-                    {
-                        if (entity.tag == "NPC")
-                        {
-                            entity.GetComponent<NPC>().TakeDamage(0, Player);
-                            entity.GetComponent<AIBehaviour>().SeenTarget = true;
-                        }
-                        if (entity.tag == "Enemy")
-                        {
-                            // TODO - agro enemy
-                        }
+                foreach (GameObject entity in entities){
+                    if (entity.tag == "NPC"){
+                        entity.GetComponent<NPC>().TakeDamage(0,Player); // agros the guards to the player
+                        entity.GetComponent<AIBehaviour>().SeenTarget = true;
                     }
-                    if (activateTimer != null)
-                    {
-                        activateTimer.SetActive(true);
-                        countDownTimer.SetActive(true);
-                        activateTimerView.SetActive(true);
+                    if (entity.tag == "Enemy"){
+                        // TODO - agro enemy
                     }
                 }
-                else
-                {
-                    Debug.Log("ID Card was found");
-                    // Perform attack actions if the ID Card was not found
+                if (activateTimer != null){
+                    activateTimer.SetActive(true);
+                    countDownTimer.SetActive(true);
+                    activateTimerView.SetActive(true);
                 }
             }
+
+
         }
     }
 }

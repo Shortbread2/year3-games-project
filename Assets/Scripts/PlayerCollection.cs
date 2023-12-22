@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static InventoryController;
 
 public class PlayerCollection : MonoBehaviour
 {
     public Dictionary<string, int> collectiblesDictionary = new Dictionary<string, int>();
+
+  //private InventoryController inventoryController;
 
     void Start()
     {
@@ -13,20 +14,17 @@ public class PlayerCollection : MonoBehaviour
 
     private void InitializeDictionary()
     {
-        // Initialize collectiblesDictionary with default values
         collectiblesDictionary.Add("Gem", 0);
         collectiblesDictionary.Add("Paperclip", 1);
-        collectiblesDictionary.Add("IDCard", 0);
+        collectiblesDictionary.Add("IDCard", 1);
         collectiblesDictionary.Add("SonPhoto", 1);
     }
 
-    public void CollectItem(ItemType itemType)
+    public void CollectItem(string itemType)
     {
-        string itemName = itemType.ToString();
-
-        if (collectiblesDictionary.ContainsKey(itemName))
+        if (collectiblesDictionary.ContainsKey(itemType))
         {
-            collectiblesDictionary[itemName]++;
+            collectiblesDictionary[itemType]++;
 
             GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             if (mainCamera != null)
@@ -34,11 +32,11 @@ public class PlayerCollection : MonoBehaviour
                 InventoryController inventoryController = mainCamera.GetComponent<InventoryController>();
                 if (inventoryController != null)
                 {
-                    inventoryController.InsertItem(itemType);
+                    InsertItemIntoInventory(itemType, inventoryController);
                 }
                 else
                 {
-                    Debug.LogWarning("InventoryController script not found on the MainCamera object.");
+                    Debug.LogWarning("InventoryController script not found on the mainCamera object.");
                 }
             }
             else
@@ -48,7 +46,28 @@ public class PlayerCollection : MonoBehaviour
         }
         else
         {
-            collectiblesDictionary.Add(itemName, 1);
+            collectiblesDictionary.Add(itemType, 1);
+        }
+    }
+
+    private void InsertItemIntoInventory(string itemType, InventoryController controller)
+    {
+        switch (itemType)
+        {
+            case "Gem":
+                controller.InsertGemItem();
+                break;
+            case "Paperclip":
+                controller.InsertPaperclipItem();
+                break;
+            case "IDCard":
+                controller.InsertIDCardItem();
+                break;
+            case "SonPhoto":
+                controller.InsertSonPhotoItem();
+                break;
+            default:
+                break;
         }
     }
 

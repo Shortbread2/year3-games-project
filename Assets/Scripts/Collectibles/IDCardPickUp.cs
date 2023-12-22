@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IDCardPickUp : MonoBehaviour
@@ -6,13 +8,11 @@ public class IDCardPickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            InventoryController.ItemType itemType = InventoryController.ItemType.IDCard;
-
             PlayerCollection collectiblesManager = collision.gameObject.GetComponent<PlayerCollection>();
 
             if (collectiblesManager != null)
             {
-                collectiblesManager.CollectItem(itemType);
+                collectiblesManager.CollectItem("IDCard");
                 Destroy(gameObject);
             }
         }
