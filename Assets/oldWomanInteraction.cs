@@ -13,8 +13,6 @@ public class OldWomanInteraction : MonoBehaviour
             Debug.Log("No enemy tags found");
         }
 
-        Debug.Log(enemies.Length);
-
         foreach (GameObject enemy in enemies)
         {
             enemy.SetActive(true);

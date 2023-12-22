@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 262322116}
   - component: {fileID: 262322115}
   - component: {fileID: 262322114}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2947,7 +2947,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262322113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0013, y: 0.0019999999, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2957,7 +2957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.345601, y: 2.1387901}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &332314040
@@ -4423,7 +4423,7 @@ Tilemap:
       - {fileID: -1312692844, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: 310596567, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: -569699923, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 2, y: 4, z: 0}
@@ -6316,7 +6316,7 @@ GameObject:
   - component: {fileID: 692731699}
   - component: {fileID: 692731701}
   - component: {fileID: 692731700}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18554,11 +18554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959742530399887794, guid: 8f33efd2a568b1149b71358919818032, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.17711
+      value: 1.197
       objectReference: {fileID: 0}
     - target: {fileID: 4959742530399887794, guid: 8f33efd2a568b1149b71358919818032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.79544884
+      value: 0.032
       objectReference: {fileID: 0}
     - target: {fileID: 4959742530399887794, guid: 8f33efd2a568b1149b71358919818032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18595,6 +18595,14 @@ PrefabInstance:
     - target: {fileID: 5052852782627840104, guid: 8f33efd2a568b1149b71358919818032, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074733565482621719, guid: 8f33efd2a568b1149b71358919818032, type: 3}
+      propertyPath: viewRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074733565482621719, guid: 8f33efd2a568b1149b71358919818032, type: 3}
+      propertyPath: SeenTarget
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7833287982205261361, guid: 8f33efd2a568b1149b71358919818032, type: 3}
       propertyPath: m_AnchorMax.x
@@ -21338,9 +21346,9 @@ GameObject:
   - component: {fileID: 867771675}
   - component: {fileID: 867771674}
   - component: {fileID: 867771680}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OldWoman
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21596,9 +21604,9 @@ MonoBehaviour:
   waypointGroup: {fileID: 0}
   waypointsList: []
   doneWaypoints: []
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1428562304}
   damage: 0
-  aiPathfinder: {fileID: 0}
+  aiPathfinder: {fileID: 867771675}
 --- !u!50 &867771679
 Rigidbody2D:
   serializedVersion: 4
@@ -22699,7 +22707,7 @@ Tilemap:
       - {fileID: -1364287729, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: 118159284, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: 1718466693, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
-      m_AnimationSpeed: 6.0000005
+      m_AnimationSpeed: 6
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 2, y: 5, z: 0}
@@ -22739,7 +22747,7 @@ Tilemap:
       - {fileID: -1364287729, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: 118159284, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
       - {fileID: 1718466693, guid: 9f8cbbfb642b9b44c907fe981078293f, type: 3}
-      m_AnimationSpeed: 6
+      m_AnimationSpeed: 6.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 37, y: 14, z: 0}
@@ -23899,7 +23907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335920805}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: last seen node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24152,7 +24160,7 @@ GameObject:
   - component: {fileID: 1428562303}
   - component: {fileID: 1428562305}
   - component: {fileID: 1428562304}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24178,7 +24186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 68.6}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1428562304
@@ -27640,7 +27648,7 @@ GameObject:
   - component: {fileID: 1983737720}
   - component: {fileID: 1983737722}
   - component: {fileID: 1983737721}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
