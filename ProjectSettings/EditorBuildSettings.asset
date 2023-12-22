@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 015d0a3bac4517b49a8df5fcd2ec5e95
   - enabled: 1
-    path: Assets/Scenes/Levels/MIning Level 1.unity
-    guid: 2d07b3cb79e24e44b96f26baf83fedfa
+    path: Assets/Scenes/Levels/Level 1 Mining.unity
+    guid: 8db4be64da9b3254184651485748461a
   - enabled: 1
     path: Assets/Scenes/Puzzle scenes/Lockpicking puzzle scene.unity
     guid: 6afb6995a675fda4d8d92d6e3d0b2673
@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Forest Level 3.unity
     guid: b24a5a03a345d1142b3384f0e0e0b17b
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4 part one.unity
+    guid: 5a9c8f704eca0ef4a81938772934b6f7
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 0294743eb3965714a8dac828059cbb17
   - enabled: 0
     path: Assets/Scenes/SampleScene-LayansChangesWithInv.unity
     guid: 723f2d25c77b0dc43aa0756e82bf430f

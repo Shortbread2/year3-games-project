@@ -105,7 +105,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 835224507774484063}
-  - {fileID: 2411770703722056243}
+  - {fileID: 8747687492279115418}
   m_Father: {fileID: 3615065790955506587}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,6 +303,7 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   cutScenePanel: {fileID: 7774083585313987703}
   arrowToNextScene: {fileID: 6144742462065303277}
+  inventoryController: {fileID: 0}
 --- !u!1 &2991830622256986681
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +813,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
---- !u!224 &2411770703722056243 stripped
+--- !u!224 &8747687492279115418 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6349604608811242664, guid: b4030a28456eb944898e3a2de2e0fa23, type: 3}
   m_PrefabInstance: {fileID: 2411770703722056242}
